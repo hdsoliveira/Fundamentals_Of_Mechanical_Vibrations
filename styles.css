@@ -1,0 +1,102 @@
+/* ── Typography ─────────────────────────────────────── */
+body {
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  border-bottom: 2px solid #e0e7ef;
+  padding-bottom: 0.3rem;
+  margin-top: 2.2rem;
+}
+
+/* ── Figures ────────────────────────────────────────── */
+figure {
+  margin: 2rem auto;
+}
+
+figcaption {
+  font-size: 0.88rem;
+  color: #6c757d;
+  margin-top: 0.6rem;
+  font-style: italic;
+}
+
+/* ── Callout boxes ──────────────────────────────────── */
+.callout {
+  border-radius: 6px;
+  margin: 1.5rem 0;
+}
+
+.callout-important {
+  border-left: 4px solid #1a6faf;
+}
+
+.callout-note {
+  border-left: 4px solid #27ae60;
+}
+
+.callout-warning {
+  border-left: 4px solid #e67e22;
+}
+
+/* ── Interactive widget area ────────────────────────── */
+.ojs-area {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+}
+
+/* ── Tables ─────────────────────────────────────────── */
+table {
+  font-size: 0.95rem;
+  width: auto;
+  margin: 1rem auto;
+}
+
+thead th {
+  background: #1a6faf;
+  color: white;
+  padding: 0.5rem 1rem;
+}
+
+tbody tr:nth-child(even) {
+  background: #f0f5fb;
+}
+
+/* ── Navbar ─────────────────────────────────────────── */
+.navbar {
+  background: #1a4a7a !important;
+}
+
+.navbar-brand, .nav-link {
+  color: #fff !important;
+}
+
+.nav-link:hover {
+  color: #a8d0f5 !important;
+}
+
+/* ── TOC sidebar ─────────────────────────────────────── */
+#TOC {
+  font-size: 0.88rem;
+}
+
+#TOC a {
+  color: #444 !important;
+}
+
+#TOC a:hover {
+  color: #1a6faf !important;
+}
+
+#TOC a.active {
+  color: #1a6faf !important;
+  font-weight: 600;
+}
