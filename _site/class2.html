@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Class 2 — Springs, Dampers &amp; Equation of Motion – Fundamentals of Mechanical Vibrations</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Fundamentals of Mechanical Vibrations</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./class2.html" aria-current="page"> 
+<span class="menu-text">Class 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class3.html"> 
+<span class="menu-text">Class 3</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class4.html"> 
+<span class="menu-text">Class 4</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class5.html"> 
+<span class="menu-text">Class 5</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class6.html"> 
+<span class="menu-text">Class 6</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class7.html"> 
+<span class="menu-text">Class 7</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class8.html"> 
+<span class="menu-text">Class 8</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#combining-springs" id="toc-combining-springs" class="nav-link" data-scroll-target="#combining-springs">Combining Springs</a>
+  <ul class="collapse">
+  <li><a href="#single-spring" id="toc-single-spring" class="nav-link" data-scroll-target="#single-spring">Single Spring</a></li>
+  <li><a href="#springs-in-parallel" id="toc-springs-in-parallel" class="nav-link" data-scroll-target="#springs-in-parallel">Springs in Parallel</a></li>
+  <li><a href="#springs-in-series" id="toc-springs-in-series" class="nav-link" data-scroll-target="#springs-in-series">Springs in Series</a></li>
+  </ul></li>
+  <li><a href="#combining-dampers" id="toc-combining-dampers" class="nav-link" data-scroll-target="#combining-dampers">Combining Dampers</a>
+  <ul class="collapse">
+  <li><a href="#single-damper" id="toc-single-damper" class="nav-link" data-scroll-target="#single-damper">Single Damper</a></li>
+  <li><a href="#dampers-in-parallel" id="toc-dampers-in-parallel" class="nav-link" data-scroll-target="#dampers-in-parallel">Dampers in Parallel</a></li>
+  <li><a href="#dampers-in-series" id="toc-dampers-in-series" class="nav-link" data-scroll-target="#dampers-in-series">Dampers in Series</a></li>
+  </ul></li>
+  <li><a href="#equation-of-motion" id="toc-equation-of-motion" class="nav-link" data-scroll-target="#equation-of-motion">Equation of Motion</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1-system-with-two-spring-damper-pairs-in-parallel" id="toc-exercise-1-system-with-two-spring-damper-pairs-in-parallel" class="nav-link" data-scroll-target="#exercise-1-system-with-two-spring-damper-pairs-in-parallel">Exercise 1 — System with Two Spring-Damper Pairs in Parallel</a></li>
+  <li><a href="#exercise-2-the-simple-pendulum" id="toc-exercise-2-the-simple-pendulum" class="nav-link" data-scroll-target="#exercise-2-the-simple-pendulum">Exercise 2 — The Simple Pendulum</a></li>
+  </ul></li>
+  <li><a href="#free-vibration-response" id="toc-free-vibration-response" class="nav-link" data-scroll-target="#free-vibration-response">Free Vibration Response</a>
+  <ul class="collapse">
+  <li><a href="#proposed-solution" id="toc-proposed-solution" class="nav-link" data-scroll-target="#proposed-solution">Proposed Solution</a></li>
+  <li><a href="#determining-a-and-phi-from-initial-conditions" id="toc-determining-a-and-phi-from-initial-conditions" class="nav-link" data-scroll-target="#determining-a-and-phi-from-initial-conditions">Determining <span class="math inline">\(A\)</span> and <span class="math inline">\(\phi\)</span> from Initial Conditions</a></li>
+  </ul></li>
+  <li><a href="#interactive-free-vibration-explorer" id="toc-interactive-free-vibration-explorer" class="nav-link" data-scroll-target="#interactive-free-vibration-explorer">🎛️ Interactive: Free Vibration Explorer</a></li>
+  <li><a href="#what-comes-next" id="toc-what-comes-next" class="nav-link" data-scroll-target="#what-comes-next">What Comes Next</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Class 2 — Springs, Dampers &amp; Equation of Motion</h1>
+<p class="subtitle lead">Fundamentals of Mechanical Vibrations · Single Degree of Freedom Systems</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>In the previous class we understood the role of <strong>springs</strong> and <strong>dampers</strong> as the fundamental passive elements in a vibrating mechanical system. Now we address two important questions:</p>
+<ol type="1">
+<li>What is the <strong>equivalent stiffness/damping</strong> when elements are combined?</li>
+<li>Once we know all the elements, how do we obtain the <strong>equation of motion</strong> that governs the dynamics of the whole system?</li>
+</ol>
+<hr>
+</section>
+<section id="combining-springs" class="level2">
+<h2 class="anchored" data-anchor-id="combining-springs">Combining Springs</h2>
+<section id="single-spring" class="level3">
+<h3 class="anchored" data-anchor-id="single-spring">Single Spring</h3>
+<p>The constitutive relation of a linear spring is:</p>
+<p><span class="math display">\[F = k\, u \quad \Longrightarrow \quad u = \frac{F}{k}\]</span></p>
+<p>where <span class="math inline">\(k\)</span> is the stiffness (N/m), <span class="math inline">\(u\)</span> is the elongation (m), and <span class="math inline">\(F\)</span> is the applied force (N).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images_class_2/fig_single_spring.png" class="img-fluid figure-img" style="width:55.0%"></p>
+<figcaption>Simple Spring</figcaption>
+</figure>
+</div>
+</section>
+<section id="springs-in-parallel" class="level3">
+<h3 class="anchored" data-anchor-id="springs-in-parallel">Springs in Parallel</h3>
+<p>When two springs share the same displacement <span class="math inline">\(u\)</span>, the forces add:</p>
+<p><span class="math display">\[F = F_1 + F_2 = k_1 u + k_2 u = (k_1+k_2)\,u\]</span></p>
+<p>So the <strong>equivalent stiffness</strong> is:</p>
+<p><span class="math display">\[\boxed{k_{\text{eq}} = k_1 + k_2}\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images_class_2/fig_springs_parallel.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Springs in Parallel</figcaption>
+</figure>
+</div>
+<p>If we have more than two springs, we have then</p>
+<p><span class="math display">\[\boxed{k_1 + k_2 + \cdots + k_n}\]</span></p>
+<p>The equivalent stiffness is simply the <strong>sum</strong> of the individual stiffnesses.</p>
+<hr>
+</section>
+<section id="springs-in-series" class="level3">
+<h3 class="anchored" data-anchor-id="springs-in-series">Springs in Series</h3>
+<p>When two springs are connected end-to-end, the same force <span class="math inline">\(F\)</span> passes through both and the displacements add:</p>
+<p><span class="math display">\[u = u_1 + u_2 = \frac{F}{k_1} + \frac{F}{k_2} = F\!\left(\frac{1}{k_1}+\frac{1}{k_2}\right)\]</span></p>
+<p>So the <strong>equivalent stiffness</strong> is:</p>
+<p><span class="math display">\[\boxed{\frac{1}{k_{\text{eq}}} = \frac{1}{k_1}+\frac{1}{k_2}}\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images_class_2/fig_springs_series.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Springs in Series</figcaption>
+</figure>
+</div>
+<p>If we have more springs in series, we have then</p>
+<p><span class="math display">\[\boxed{\frac{1}{k_{\text{eq}}} = \frac{1}{k_1}+\frac{1}{k_2}+\cdots+\frac{1}{k_n}}\]</span></p>
+<p>in which <span class="math inline">\(n\)</span> represents the number of springs.</p>
+</section>
+</section>
+<section id="combining-dampers" class="level2">
+<h2 class="anchored" data-anchor-id="combining-dampers">Combining Dampers</h2>
+<section id="single-damper" class="level3">
+<h3 class="anchored" data-anchor-id="single-damper">Single Damper</h3>
+<p>The constitutive relation of a linear (viscous) damper is:</p>
+<p><span class="math display">\[F = c\,\dot{u}\]</span></p>
+<p>where <span class="math inline">\(c\)</span> is the damping coefficient (N·s/m) and <span class="math inline">\(\dot{u}\)</span> is the relative velocity.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images_class_2/fig_single_damper.png" class="img-fluid figure-img" style="width:45.0%"></p>
+<figcaption>Simple Viscous Damper</figcaption>
+</figure>
+</div>
+</section>
+<section id="dampers-in-parallel" class="level3">
+<h3 class="anchored" data-anchor-id="dampers-in-parallel">Dampers in Parallel</h3>
+<p>When two dampers share the same velocity <span class="math inline">\(\dot{u}\)</span>, the forces add — exactly analogous to springs in parallel:</p>
+<p><span class="math display">\[F = c_1\dot{u} + c_2\dot{u} = (c_1+c_2)\,\dot{u}\]</span></p>
+<p><span class="math display">\[\boxed{c_{\text{eq}} = c_1 + c_2}\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images_class_2/fig_dampers_parallel.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Dampers in Parallel</figcaption>
+</figure>
+</div>
+<p>Again, for more dampers the equivalent damping will be</p>
+<p><span class="math display">\[c_{eq} = c_1 + c_2 + \cdots + c_n\]</span></p>
+</section>
+<section id="dampers-in-series" class="level3">
+<h3 class="anchored" data-anchor-id="dampers-in-series">Dampers in Series</h3>
+<p>When two dampers are connected in series, the same force acts on both and the velocities add:</p>
+<p><span class="math display">\[\dot{u} = \dot{u}_1 + \dot{u}_2 = \frac{F_e}{c_1} + \frac{F_e}{c_2}\]</span></p>
+<p><span class="math display">\[\boxed{\frac{1}{c_{\text{eq}}} = \frac{1}{c_1}+\frac{1}{c_2}}\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images_class_2/fig_dampers_series.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Dampers in series</figcaption>
+</figure>
+</div>
+<p>One more time, for more than one damper, we have</p>
+<p><span class="math display">\[\frac{1}{c_{eq}} = \frac{1}{c_1} + \frac{1}{c_2} + \cdots + \frac{1}{c_n}\]</span></p>
+<p>Here, <span class="math inline">\(n\)</span> is the number of dampers.</p>
+</section>
+</section>
+<section id="equation-of-motion" class="level2">
+<h2 class="anchored" data-anchor-id="equation-of-motion">Equation of Motion</h2>
+<p>Now that we understand the basic elements that constitute a simple mechanical system,. Let’s understand how to obtain the equation of motion. Consider a mass <span class="math inline">\(m\)</span> supported by a spring <span class="math inline">\(k\)</span> and a damper <span class="math inline">\(c\)</span> in parallel, subjected to displacement <span class="math inline">\(u\)</span> (positive upward).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images_class_2/fig_fbd_single.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Mechanical System 1DOF</figcaption>
+</figure>
+</div>
+<p>The <strong>Free Body Diagram</strong> (FBD) shows two forces acting on the mass, both opposing the positive <span class="math inline">\(u\)</span> direction:</p>
+<ul>
+<li>Spring force: <span class="math inline">\(F_s = - ku\)</span> (downward)</li>
+<li>Damping force: <span class="math inline">\(F_e = - c\dot{u}\)</span> (downward)</li>
+</ul>
+<p>Applying Newton’s second law (<span class="math inline">\(\sum F = m\ddot{u}\)</span>) in the positive direction:</p>
+<p><span class="math display">\[m\ddot{u} = -ku - c\dot{u}\]</span></p>
+<p>Rearranging:</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Equation of Motion — 1-DOF System
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\boxed{m\ddot{u} + c\dot{u} + ku = 0}\]</span></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(m\ddot{u}\)</span></td>
+<td>Inertia force</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(c\dot{u}\)</span></td>
+<td>Damping force</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(ku\)</span></td>
+<td>Elastic (spring) force</td>
+</tr>
+</tbody>
+</table>
+<p>Any external excitation adds a right-hand side: <span class="math inline">\(m\ddot{u} + c\dot{u} + ku = F(t)\)</span> because of the balance of forces.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<section id="exercise-1-system-with-two-spring-damper-pairs-in-parallel" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1-system-with-two-spring-damper-pairs-in-parallel">Exercise 1 — System with Two Spring-Damper Pairs in Parallel</h3>
+<p>Find the equation of motion of the system below, where two spring-damper pairs <span class="math inline">\((c_1,k_1)\)</span> and <span class="math inline">\((c_2,k_2)\)</span> are arranged in parallel between the ground and the mass <span class="math inline">\(m\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images_class_2/fig_exercise1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+<p><strong>Solution.</strong> The FBD gives four forces acting downward on the mass: <span class="math inline">\(c_1\dot{u}\)</span>, <span class="math inline">\(k_1 u\)</span>, <span class="math inline">\(c_2\dot{u}\)</span>, and <span class="math inline">\(k_2 u\)</span>. Applying Newton’s second law:</p>
+<p><span class="math display">\[m\ddot{u} = -c_1\dot{u} - k_1 u - c_2\dot{u} - k_2 u\]</span></p>
+<p>Rearranging:</p>
+<p><span class="math display">\[\boxed{m\ddot{u} + \underbrace{(c_1+c_2)}_{c_{\text{eq}}}\dot{u} + \underbrace{(k_1+k_2)}_{k_{\text{eq}}}u = 0}\]</span></p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> The equivalent stiffness and damping are both sums — confirming the parallel combination rules.</p>
+</blockquote>
+<hr>
+</section>
+<section id="exercise-2-the-simple-pendulum" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2-the-simple-pendulum">Exercise 2 — The Simple Pendulum</h3>
+<p>Find the equation of motion of a simple pendulum of length <span class="math inline">\(l\)</span> and mass <span class="math inline">\(m\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images_class_2/fig_pendulum.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></p>
+</figure>
+</div>
+<p><strong>Key insight:</strong> only one coordinate — the angle <span class="math inline">\(\theta\)</span> — is needed to describe the entire configuration. This is a <strong>1-DOF system</strong>.</p>
+<p>For a rotating body, Newton’s second law becomes the <strong>moment equation</strong> about the pivot <span class="math inline">\(O\)</span>:</p>
+<p><span class="math display">\[\sum M_O = J_O\,\ddot\theta\]</span></p>
+<p>The only moment is due to gravity. The tangential component of gravity is <span class="math inline">\(mg\sin\theta\)</span>, acting at distance <span class="math inline">\(l\)</span>:</p>
+<p><span class="math display">\[-mgl\sin\theta = J_O\,\ddot\theta\]</span></p>
+<p>The moment of inertia of a point mass about <span class="math inline">\(O\)</span> is <span class="math inline">\(J_O = ml^2\)</span>, so:</p>
+<p><span class="math display">\[ml^2\ddot\theta = -mgl\sin\theta\]</span></p>
+<p>Dividing by <span class="math inline">\(ml^2\)</span> and applying the <strong>small-angle approximation</strong> (<span class="math inline">\(\sin\theta \approx \theta\)</span> for <span class="math inline">\(\theta \approx 0\)</span>):</p>
+<p><span class="math display">\[\boxed{\ddot\theta + \frac{g}{l}\,\theta = 0}\]</span></p>
+<p>This has exactly the same structure as <span class="math inline">\(m\ddot{u} + ku = 0\)</span>, with the identification <span class="math inline">\(k/m \leftrightarrow g/l\)</span>.</p>
+<hr>
+</section>
+</section>
+<section id="free-vibration-response" class="level2">
+<h2 class="anchored" data-anchor-id="free-vibration-response">Free Vibration Response</h2>
+<p>We now solve the undamped free equation of motion:</p>
+<p><span class="math display">\[m\ddot{u} + ku = 0\]</span></p>
+<section id="proposed-solution" class="level3">
+<h3 class="anchored" data-anchor-id="proposed-solution">Proposed Solution</h3>
+<p>By intuition, we expect the system to oscillate. We propose:</p>
+<p><span class="math display">\[u(t) = A\sin(\omega_n t + \phi)\]</span></p>
+<p>Computing the derivatives:</p>
+<p><span class="math display">\[\dot{u}(t) = A\omega_n\cos(\omega_n t + \phi), \qquad \ddot{u}(t) = -A\omega_n^2\sin(\omega_n t+\phi)\]</span></p>
+<p>Substituting into the equation of motion:</p>
+<p><span class="math display">\[-m\omega_n^2 A\sin(\omega_n t+\phi) + kA\sin(\omega_n t+\phi) = 0\]</span></p>
+<p><span class="math display">\[A\sin(\omega_n t+\phi)\bigl(k - m\omega_n^2\bigr) = 0\]</span></p>
+<p>This must hold for all <span class="math inline">\(t\)</span>, so:</p>
+<p><span class="math display">\[k - m\omega_n^2 = 0 \quad \Rightarrow \quad \omega_n^2 = \frac{k}{m}\]</span></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Natural Frequency
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\boxed{\omega_n = \sqrt{\frac{k}{m}}} \quad \text{[rad/s]}\]</span></p>
+<p>The natural frequency tells us how quickly the system exchanges kinetic and potential energy. A stiffer or lighter system vibrates faster.</p>
+</div>
+</div>
+<p>The <strong>period</strong> of oscillation and the <strong>frequency in Hz</strong> are:</p>
+<p><span class="math display">\[T_n = \frac{2\pi}{\omega_n}, \qquad f_n = \frac{\omega_n}{2\pi}\]</span></p>
+</section>
+<section id="determining-a-and-phi-from-initial-conditions" class="level3">
+<h3 class="anchored" data-anchor-id="determining-a-and-phi-from-initial-conditions">Determining <span class="math inline">\(A\)</span> and <span class="math inline">\(\phi\)</span> from Initial Conditions</h3>
+<p>The constants <span class="math inline">\(A\)</span> (amplitude) and <span class="math inline">\(\phi\)</span> (phase angle) are fixed by the <strong>initial conditions</strong> <span class="math inline">\(u(0) = u_0\)</span> and <span class="math inline">\(\dot{u}(0) = v_0\)</span>:</p>
+<p><span class="math display">\[u(0) = A\sin(\phi) = u_0\]</span> <span class="math display">\[\dot{u}(0) = A\omega_n\cos(\phi) = v_0\]</span></p>
+<p>Dividing:</p>
+<p><span class="math display">\[\tan\phi = \frac{u_0\omega_n}{v_0} \quad \Rightarrow \quad \phi = \arctan\!\left(\frac{u_0\,\omega_n}{v_0}\right)\]</span></p>
+<p>And the amplitude:</p>
+<p><span class="math display">\[A = \sqrt{u_0^2 + \left(\frac{v_0}{\omega_n}\right)^2}\]</span></p>
+<p>The complete solution is:</p>
+<p><span class="math display">\[\boxed{u(t) = \sqrt{u_0^2 + \left(\frac{v_0}{\omega_n}\right)^2}\;\sin\!\left(\omega_n t + \arctan\!\frac{u_0\,\omega_n}{v_0}\right)}\]</span></p>
+<hr>
+</section>
+</section>
+<section id="interactive-free-vibration-explorer" class="level2">
+<h2 class="anchored" data-anchor-id="interactive-free-vibration-explorer">🎛️ Interactive: Free Vibration Explorer</h2>
+<p>Use the sliders below to explore how mass <span class="math inline">\(m\)</span>, stiffness <span class="math inline">\(k\)</span>, and initial conditions affect the free vibration response <span class="math inline">\(u(t) = A\sin(\omega_n t + \phi)\)</span>.</p>
+<div class="cell panel-input card bg-light p-2">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="257" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 256;"><span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>viewof m_val  <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="dv">10</span>]<span class="op">,</span>  {<span class="dt">value</span><span class="op">:</span> <span class="fl">1.0</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Mass  m  (kg)"</span>})</span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>viewof k_val  <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">200</span>]<span class="op">,</span>   {<span class="dt">value</span><span class="op">:</span> <span class="dv">20</span><span class="op">,</span>  <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span>   <span class="dt">label</span><span class="op">:</span> <span class="st">"Stiffness  k  (N/m)"</span>})</span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>viewof u0_val <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">3</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">,</span>    {<span class="dt">value</span><span class="op">:</span> <span class="fl">1.0</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Initial displacement  u₀  (m)"</span>})</span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>viewof v0_val <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">10</span><span class="op">,</span> <span class="dv">10</span>]<span class="op">,</span>  {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.0</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Initial velocity  v₀  (m/s)"</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="264" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 263;"><span id="cb2-264"><a href="#cb2-264" aria-hidden="true" tabindex="-1"></a>wn     <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(k_val <span class="op">/</span> m_val)</span>
+<span id="cb2-265"><a href="#cb2-265" aria-hidden="true" tabindex="-1"></a>Tn     <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">/</span> wn</span>
+<span id="cb2-266"><a href="#cb2-266" aria-hidden="true" tabindex="-1"></a>fn     <span class="op">=</span> wn <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span>)</span>
+<span id="cb2-267"><a href="#cb2-267" aria-hidden="true" tabindex="-1"></a>phi_ic <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">atan2</span>(u0_val <span class="op">*</span> wn<span class="op">,</span> v0_val)</span>
+<span id="cb2-268"><a href="#cb2-268" aria-hidden="true" tabindex="-1"></a>A_amp  <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(u0_val<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (v0_val <span class="op">/</span> wn)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb2-269"><a href="#cb2-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-270"><a href="#cb2-270" aria-hidden="true" tabindex="-1"></a><span class="co">// Fixed 30 s time window — curve changes shape, axis stays constant</span></span>
+<span id="cb2-271"><a href="#cb2-271" aria-hidden="true" tabindex="-1"></a>data_free <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({<span class="dt">length</span><span class="op">:</span> <span class="dv">901</span>}<span class="op">,</span> (_<span class="op">,</span> i) <span class="kw">=&gt;</span> ({</span>
+<span id="cb2-272"><a href="#cb2-272" aria-hidden="true" tabindex="-1"></a>  <span class="dt">t</span><span class="op">:</span> i <span class="op">*</span> <span class="dv">30</span> <span class="op">/</span> <span class="dv">900</span><span class="op">,</span></span>
+<span id="cb2-273"><a href="#cb2-273" aria-hidden="true" tabindex="-1"></a>  <span class="dt">u</span><span class="op">:</span> A_amp <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sin</span>(wn <span class="op">*</span> i <span class="op">*</span> <span class="dv">30</span> <span class="op">/</span> <span class="dv">900</span> <span class="op">+</span> phi_ic)</span>
+<span id="cb2-274"><a href="#cb2-274" aria-hidden="true" tabindex="-1"></a>}))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="277" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 276;"><span id="cb3-277"><a href="#cb3-277" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb3-278"><a href="#cb3-278" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;div style="display:flex;gap:2rem;flex-wrap:wrap;margin:0.5rem 0 1rem 0;font-size:0.93em;color:#333;background:#f8f9fa;padding:0.6rem 1.1rem;border-radius:6px"&gt;</span></span>
+<span id="cb3-279"><a href="#cb3-279" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span&gt;𝜔ₙ = &lt;strong&gt;</span><span class="sc">${</span>wn<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> rad/s&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb3-280"><a href="#cb3-280" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span&gt;fₙ = &lt;strong&gt;</span><span class="sc">${</span>fn<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> Hz&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb3-281"><a href="#cb3-281" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span&gt;Tₙ = &lt;strong&gt;</span><span class="sc">${</span>Tn<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> s&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb3-282"><a href="#cb3-282" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span&gt;A = &lt;strong&gt;</span><span class="sc">${</span>A_amp<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> m&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb3-283"><a href="#cb3-283" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span&gt;𝜙 = &lt;strong&gt;</span><span class="sc">${</span>(phi_ic <span class="op">*</span> <span class="dv">180</span> <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">°&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb3-284"><a href="#cb3-284" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="288" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 287;"><span id="cb4-288"><a href="#cb4-288" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb4-289"><a href="#cb4-289" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb4-290"><a href="#cb4-290" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#ccc"</span>})<span class="op">,</span></span>
+<span id="cb4-291"><a href="#cb4-291" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(data_free<span class="op">,</span> {</span>
+<span id="cb4-292"><a href="#cb4-292" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"t"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"u"</span><span class="op">,</span></span>
+<span id="cb4-293"><a href="#cb4-293" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#1a6faf"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">2.5</span></span>
+<span id="cb4-294"><a href="#cb4-294" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
+<span id="cb4-295"><a href="#cb4-295" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>([{<span class="dt">t</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">u</span><span class="op">:</span> u0_val}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"t"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"u"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#c0392b"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">6</span>})</span>
+<span id="cb4-296"><a href="#cb4-296" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb4-297"><a href="#cb4-297" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Time  t  (s)"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb4-298"><a href="#cb4-298" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Displacement  u(t)  (m)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb4-299"><a href="#cb4-299" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">700</span><span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">320</span><span class="op">,</span></span>
+<span id="cb4-300"><a href="#cb4-300" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {<span class="dt">fontSize</span><span class="op">:</span> <span class="st">"13px"</span>}</span>
+<span id="cb4-301"><a href="#cb4-301" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Try this:</strong> Set <span class="math inline">\(v_0 = 0\)</span> and vary <span class="math inline">\(u_0\)</span> — you get a pure sine with amplitude <span class="math inline">\(A = u_0\)</span>. Set <span class="math inline">\(u_0 = 0\)</span> and vary <span class="math inline">\(v_0\)</span> — you get a sine shifted by 90°. Increase <span class="math inline">\(k\)</span> or decrease <span class="math inline">\(m\)</span> to raise <span class="math inline">\(\omega_n\)</span> and see more oscillations within the 30 s windo</p>
+</blockquote>
+<hr>
+</section>
+<section id="what-comes-next" class="level2">
+<h2 class="anchored" data-anchor-id="what-comes-next">What Comes Next</h2>
+<p>In this class we derived the equation of motion and studied the <strong>free, undamped</strong> response: the system oscillates indefinitely at <span class="math inline">\(\omega_n\)</span> with no energy loss.</p>
+<p>In reality, structures are driven by external forces. In Class 3 we add a <strong>harmonic excitation</strong> to the right-hand side:</p>
+<p><span class="math display">\[m\ddot{u} + ku = F_0\sin(\omega t)\]</span></p>
+<p>This will reveal the phenomenon of <strong>resonance</strong> — what happens when the excitation frequency <span class="math inline">\(\omega\)</span> approaches the natural frequency <span class="math inline">\(\omega_n\)</span>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBtX3ZhbCAgPSBJbnB1dHMucmFuZ2UoWzAuMSwgMTBdLCAge3ZhbHVlOiAxLjAsIHN0ZXA6IDAuMSwgbGFiZWw6IFwiTWFzcyAgbSAgKGtnKVwifSlcbnZpZXdvZiBrX3ZhbCAgPSBJbnB1dHMucmFuZ2UoWzEsIDIwMF0sICAge3ZhbHVlOiAyMCwgIHN0ZXA6IDEsICAgbGFiZWw6IFwiU3RpZmZuZXNzICBrICAoTi9tKVwifSlcbnZpZXdvZiB1MF92YWwgPSBJbnB1dHMucmFuZ2UoWy0zLCAzXSwgICAge3ZhbHVlOiAxLjAsIHN0ZXA6IDAuMSwgbGFiZWw6IFwiSW5pdGlhbCBkaXNwbGFjZW1lbnQgIHXigoAgIChtKVwifSlcbnZpZXdvZiB2MF92YWwgPSBJbnB1dHMucmFuZ2UoWy0xMCwgMTBdLCAge3ZhbHVlOiAwLjAsIHN0ZXA6IDAuNSwgbGFiZWw6IFwiSW5pdGlhbCB2ZWxvY2l0eSAgduKCgCAgKG0vcylcIn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ3biAgICAgPSBNYXRoLnNxcnQoa192YWwgLyBtX3ZhbClcblRuICAgICA9IDIgKiBNYXRoLlBJIC8gd25cbmZuICAgICA9IHduIC8gKDIgKiBNYXRoLlBJKVxucGhpX2ljID0gTWF0aC5hdGFuMih1MF92YWwgKiB3biwgdjBfdmFsKVxuQV9hbXAgID0gTWF0aC5zcXJ0KHUwX3ZhbCoqMiArICh2MF92YWwgLyB3bikqKjIpXG5cbi8vIEZpeGVkIDMwIHMgdGltZSB3aW5kb3cg4oCUIGN1cnZlIGNoYW5nZXMgc2hhcGUsIGF4aXMgc3RheXMgY29uc3RhbnRcbmRhdGFfZnJlZSA9IEFycmF5LmZyb20oe2xlbmd0aDogOTAxfSwgKF8sIGkpID0+ICh7XG4gIHQ6IGkgKiAzMCAvIDkwMCxcbiAgdTogQV9hbXAgKiBNYXRoLnNpbih3biAqIGkgKiAzMCAvIDkwMCArIHBoaV9pYylcbn0pKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0zIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiaHRtbGBcbjxkaXYgc3R5bGU9XCJkaXNwbGF5OmZsZXg7Z2FwOjJyZW07ZmxleC13cmFwOndyYXA7bWFyZ2luOjAuNXJlbSAwIDFyZW0gMDtmb250LXNpemU6MC45M2VtO2NvbG9yOiMzMzM7YmFja2dyb3VuZDojZjhmOWZhO3BhZGRpbmc6MC42cmVtIDEuMXJlbTtib3JkZXItcmFkaXVzOjZweFwiPlxuICA8c3Bhbj7wnZyU4oKZID0gPHN0cm9uZz4ke3duLnRvRml4ZWQoMyl9IHJhZC9zPC9zdHJvbmc+PC9zcGFuPlxuICA8c3Bhbj5m4oKZID0gPHN0cm9uZz4ke2ZuLnRvRml4ZWQoMyl9IEh6PC9zdHJvbmc+PC9zcGFuPlxuICA8c3Bhbj5U4oKZID0gPHN0cm9uZz4ke1RuLnRvRml4ZWQoMyl9IHM8L3N0cm9uZz48L3NwYW4+XG4gIDxzcGFuPkEgPSA8c3Ryb25nPiR7QV9hbXAudG9GaXhlZCgzKX0gbTwvc3Ryb25nPjwvc3Bhbj5cbiAgPHNwYW4+8J2cmSA9IDxzdHJvbmc+JHsocGhpX2ljICogMTgwIC8gTWF0aC5QSSkudG9GaXhlZCgxKX3CsDwvc3Ryb25nPjwvc3Bhbj5cbjwvZGl2PmBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlBsb3QucGxvdCh7XG4gIG1hcmtzOiBbXG4gICAgUGxvdC5ydWxlWShbMF0sIHtzdHJva2U6IFwiI2NjY1wifSksXG4gICAgUGxvdC5saW5lKGRhdGFfZnJlZSwge1xuICAgICAgeDogXCJ0XCIsIHk6IFwidVwiLFxuICAgICAgc3Ryb2tlOiBcIiMxYTZmYWZcIiwgc3Ryb2tlV2lkdGg6IDIuNVxuICAgIH0pLFxuICAgIFBsb3QuZG90KFt7dDogMCwgdTogdTBfdmFsfV0sIHt4OiBcInRcIiwgeTogXCJ1XCIsIGZpbGw6IFwiI2MwMzkyYlwiLCByOiA2fSlcbiAgXSxcbiAgeDoge2xhYmVsOiBcIlRpbWUgIHQgIChzKVwiLCBkb21haW46IFswLCAzMF0sIGdyaWQ6IHRydWV9LFxuICB5OiB7bGFiZWw6IFwiRGlzcGxhY2VtZW50ICB1KHQpICAobSlcIiwgZ3JpZDogdHJ1ZX0sXG4gIHdpZHRoOiA3MDAsIGhlaWdodDogMzIwLFxuICBzdHlsZToge2ZvbnRTaXplOiBcIjEzcHhcIn1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ21fdmFsJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ2tfdmFsJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3UwX3ZhbCcpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCd2MF92YWwnKSJ9XX0=
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Fundamentals of Mechanical Vibrations — 1-DOF Systems</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

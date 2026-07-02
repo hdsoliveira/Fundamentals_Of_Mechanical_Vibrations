@@ -1,0 +1,317 @@
+---
+title: "Class 3 — Forced Vibration of Undamped Systems"
+subtitle: "Fundamentals of Mechanical Vibrations · Single Degree of Freedom Systems"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: false
+    theme: cosmo
+    html-math-method: mathjax
+    fig-align: center
+    smooth-scroll: true
+execute:
+  echo: false
+---
+
+## Review: Undamped Free Response
+
+From the previous class, the equation of motion for a 1-DOF **undamped** system is:
+
+$$m\ddot{u}(t) + ku(t) = 0$$
+
+and its general solution is:
+
+$$u(t) = \frac{v_0}{\omega_n\cos\phi}\,\sin\!\left(\omega_n t + \phi\right), \qquad \phi = \arctan\!\left(\frac{u_0\,\omega_n}{v_0}\right), \qquad \omega_n = \sqrt{\frac{k}{m}}$$
+
+where $u_0 = u(0)$ is the initial displacement and $v_0 = \dot{u}(0)$ is the initial velocity. The system oscillates **indefinitely** at $\omega_n$, since there is no energy dissipation.
+
+---
+
+## 3.1 The Forced Undamped System
+
+A real structure is rarely left to vibrate freely. It is typically **driven** by some external force. The simplest and most important case is a **harmonic excitation**:
+
+$$F(t) = F_0 \sin(\omega t)$$
+
+where $F_0$ is the force amplitude and $\omega$ is the **excitation frequency**. The equation of motion becomes:
+
+$$\boxed{m\ddot{u}(t) + ku(t) = F_0\sin(\omega t)}$$
+
+::: {.callout-warning}
+## Do not confuse $\omega$ and $\omega_n$
+
+$\omega_n = \sqrt{k/m}$ is the **natural frequency** — a property of the system.
+$\omega$ is the **excitation frequency** — a property of the loading. We can choose $\omega$ freely.
+:::
+
+### Solution Structure
+
+From differential equations theory, the **complete solution** is the sum of two parts:
+
+$$u(t) = \underbrace{u_h(t)}_{\substack{\text{free / natural}\\\text{response}}} + \underbrace{u_p(t)}_{\substack{\text{forced / particular}\\\text{response}}}$$
+
+From the previous class, the natural response is:
+
+$$u_h(t) = A\sin(\omega_n t + \phi)$$
+
+For the forced response, we **propose** a particular solution of the form:
+
+$$u_p(t) = U\sin(\omega t)$$
+
+Since there is no damping, both components persist indefinitely: they sum to give the **complete behavior** of the system.
+
+---
+
+## 3.2 Finding the Forced Harmonic Response
+
+Starting from $m\ddot{u} + ku = F_0\sin(\omega t)$, substitute the trial $u_p(t) = U\sin(\omega t)$:
+
+$$\dot{u}_p(t) = U\omega\cos(\omega t), \qquad \ddot{u}_p(t) = -U\omega^2\sin(\omega t)$$
+
+Substituting into the equation of motion:
+
+$$m\bigl(-U\omega^2\bigr)\sin(\omega t) + kU\sin(\omega t) = F_0\sin(\omega t)$$
+
+Dividing through by $\sin(\omega t)$:
+
+$$-mU\omega^2 + kU = F_0 \quad \Rightarrow \quad U(k - m\omega^2) = F_0$$
+
+$$\boxed{U = \frac{F_0}{k - m\omega^2}}$$
+
+Dividing numerator and denominator by $k$ and using $k/m = \omega_n^2$:
+
+$$\boxed{U = \frac{F_0/k}{1 - \left(\dfrac{\omega}{\omega_n}\right)^2}}$$
+
+The quantity $F_0/k$ is the **static deflection** — the displacement under a static force $F_0$.
+
+### Case 1: $\omega < \omega_n$
+
+$$\omega_n^2 - \omega^2 > 0 \quad \Rightarrow \quad U > 0$$
+
+The particular response is $u_p(t) = U\sin(\omega t)$: force $F(t)$ and response $u_p(t)$ point in the **same direction**.
+
+$$\longrightarrow F(t) \qquad \longrightarrow u_p(t)$$
+
+### Case 2: $\omega > \omega_n$
+
+$$\omega_n^2 - \omega^2 < 0 \quad \Rightarrow \quad U < 0$$
+
+Writing $U = -|U|$:
+
+$$u_p(t) = -|U|\sin(\omega t) = |U|\sin(\omega t + \pi)$$
+
+Force and response point in **opposite directions** — the mass moves against the force.
+
+$$\longrightarrow F(t) \qquad \longleftarrow u_p(t)$$
+
+### Phase Shift at $\omega = \omega_n$
+
+As $\omega$ crosses $\omega_n$, the denominator changes sign and the phase **jumps discontinuously** from 0° to 180°:
+
+$$\text{Phase} = \begin{cases} 0° & \omega < \omega_n \\ 180° & \omega > \omega_n \end{cases}$$
+
+### Why Does This Shift Happen?
+
+Substituting $u_p$ back into the equation of motion:
+
+$$m\ddot{u}_p + ku_p = U\,(k - m\omega^2)\sin(\omega t)$$
+
+The bracket $k - m\omega^2$ changes sign at $\omega = \omega_n$:
+
+- For $\omega < \omega_n$: the **stiffness** $k$ dominates — the system is *stiffness-controlled*.
+- For $\omega > \omega_n$: the **inertia** $m\omega^2$ dominates — the system is *mass-controlled*, and the sign of $U$ flips.
+
+---
+
+## 3.3 Introduction to Damped Systems
+
+Systems without damping are an idealization. **Real structures dissipate energy** through viscous friction, internal material damping, dry friction (Coulomb), and other mechanisms. Adding damping makes the model **physically realistic** and, crucially, removes the singularity at resonance.
+
+The forced equation of motion for a **damped** system is:
+
+$$m\ddot{u} + c\dot{u} + ku = F_0\sin(\omega t)$$
+
+where the double underline on $c\dot{u}$ reminds us this is the new term.
+
+### Why Does Damping Require a Cosine Term?
+
+In the undamped case, a pure sine $u_p = U\sin(\omega t)$ worked as a particular solution. With damping, however, the $c\dot{u}$ term introduces a component proportional to $\cos(\omega t)$. Therefore, we must try a **two-component** particular solution:
+
+$$u_p(t) = A\sin(\omega t) + B\cos(\omega t)$$
+
+> The cosine term $B\cos(\omega t)$ represents the **90°-delayed** part of the response that only exists because of damping. If $c = 0$, we will find $B = 0$ and recover the undamped result.
+
+### Setting Up the Algebra
+
+Computing derivatives:
+
+$$\dot{u}_p = A\omega\cos(\omega t) - B\omega\sin(\omega t)$$
+$$\ddot{u}_p = -A\omega^2\sin(\omega t) - B\omega^2\cos(\omega t)$$
+
+Substituting into the equation of motion and grouping terms by $\sin(\omega t)$ and $\cos(\omega t)$:
+
+**For** $\sin(\omega t)$:
+
+$$A(k - m\omega^2) - cB\omega = F_0 \quad \Rightarrow \quad \alpha = F_0$$
+
+**For** $\cos(\omega t)$:
+
+$$B(k - m\omega^2) + cA\omega = 0 \quad \Rightarrow \quad \beta = 0$$
+
+Let us define $D = k - m\omega^2$ for convenience. Then:
+
+$$\begin{cases} AD - cB\omega = F_0 \\ BD + cA\omega = 0 \end{cases}$$
+
+Solving this $2\times 2$ system (details shown in Class 4):
+
+$$A = \frac{F_0(k-m\omega^2)}{(k-m\omega^2)^2+(c\omega)^2}, \qquad B = \frac{-F_0 c\omega}{(k-m\omega^2)^2+(c\omega)^2}$$
+
+The **physical amplitude** and **phase** of the response are:
+
+$$U = \sqrt{A^2+B^2} = \frac{F_0}{\sqrt{(k-m\omega^2)^2+(c\omega)^2}}, \qquad \phi = \arctan\!\left(\frac{c\omega}{k-m\omega^2}\right)$$
+
+The complete derivation and the dimensionless form are covered in Class 4.
+
+---
+
+## 🎛️ Interactive: Forced Undamped Response Explorer
+
+Use the sliders to explore directly the equations derived above. The amplitude $U = F_0/(k - m\omega^2)$ and the time response $u_p(t) = U\sin(\omega t)$ are plotted in physical units — no normalisation.
+
+```{ojs}
+//| panel: input
+viewof m3 = Inputs.range([0.1, 20],  {value: 2.0,  step: 0.1, label: "Mass  m  (kg)"})
+viewof k3 = Inputs.range([1, 1000],  {value: 200,  step: 1,   label: "Stiffness  k  (N/m)"})
+viewof F0_3 = Inputs.range([0.1, 50], {value: 10.0, step: 0.1, label: "Force amplitude  F₀  (N)"})
+viewof omega_exc = Inputs.range([0.1, 40], {value: 5.0, step: 0.1, label: "Excitation frequency  ω  (rad/s)"})
+```
+
+```{ojs}
+// Natural frequency from physical parameters
+wn3 = Math.sqrt(k3 / m3)
+
+// Amplitude from the derived equation: U = F0 / (k - m*omega^2)
+denom3 = k3 - m3 * omega_exc**2
+U3_signed = F0_3 / denom3          // signed (negative = 180° phase flip)
+U3_abs    = Math.abs(U3_signed)
+phase3_deg = denom3 > 0 ? 0 : 180
+
+// Frequency response curve: |U| vs omega, skip near resonance
+omega_max3 = Math.max(2.5 * wn3, omega_exc * 1.3, 15)
+omega_pts3 = Array.from({length: 700}, (_, i) => {
+  let w  = 0.05 + i * (omega_max3 - 0.05) / 699
+  let D  = k3 - m3 * w**2
+  if (Math.abs(D) < 0.3) return null
+  let U  = Math.abs(F0_3 / D)
+  if (U > 0.5)  return null          // clip for readability
+  return {omega: w, U, sign: D > 0 ? "below" : "above"}
+}).filter(d => d !== null)
+
+// Phase curve (step: 0° below ωn, 180° above)
+phase_pts3 = Array.from({length: 700}, (_, i) => {
+  let w = 0.05 + i * (omega_max3 - 0.05) / 699
+  let D = k3 - m3 * w**2
+  return {omega: w, phase: D > 0 ? 0 : 180}
+})
+
+// Time domain — fixed 20 s window
+dt3 = 20 / 600
+data_time3 = Array.from({length: 601}, (_, i) => ({
+  t: i * dt3,
+  u: U3_signed * Math.sin(omega_exc * i * dt3)
+}))
+```
+
+```{ojs}
+html`
+<div style="display:flex;gap:1.8rem;flex-wrap:wrap;margin:0.4rem 0 1rem 0;font-size:0.93em;color:#333;background:#f8f9fa;padding:0.6rem 1.1rem;border-radius:6px">
+  <span>𝜔ₙ = <strong>${wn3.toFixed(3)} rad/s</strong></span>
+  <span>k − mω² = <strong style="color:${Math.abs(denom3) < 5 ? '#c0392b' : '#333'}">${denom3.toFixed(2)} N/m</strong></span>
+  <span>|U| = <strong style="color:${U3_abs > 0.2 ? '#c0392b' : '#1a4a7a'}">${U3_abs > 0.49 ? '→ ∞' : (U3_abs*1000).toFixed(2) + ' mm'}</strong></span>
+  <span>Phase = <strong>${phase3_deg}°</strong></span>
+</div>`
+```
+
+```{ojs}
+// Frequency response: |U| (m) vs omega (rad/s)
+Plot.plot({
+  title: "Amplitude  |U|  vs  Excitation Frequency  ω",
+  marks: [
+    Plot.ruleY([0], {stroke: "#ddd"}),
+    // ωn vertical marker
+    Plot.ruleX([wn3], {stroke: "#e67e22", strokeDasharray: "6,4", strokeWidth: 1.8}),
+    Plot.text([{omega: wn3, U: 0.45}], {
+      x: "omega", y: "U",
+      text: d => `ωₙ = ${wn3.toFixed(2)}`,
+      fontSize: 11, fill: "#e67e22", dx: 4
+    }),
+    Plot.line(omega_pts3.filter(d => d.sign === "below"), {
+      x: "omega", y: "U", stroke: "#1a6faf", strokeWidth: 2.5
+    }),
+    Plot.line(omega_pts3.filter(d => d.sign === "above"), {
+      x: "omega", y: "U", stroke: "#c0392b", strokeWidth: 2.5
+    }),
+    Plot.dot([{omega: omega_exc, U: Math.min(U3_abs, 0.49)}], {
+      x: "omega", y: "U", fill: "#e67e22", r: 7
+    })
+  ],
+  x: {label: "ω  (rad/s)", grid: true},
+  y: {label: "|U|  (m)", domain: [0, 0.5], grid: true},
+  width: 680, height: 280,
+  style: {fontSize: "13px"}
+})
+```
+
+```{ojs}
+// Phase angle vs omega (step function: 0° below wn, 180° above)
+Plot.plot({
+  title: "Phase Angle vs Excitation Frequency  ω",
+  marks: [
+    Plot.ruleX([wn3], {stroke: "#e67e22", strokeDasharray: "6,4", strokeWidth: 1.8}),
+    Plot.text([{omega: wn3, phase: 90}], {
+      x: "omega", y: "phase",
+      text: d => `ωₙ = ${wn3.toFixed(2)}`,
+      fontSize: 11, fill: "#e67e22", dx: 4
+    }),
+    Plot.line(phase_pts3, {x: "omega", y: "phase", stroke: "#1a6faf", strokeWidth: 2.5}),
+    Plot.dot([{omega: omega_exc, phase: phase3_deg}], {
+      x: "omega", y: "phase", fill: "#e67e22", r: 7
+    })
+  ],
+  x: {label: "ω  (rad/s)", grid: true},
+  y: {label: "Phase (°)", domain: [-15, 195], ticks: [0, 90, 180], grid: true},
+  width: 680, height: 200,
+  style: {fontSize: "13px"}
+})
+```
+
+```{ojs}
+// Time domain response
+Plot.plot({
+  title: `Time Response  u_p(t) = U·sin(ωt)   [U = ${(U3_signed*1000).toFixed(2)} mm,  phase = ${phase3_deg}°]`,
+  marks: [
+    Plot.ruleY([0], {stroke: "#ddd"}),
+    Plot.line(data_time3, {x: "t", y: "u", stroke: "#1a6faf", strokeWidth: 2.5})
+  ],
+  x: {label: "Time  t  (s)", grid: true},
+  y: {label: "u_p(t)  (m)", grid: true},
+  width: 680, height: 260,
+  style: {fontSize: "13px"}
+})
+```
+
+> **Try this:** Increase $\omega$ toward $\omega_n$ and watch $|U|$ grow unboundedly — the denominator $k - m\omega^2$ approaches zero. Cross $\omega_n$ and the denominator flips sign: $U$ becomes negative (phase = 180°, the mass moves opposite to the force). Increasing $k$ or decreasing $m$ shifts $\omega_n$ to the right.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+
+---
+
+## What Comes Next
+
+In this class we found the forced undamped response and saw that resonance causes unbounded amplitude when $\omega = \omega_n$. We introduced damping but did not finish the derivation.
+
+In Class 4 we complete the solution for the **damped** forced response:
+
+$$m\ddot{u} + c\dot{u} + ku = F_0\sin(\omega t)$$
+
+and introduce the **dimensionless form** — a single pair of curves that describes every possible 1-DOF system, regardless of the specific values of $m$, $k$, $c$, or $F_0$.

@@ -1,0 +1,327 @@
+---
+title: "Class 4 — Damped Forced Vibration & Dimensionless Form"
+subtitle: "Fundamentals of Mechanical Vibrations · Single Degree of Freedom Systems"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: false
+    theme: cosmo
+    html-math-method: mathjax
+    fig-align: center
+    smooth-scroll: true
+execute:
+  echo: false
+---
+
+## 4.1 Damped Forced Vibration
+
+Systems without damping are an idealization. **Real structures dissipate energy** through damping — viscous, dry friction, and other mechanisms.
+
+In undamped systems, the free response $u_h(t)$ **never disappears**:
+
+$$u(t) = u_h(t) + u_p(t)$$
+
+**Damping introduces energy dissipation** to our systems, and they become **physically realistic**: $u_h(t)$ eventually decays, leaving only the steady-state particular response $u_p(t)$.
+
+Our forced damped system is governed by:
+
+$$\boxed{m\ddot{u} + \underset{=}{c\dot{u}} + ku = F_0\sin(\omega t)}$$
+
+Similarly to the undamped case, we try a particular solution:
+
+$$u_p(t) = A\sin(\omega t) + B\cos(\omega t)$$
+
+::: {.callout-warning}
+## Why a cosine term?
+
+In the undamped case, a pure sine $u_p = U\sin(\omega t)$ was sufficient. With damping, the $c\dot{u}$ term introduces a component proportional to $\cos(\omega t)$, so we need **two components**. If $c = 0$, we will find $B = 0$ and recover the undamped result.
+:::
+
+### Finding A and B
+
+Computing derivatives of the trial solution:
+
+$$\dot{u}_p(t) = A\omega\cos(\omega t) - B\omega\sin(\omega t)$$
+$$\ddot{u}_p(t) = -A\omega^2\sin(\omega t) - B\omega^2\cos(\omega t)$$
+
+Substituting into the equation of motion term by term:
+
+- **Inertia term:** $m\ddot{u}_p = -mA\omega^2\sin(\omega t) - mB\omega^2\cos(\omega t)$
+- **Damping term:** $c\dot{u}_p = \phantom{-}cA\omega\cos(\omega t) - cB\omega\sin(\omega t)$
+- **Elastic term:** $ku_p = \phantom{-m}kA\sin(\omega t) + kB\cos(\omega t)$
+
+Grouping by $\sin(\omega t)$ and $\cos(\omega t)$ and setting equal to $F_0\sin(\omega t)$:
+
+$$\underbrace{[A(k-m\omega^2) - cB\omega]}_{\alpha}\sin(\omega t) + \underbrace{[B(k-m\omega^2) + cA\omega]}_{\beta}\cos(\omega t) = F_0\sin(\omega t)$$
+
+For this to hold **at all times** $t$:
+
+$$\alpha = F_0 \qquad \text{and} \qquad \beta = 0$$
+
+Defining $D = k - m\omega^2$ for convenience:
+
+$$\begin{cases} AD - cB\omega = F_0 \\ BD + cA\omega = 0 \end{cases}$$
+
+Solving this $2\times 2$ system:
+
+$$\boxed{A = \frac{F_0 D}{D^2+(c\omega)^2} = \frac{F_0(k-m\omega^2)}{(k-m\omega^2)^2+(c\omega)^2}}$$
+
+$$\boxed{B = -\frac{c\omega A}{D} = \frac{-F_0 c\omega}{(k-m\omega^2)^2+(c\omega)^2}}$$
+
+Therefore:
+
+$$u_p(t) = A\sin(\omega t) + B\cos(\omega t)$$
+
+### Physical Interpretation of A and B
+
+The two components play different roles:
+
+- $A\sin(\omega t)$: can only be **in phase** ($A > 0$) or **180° delayed** ($A < 0$) relative to $F_0\sin(\omega t)$.
+- $B\cos(\omega t)$: is always **90° delayed** relative to $F_0\sin(\omega t)$.
+
+Note that $B = -F_0 c\omega\big/[D^2 + (c\omega)^2]$: if $c = 0$ then $B = 0$ — the 90°-delayed component **only exists because of damping $c$**.
+
+---
+
+## 4.2 Physical Amplitude and Phase
+
+The components $A$ and $B$ alone are not the physical amplitude and phase — they are only the two contributions of the response. The actual **physical amplitude** $U$ and **phase angle** $\phi$ come from combining them:
+
+$$U = \sqrt{A^2 + B^2}, \qquad \phi = \arctan\!\left(\frac{-B}{A}\right)$$
+
+Substituting the expressions for $A$ and $B$:
+
+::: {.callout-important}
+## Amplitude and Phase of Damped Forced Response
+
+$$\boxed{U = \frac{F_0}{\sqrt{(k-m\omega^2)^2+(c\omega)^2}}}$$
+
+$$\boxed{\phi = \arctan\!\left(\frac{c\omega}{k - m\omega^2}\right)}$$
+
+Unlike the undamped case, $U$ is always **finite** — the damping term $(c\omega)^2$ prevents the denominator from ever reaching zero.
+:::
+
+---
+
+## 4.3 Key Physical Conclusions
+
+### The Damping Term Eliminates the Singularity
+
+At $\omega = \omega_n$, we have $k - m\omega_n^2 = 0$, so the denominator of $U$ becomes:
+
+$$(k - m\omega_n^2)^2 + (c\omega_n)^2 = 0 + (c\omega_n)^2 = (c\omega_n)^2$$
+
+The term $(c\omega_n)^2$ **eliminates the singularity** that occurred in the undamped case. Also at $\omega = \omega_n$:
+
+$$A = \frac{F_0(k - m\omega_n^2)}{(c\omega_n)^2} = \frac{F_0 \cdot 0}{(c\omega_n)^2} = 0$$
+
+### At Resonance: Response Comes Only from B
+
+Since $A = 0$ at $\omega = \omega_n$, the response is **entirely governed by the cosine term**:
+
+$$u_p(t) = B\cos(\omega_n t), \qquad B = \frac{-F_0 c\omega_n}{(c\omega_n)^2} = -\frac{F_0}{c\omega_n}$$
+
+Using the identity $-\cos(\omega_n t) = \sin(\omega_n t - 90°)$:
+
+$$\boxed{u_p(t) = \frac{F_0}{c\omega_n}\sin(\omega_n t - 90°)}$$
+
+::: {.callout-note}
+## Two Important Conclusions at $\omega = \omega_n$
+
+1. **The amplitude is bounded**: $U = F_0/(c\omega_n)$. More damping → smaller resonant amplitude.
+
+2. **The displacement lags the force by exactly 90°**. This is a key experimental signature of resonance and is used to identify $\omega_n$ in vibration tests.
+:::
+
+---
+
+## 4.4 Dimensionless Form
+
+The physical form of the frequency response depends on five independent parameters: $m$, $k$, $c$, $F_0$, and $\omega$. This means that every time we change the system — a different mass, a stiffer spring, a stronger force — we would need to recompute everything from scratch. There is no universal picture.
+
+The dimensionless form solves this by collapsing those five parameters into just **two dimensionless numbers**: the frequency ratio $r = \omega/\omega_n$ and the damping ratio $\zeta = c/c_c$. The result is that:
+
+- A **single plot** of $U/u_{st}$ vs $r$ describes every possible 1-DOF system with the same $\zeta$, regardless of the specific values of $m$, $k$, or $F_0$.
+- We can immediately read off physical behaviour — stiffness-controlled ($r \ll 1$), mass-controlled ($r \gg 1$), or resonance-dominated ($r \approx 1$) — without solving anything.
+- The damping ratio $\zeta$ becomes the single most important parameter: it controls the peak amplitude, the phase transition, and whether resonance is dangerous or benign.
+
+This is why structural dynamics uses dimensionless form as the standard: one set of curves covers the entire design space.
+
+To better analyse our systems in the future, we define a set of **dimensionless parameters**:
+
+::: {.callout-note}
+## Dimensionless Parameters
+
+| Symbol | Name | Definition |
+|--------|------|------------|
+| $\omega_n$ | Natural / resonance frequency | $\sqrt{k/m}$ |
+| $r$ | Frequency ratio | $\omega/\omega_n$ |
+| $c_c$ | Critical damping | $2m\omega_n$ |
+| $\zeta$ | Damping ratio | $c/c_c = c/(2m\omega_n)$ |
+| $u_{st}$ | Static displacement | $F_0/k$ |
+
+:::
+
+### Rewriting the Equation of Motion
+
+Starting from $m\ddot{u} + c\dot{u} + ku = F_0\sin(\omega t)$:
+
+**Step A** — divide by $m$:
+
+$$\ddot{u} + \frac{c}{m}\dot{u} + \frac{k}{m}u = \frac{F_0}{m}\sin(\omega t)$$
+
+**Step B** — substitute $k/m = \omega_n^2$ and $c/m = 2\zeta\omega_n$:
+
+::: {.callout-important}
+## Dimensionless Equation of Motion
+
+$$\boxed{\ddot{u} + 2\zeta\omega_n\dot{u} + \omega_n^2 u = \frac{F_0}{m}\sin(\omega t)}$$
+
+The equation is now **described only by $\omega_n$ and $\zeta$**.
+:::
+
+### Dimensionless Frequency Response
+
+Applying the dimensionless parameters to $U$ and $\phi$:
+
+::: {.callout-important}
+## Dimensionless Frequency Response
+
+$$\boxed{\frac{U}{u_{st}} = \frac{1}{\sqrt{(1-r^2)^2 + (2\zeta r)^2}}}$$
+
+$$\boxed{\phi = \arctan\!\left(\frac{2\zeta r}{1-r^2}\right)}$$
+
+These two curves fully characterise the 1-DOF forced response, independent of the specific values of $m$, $k$, or $F_0$.
+:::
+
+---
+
+## 🎛️ Interactive: Bode Plot Explorer
+
+The frequency response plots (amplitude and phase vs. $r$) are known as **Bode plots** in control engineering and **frequency response functions** in structural dynamics. Use the controls below to explore how the damping ratio $\zeta$ shapes the response.
+
+```{ojs}
+//| panel: input
+viewof zeta_val = Inputs.range([0.01, 2.0], {value: 0.1, step: 0.01, label: "Damping ratio  ζ"})
+viewof show_multi = Inputs.toggle({label: "Show multiple ζ curves", value: false})
+```
+
+```{ojs}
+// Frequency response functions
+function ampRatio(r, zeta) {
+  return 1 / Math.sqrt((1 - r**2)**2 + (2*zeta*r)**2)
+}
+function phaseAngle(r, zeta) {
+  let phi = Math.atan2(2*zeta*r, 1 - r**2) * 180 / Math.PI
+  if (phi < 0) phi += 180
+  return phi
+}
+
+r_pts = Array.from({length: 800}, (_, i) => 0.01 + i * (2.99 / 799))
+
+// Single curve data
+data_amp = r_pts.map(r => ({r, y: ampRatio(r, zeta_val)}))
+data_phase = r_pts.map(r => ({r, y: phaseAngle(r, zeta_val)}))
+
+// Multi-curve data
+zeta_list = [0.05, 0.1, 0.2, 0.3, 0.5, 0.7, 1.0]
+colors_zeta = ["#c0392b","#e67e22","#f1c40f","#27ae60","#1a6faf","#8e44ad","#555"]
+data_multi_amp = zeta_list.flatMap((z, i) =>
+  r_pts.map(r => ({r, y: Math.min(ampRatio(r, z), 15), zeta: z, color: colors_zeta[i]}))
+)
+data_multi_phase = zeta_list.flatMap((z, i) =>
+  r_pts.map(r => ({r, y: phaseAngle(r, z), zeta: z, color: colors_zeta[i]}))
+)
+```
+
+```{ojs}
+html`
+<div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin:0.4rem 0 1rem 0;font-size:0.93em;color:#333;background:#f8f9fa;padding:0.6rem 1rem;border-radius:6px">
+  <span>ζ = <strong>${zeta_val.toFixed(2)}</strong></span>
+  <span>Peak |U/u_st| = <strong>${(1/(2*zeta_val*Math.sqrt(1-zeta_val**2))).toFixed(2)} </strong>${zeta_val < 1/Math.sqrt(2) ? '@ r ≈ ' + Math.sqrt(1 - 2*zeta_val**2).toFixed(3) : '(no peak for ζ ≥ 1/√2)'}</span>
+  <span>At r=1: <strong>${(1/(2*zeta_val)).toFixed(2)}</strong></span>
+  <span>Regime: <strong style="color:${zeta_val < 1 ? '#1a6faf' : zeta_val === 1 ? '#27ae60' : '#c0392b'}">${zeta_val < 1 ? 'Underdamped' : zeta_val === 1 ? 'Critical' : 'Overdamped'}</strong></span>
+</div>`
+```
+
+```{ojs}
+// Amplitude plot
+Plot.plot({
+  title: "Amplitude Ratio  |U / u_st|  vs  Frequency Ratio  r",
+  marks: [
+    Plot.ruleY([0], {stroke: "#eee"}),
+    Plot.ruleX([1], {stroke: "#ccc", strokeDasharray: "5,4"}),
+    ...(show_multi
+      ? zeta_list.map((z, i) =>
+          Plot.line(data_multi_amp.filter(d => d.zeta === z), {
+            x: "r", y: "y", stroke: colors_zeta[i], strokeWidth: 1.6,
+            strokeOpacity: z === zeta_val ? 1.0 : 0.4
+          })
+        )
+      : []),
+    Plot.line(show_multi ? data_multi_amp.filter(d => d.zeta === zeta_val) : data_amp, {
+      x: "r", y: show_multi ? "y" : "y",
+      stroke: "#1a4a7a", strokeWidth: show_multi ? 3.0 : 2.8
+    }),
+    Plot.dot([{r: 1.0, y: 1/(2*zeta_val)}], {x: "r", y: "y", fill: "#e67e22", r: 6})
+  ],
+  x: {label: "r = ω / ωₙ", domain: [0, 3], grid: true},
+  y: {label: "|U| / u_st", domain: [0, Math.min(12, 1/(2*zeta_val) * 1.3 + 1)], grid: true},
+  width: 700, height: 300,
+  style: {fontSize: "13px"}
+})
+```
+
+```{ojs}
+// Phase plot
+Plot.plot({
+  title: "Phase Angle  φ  vs  Frequency Ratio  r",
+  marks: [
+    Plot.ruleY([0, 90, 180], {stroke: "#eee"}),
+    Plot.ruleX([1], {stroke: "#ccc", strokeDasharray: "5,4"}),
+    ...(show_multi
+      ? zeta_list.map((z, i) =>
+          Plot.line(data_multi_phase.filter(d => d.zeta === z), {
+            x: "r", y: "y", stroke: colors_zeta[i], strokeWidth: 1.6,
+            strokeOpacity: z === zeta_val ? 1.0 : 0.4
+          })
+        )
+      : []),
+    Plot.line(show_multi ? data_multi_phase.filter(d => d.zeta === zeta_val) : data_phase, {
+      x: "r", y: show_multi ? "y" : "y",
+      stroke: "#c0392b", strokeWidth: show_multi ? 3.0 : 2.8
+    }),
+    Plot.dot([{r: 1.0, y: 90}], {x: "r", y: "y", fill: "#e67e22", r: 6})
+  ],
+  x: {label: "r = ω / ωₙ", domain: [0, 3], grid: true},
+  y: {label: "Phase φ (degrees)", domain: [0, 185], ticks: [0, 45, 90, 135, 180], grid: true},
+  width: 700, height: 260,
+  style: {fontSize: "13px"}
+})
+```
+
+```{ojs}
+show_multi ? html`
+<div style="display:flex;gap:1.2rem;flex-wrap:wrap;font-size:0.82em;margin-top:0.4rem">
+  ${zeta_list.map((z,i) => html`<span><span style="color:${colors_zeta[i]};font-weight:bold">—</span> ζ = ${z}</span>`)}
+</div>` : html``
+```
+
+> **Key observations:**
+> - As $\zeta$ decreases, the resonant peak grows sharper and taller.
+> - At $r = 1$ (resonance), the phase is **always 90°**, regardless of $\zeta$.
+> - For $\zeta \geq 1/\sqrt{2} \approx 0.707$, the amplitude ratio has no peak above the static value.
+> - Toggle "Show multiple ζ curves" to compare responses across damping levels simultaneously.
+
+---
+
+## What Comes Next
+
+In this class we studied the **forced** damped response. We still have not asked: what happens if we displace a damped system and simply let it go, with no external force?
+
+Class 5 goes back to the **free** damped equation:
+
+$$m\ddot{u} + c\dot{u} + ku = 0$$
+
+and shows that the damping ratio $\zeta$ — introduced here — determines whether the system oscillates (underdamped), returns as fast as possible (critically damped), or decays sluggishly (overdamped). We will also see how to measure $\zeta$ experimentally from a free vibration record.

@@ -1,0 +1,45 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - "*.qmd"
+
+website:
+  title: "Fundamentals of Mechanical Vibrations"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: class2.qmd
+        text: "Class 2"
+      - href: class3.qmd
+        text: "Class 3"
+      - href: class4.qmd
+        text: "Class 4"
+      - href: class5.qmd
+        text: "Class 5"
+      - href: class6.qmd
+        text: "Class 6"
+      - href: class7.qmd
+        text: "Class 7"
+      - href: class8.qmd
+        text: "Class 8"
+  page-footer:
+    center: "Fundamentals of Mechanical Vibrations — 1-DOF Systems"
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    number-sections: false
+    html-math-method: mathjax
+    fig-align: center
+    smooth-scroll: true
+    code-fold: true
+    css: styles.css
+
+execute:
+  echo: false
+  freeze: false
+  cache: false

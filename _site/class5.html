@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Class 5 — Free Damped Systems – Fundamentals of Mechanical Vibrations</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Fundamentals of Mechanical Vibrations</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class2.html"> 
+<span class="menu-text">Class 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class3.html"> 
+<span class="menu-text">Class 3</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class4.html"> 
+<span class="menu-text">Class 4</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./class5.html" aria-current="page"> 
+<span class="menu-text">Class 5</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class6.html"> 
+<span class="menu-text">Class 6</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class7.html"> 
+<span class="menu-text">Class 7</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class8.html"> 
+<span class="menu-text">Class 8</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#complex-notation-in-vibration-analysis" id="toc-complex-notation-in-vibration-analysis" class="nav-link active" data-scroll-target="#complex-notation-in-vibration-analysis">5.1 Complex Notation in Vibration Analysis</a>
+  <ul class="collapse">
+  <li><a href="#eulers-identity" id="toc-eulers-identity" class="nav-link" data-scroll-target="#eulers-identity">Euler’s Identity</a></li>
+  <li><a href="#why-is-this-useful" id="toc-why-is-this-useful" class="nav-link" data-scroll-target="#why-is-this-useful">Why Is This Useful?</a></li>
+  <li><a href="#recovering-the-forced-response-with-complex-notation" id="toc-recovering-the-forced-response-with-complex-notation" class="nav-link" data-scroll-target="#recovering-the-forced-response-with-complex-notation">Recovering the Forced Response with Complex Notation</a></li>
+  </ul></li>
+  <li><a href="#free-vibration-of-a-damped-system" id="toc-free-vibration-of-a-damped-system" class="nav-link" data-scroll-target="#free-vibration-of-a-damped-system">5.2 Free Vibration of a Damped System</a>
+  <ul class="collapse">
+  <li><a href="#general-trial-solution" id="toc-general-trial-solution" class="nav-link" data-scroll-target="#general-trial-solution">General Trial Solution</a></li>
+  </ul></li>
+  <li><a href="#case-1-underdamped-system-0-zeta-1" id="toc-case-1-underdamped-system-0-zeta-1" class="nav-link" data-scroll-target="#case-1-underdamped-system-0-zeta-1">Case 1 — Underdamped System (<span class="math inline">\(0 &lt; \zeta &lt; 1\)</span>)</a></li>
+  <li><a href="#case-2-critically-damped-system-zeta-1" id="toc-case-2-critically-damped-system-zeta-1" class="nav-link" data-scroll-target="#case-2-critically-damped-system-zeta-1">Case 2 — Critically Damped System (<span class="math inline">\(\zeta = 1\)</span>)</a></li>
+  <li><a href="#case-3-overdamped-system-zeta-1" id="toc-case-3-overdamped-system-zeta-1" class="nav-link" data-scroll-target="#case-3-overdamped-system-zeta-1">Case 3 — Overdamped System (<span class="math inline">\(\zeta &gt; 1\)</span>)</a>
+  <ul class="collapse">
+  <li><a href="#summary-the-three-damping-regimes" id="toc-summary-the-three-damping-regimes" class="nav-link" data-scroll-target="#summary-the-three-damping-regimes">Summary: The Three Damping Regimes</a></li>
+  </ul></li>
+  <li><a href="#logarithmic-decrement" id="toc-logarithmic-decrement" class="nav-link" data-scroll-target="#logarithmic-decrement">5.3 Logarithmic Decrement</a>
+  <ul class="collapse">
+  <li><a href="#derivation" id="toc-derivation" class="nav-link" data-scroll-target="#derivation">Derivation</a></li>
+  </ul></li>
+  <li><a href="#interactive-free-damped-response-explorer" id="toc-interactive-free-damped-response-explorer" class="nav-link" data-scroll-target="#interactive-free-damped-response-explorer">🎛️ Interactive: Free Damped Response Explorer</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Class 5 — Free Damped Systems</h1>
+<p class="subtitle lead">Structural Dynamics · Single Degree of Freedom Systems</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="complex-notation-in-vibration-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="complex-notation-in-vibration-analysis">5.1 Complex Notation in Vibration Analysis</h2>
+<p>Before analysing the free damped response, we introduce a powerful mathematical tool: <strong>complex exponential notation</strong>, based on Euler’s identity. This will significantly simplify our calculations going forward.</p>
+<section id="eulers-identity" class="level3">
+<h3 class="anchored" data-anchor-id="eulers-identity">Euler’s Identity</h3>
+<p>From Euler, we know:</p>
+<p><span class="math display">\[e^{i\theta} = \cos\theta + i\sin\theta\]</span></p>
+<p>For a time-varying angle <span class="math inline">\(\theta = \omega t\)</span>, this becomes:</p>
+<p><span class="math display">\[e^{i\omega t} = \cos(\omega t) + i\sin(\omega t)\]</span></p>
+<p>Therefore, a sinusoidal motion can be represented as either the <strong>real</strong> or <strong>imaginary</strong> part of a complex exponential:</p>
+<p><span class="math display">\[\cos(\omega t) = \text{Re}\!\left(e^{i\omega t}\right), \qquad \sin(\omega t) = \text{Im}\!\left(e^{i\omega t}\right)\]</span></p>
+</section>
+<section id="why-is-this-useful" class="level3">
+<h3 class="anchored" data-anchor-id="why-is-this-useful">Why Is This Useful?</h3>
+<p>The real advantage appears when differentiating. If <span class="math inline">\(u(t) = Ue^{i\omega t}\)</span>, then:</p>
+<p><span class="math display">\[\dot{u}(t) = i\omega\, U e^{i\omega t}, \qquad \ddot{u}(t) = -\omega^2\, U e^{i\omega t}\]</span></p>
+<p>Differentiation becomes <strong>multiplication</strong> — an enormous simplification.</p>
+</section>
+<section id="recovering-the-forced-response-with-complex-notation" class="level3">
+<h3 class="anchored" data-anchor-id="recovering-the-forced-response-with-complex-notation">Recovering the Forced Response with Complex Notation</h3>
+<p>Replacing the excitation <span class="math inline">\(F_0\sin(\omega t)\)</span> with <span class="math inline">\(F_0 e^{i\omega t}\)</span> (we take the imaginary part of the solution at the end):</p>
+<p><span class="math display">\[m\ddot{u} + c\dot{u} + ku = F_0 e^{i\omega t}\]</span></p>
+<p>With <span class="math inline">\(u(t) = Ue^{i\omega t}\)</span>:</p>
+<p><span class="math display">\[m(-\omega^2)Ue^{i\omega t} + c(i\omega)Ue^{i\omega t} + kUe^{i\omega t} = F_0 e^{i\omega t}\]</span></p>
+<p>Dividing through by <span class="math inline">\(e^{i\omega t}\)</span>:</p>
+<p><span class="math display">\[U\bigl(k - m\omega^2 + ic\omega\bigr) = F_0\]</span></p>
+<p><span class="math display">\[U = \frac{F_0}{k - m\omega^2 + ic\omega}\]</span></p>
+<p>To extract the amplitude, multiply numerator and denominator by the <strong>complex conjugate</strong> <span class="math inline">\((a - ib)\)</span>, where <span class="math inline">\(a = k - m\omega^2\)</span> and <span class="math inline">\(b = c\omega\)</span>:</p>
+<p><span class="math display">\[U = \frac{F_0}{a + ib}\cdot\frac{a - ib}{a - ib} = \frac{F_0(a-ib)}{a^2+b^2}\]</span></p>
+<p><span class="math display">\[U = \frac{F_0\,a}{a^2+b^2} - i\,\frac{F_0\,b}{a^2+b^2}\]</span></p>
+<p>Then we compute the <strong>modulus</strong>:</p>
+<p><span class="math display">\[|U| = \sqrt{\left(\frac{F_0 a}{a^2+b^2}\right)^{\!2} + \left(\frac{F_0 b}{a^2+b^2}\right)^{\!2}} = \frac{F_0\sqrt{a^2+b^2}}{a^2+b^2} = \frac{F_0}{\sqrt{a^2+b^2}}\]</span></p>
+<p><span class="math display">\[\boxed{|U| = \frac{F_0}{\sqrt{(k-m\omega^2)^2+(c\omega)^2}}}\]</span></p>
+<p>This is exactly the same result from Class 4 — now obtained in a few lines. Complex notation is the standard tool in vibration analysis.</p>
+<hr>
+</section>
+</section>
+<section id="free-vibration-of-a-damped-system" class="level2">
+<h2 class="anchored" data-anchor-id="free-vibration-of-a-damped-system">5.2 Free Vibration of a Damped System</h2>
+<p>We now turn to the <strong>free</strong> (unforced) response of the damped 1-DOF system. Using the dimensionless equation from Class 4 (with right-hand side equal to zero):</p>
+<p><span class="math display">\[\ddot{u} + 2\zeta\omega_n\dot{u} + \omega_n^2 u = 0\]</span></p>
+<section id="general-trial-solution" class="level3">
+<h3 class="anchored" data-anchor-id="general-trial-solution">General Trial Solution</h3>
+<p>To find the solution in all cases simultaneously, we propose the <strong>general trial solution</strong>:</p>
+<p><span class="math display">\[u(t) = Ce^{st}\]</span></p>
+<p>where <span class="math inline">\(s\)</span> is a complex number to be determined. This is the most general trial function — depending on whether <span class="math inline">\(s\)</span> is real or complex, it will represent exponential decay, oscillation, or both.</p>
+<p>Substituting:</p>
+<p><span class="math display">\[s^2 Ce^{st} + 2\zeta\omega_n s\, Ce^{st} + \omega_n^2 Ce^{st} = 0\]</span></p>
+<p>Dividing by <span class="math inline">\(Ce^{st} \neq 0\)</span>:</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Characteristic Equation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\boxed{s^2 + 2\zeta\omega_n s + \omega_n^2 = 0}\]</span></p>
+<p>The two roots of this equation completely determine the nature of the free response.</p>
+</div>
+</div>
+<p>Applying the quadratic formula:</p>
+<p><span class="math display">\[s = -\zeta\omega_n \pm \omega_n\sqrt{\zeta^2 - 1}\]</span></p>
+<p>The term <span class="math inline">\(\sqrt{\zeta^2 - 1}\)</span> <strong>changes character</strong> depending on <span class="math inline">\(\zeta\)</span>:</p>
+<ul>
+<li>If <span class="math inline">\(0 &lt; \zeta &lt; 1\)</span>: <span class="math inline">\(\zeta^2 - 1 &lt; 0\)</span> → <strong>complex</strong> roots → oscillatory decay</li>
+<li>If <span class="math inline">\(\zeta = 1\)</span>: <span class="math inline">\(\zeta^2 - 1 = 0\)</span> → <strong>repeated real</strong> root → fastest non-oscillatory decay</li>
+<li>If <span class="math inline">\(\zeta &gt; 1\)</span>: <span class="math inline">\(\zeta^2 - 1 &gt; 0\)</span> → <strong>two distinct real</strong> roots → pure exponential decay</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="case-1-underdamped-system-0-zeta-1" class="level2">
+<h2 class="anchored" data-anchor-id="case-1-underdamped-system-0-zeta-1">Case 1 — Underdamped System (<span class="math inline">\(0 &lt; \zeta &lt; 1\)</span>)</h2>
+<p>Since <span class="math inline">\(\zeta^2 - 1 &lt; 0\)</span>, we write <span class="math inline">\(\sqrt{\zeta^2 - 1} = i\sqrt{1-\zeta^2}\)</span>. Defining the <strong>damped natural frequency</strong>:</p>
+<p><span class="math display">\[\omega_d = \omega_n\sqrt{1-\zeta^2}\]</span></p>
+<p>the two complex conjugate roots are:</p>
+<p><span class="math display">\[s_{1,2} = -\zeta\omega_n \pm i\omega_d\]</span></p>
+<p>The general solution is therefore:</p>
+<p><span class="math display">\[u(t) = e^{-\zeta\omega_n t}\bigl[A\cos(\omega_d t) + B\sin(\omega_d t)\bigr]\]</span></p>
+<p>or equivalently (introducing amplitude <span class="math inline">\(V\)</span> and phase <span class="math inline">\(\psi\)</span>):</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Underdamped Free Response
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\boxed{u(t) = V\,e^{-\zeta\omega_n t}\,\cos(\omega_d t - \psi)}\]</span></p>
+<ul>
+<li>The <strong>exponential envelope</strong> <span class="math inline">\(Ve^{-\zeta\omega_n t}\)</span> causes the amplitude to decay toward zero.</li>
+<li>The <strong>oscillatory part</strong> <span class="math inline">\(\cos(\omega_d t - \psi)\)</span> produces a sinusoidal waveform at frequency <span class="math inline">\(\omega_d &lt; \omega_n\)</span>.</li>
+<li>Both <span class="math inline">\(V\)</span> and <span class="math inline">\(\psi\)</span> are determined by initial conditions.</li>
+</ul>
+</div>
+</div>
+<p>Note that <span class="math inline">\(\omega_d &lt; \omega_n\)</span> because <span class="math inline">\(\sqrt{1-\zeta^2} &lt; 1\)</span>. Damping <strong>lowers the oscillation frequency</strong> in addition to reducing the amplitude.</p>
+<figure style="text-align:center;margin:1.5rem auto" class="figure">
+<svg viewbox="0 0 520 200" width="580" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
+<defs> <marker id="fr_ax" markerwidth="7" markerheight="7" refx="5" refy="3" orient="auto"> <path d="M0,0 L0,6 L7,3 z" fill="#555"></path> </marker> <marker id="fr_axl" markerwidth="7" markerheight="7" refx="2" refy="3" orient="auto"> <path d="M7,0 L7,6 L0,3 z" fill="#555"></path> </marker> </defs> <!-- Axes --> <line x1="30" y1="15" x2="30" y2="185" stroke="#555" stroke-width="1.5" marker-end="url(#fr_ax)"></line> <line x1="20" y1="100" x2="510" y2="100" stroke="#555" stroke-width="1.2" stroke-dasharray="4,3"></line> <line x1="20" y1="185" x2="510" y2="185" stroke="#555" stroke-width="1.5" marker-end="url(#fr_ax)"></line> <text x="12" y="22" font-size="11" fill="#555">u</text> <text x="515" y="189" font-size="11" fill="#555">t</text> <!-- Computed underdamped free response: zeta=0.1, wn=1, u0=1, v0=0 --> <polyline points="30.0,20.0 31.2,20.1 32.4,20.4 33.5,20.9 34.7,21.6 35.9,22.4 37.0,23.5 38.2,24.7 39.4,26.2 40.6,27.7 41.8,29.5 42.9,31.4 44.1,33.4 45.3,35.6 46.5,38.0 47.6,40.4 48.8,43.0 50.0,45.7 51.2,48.6 52.3,51.5 53.5,54.5 54.7,57.6 55.9,60.7 57.0,64.0 58.2,67.3 59.4,70.6 60.5,74.0 61.7,77.4 62.9,80.8 64.1,84.3 65.2,87.7 66.4,91.2 67.6,94.6 68.8,98.0 69.9,101.4 71.1,104.7 72.3,108.0 73.5,111.3 74.7,114.5 75.8,117.6 77.0,120.6 78.2,123.6 79.3,126.5 80.5,129.3 81.7,131.9 82.9,134.5 84.0,137.0 85.2,139.3 86.4,141.6 87.6,143.7 88.8,145.6 89.9,147.5 91.1,149.2 92.3,150.7 93.5,152.2 94.6,153.4 95.8,154.6 97.0,155.5 98.1,156.4 99.3,157.1 100.5,157.6 101.7,158.0 102.9,158.2 104.0,158.3 105.2,158.3 106.4,158.1 107.5,157.8 108.7,157.3 109.9,156.7 111.1,155.9 112.2,155.0 113.4,154.0 114.6,152.9 115.8,151.6 117.0,150.3 118.1,148.8 119.3,147.2 120.5,145.5 121.6,143.7 122.8,141.8 124.0,139.9 125.2,137.8 126.3,135.7 127.5,133.5 128.7,131.3 129.9,129.0 131.1,126.6 132.2,124.2 133.4,121.8 134.6,119.3 135.8,116.9 136.9,114.4 138.1,111.8 139.3,109.3 140.4,106.8 141.6,104.3 142.8,101.8 144.0,99.3 145.2,96.9 146.3,94.5 147.5,92.1 148.7,89.8 149.8,87.5 151.0,85.3 152.2,83.1 153.4,81.0 154.6,79.0 155.7,77.0 156.9,75.1 158.1,73.3 159.2,71.6 160.4,69.9 161.6,68.4 162.8,66.9 164.0,65.6 165.1,64.3 166.3,63.2 167.5,62.1 168.7,61.2 169.8,60.3 171.0,59.6 172.2,59.0 173.3,58.4 174.5,58.0 175.7,57.7 176.9,57.5 178.0,57.5 179.2,57.5 180.4,57.6 181.6,57.8 182.8,58.2 183.9,58.6 185.1,59.1 186.3,59.8 187.5,60.5 188.6,61.3 189.8,62.2 191.0,63.2 192.2,64.3 193.3,65.4 194.5,66.6 195.7,67.9 196.8,69.3 198.0,70.7 199.2,72.2 200.4,73.7 201.5,75.3 202.7,76.9 203.9,78.6 205.1,80.3 206.2,82.1 207.4,83.8 208.6,85.6 209.8,87.4 211.0,89.3 212.1,91.1 213.3,92.9 214.5,94.8 215.7,96.6 216.8,98.4 218.0,100.2 219.2,102.0 220.3,103.8 221.5,105.5 222.7,107.2 223.9,108.9 225.1,110.5 226.2,112.1 227.4,113.6 228.6,115.1 229.8,116.6 230.9,118.0 232.1,119.3 233.3,120.6 234.4,121.8 235.6,122.9 236.8,124.0 238.0,125.0 239.2,125.9 240.3,126.7 241.5,127.5 242.7,128.2 243.8,128.8 245.0,129.4 246.2,129.9 247.4,130.3 248.6,130.6 249.7,130.8 250.9,130.9 252.1,131.0 253.2,131.0 254.4,130.9 255.6,130.8 256.8,130.5 257.9,130.2 259.1,129.9 260.3,129.4 261.5,128.9 262.6,128.3 263.8,127.7 265.0,126.9 266.2,126.2 267.4,125.3 268.5,124.5 269.7,123.5 270.9,122.5 272.1,121.5 273.2,120.4 274.4,119.3 275.6,118.2 276.8,117.0 277.9,115.8 279.1,114.5 280.3,113.3 281.4,112.0 282.6,110.7 283.8,109.4 285.0,108.0 286.2,106.7 287.3,105.4 288.5,104.0 289.7,102.7 290.8,101.4 292.0,100.0 293.2,98.7 294.4,97.4 295.6,96.2 296.7,94.9 297.9,93.7 299.1,92.5 300.2,91.4 301.4,90.2 302.6,89.1 303.8,88.1 304.9,87.1 306.1,86.1 307.3,85.1 308.5,84.3 309.7,83.4 310.8,82.6 312.0,81.9 313.2,81.2 314.3,80.6 315.5,80.0 316.7,79.5 317.9,79.0 319.1,78.6 320.2,78.3 321.4,78.0 322.6,77.7 323.8,77.6 324.9,77.4 326.1,77.4 327.3,77.4 328.4,77.4 329.6,77.5 330.8,77.7 332.0,77.9 333.2,78.2 334.3,78.5 335.5,78.9 336.7,79.3 337.8,79.8 339.0,80.3 340.2,80.8 341.4,81.4 342.6,82.1 343.7,82.7 344.9,83.4 346.1,84.2 347.2,85.0 348.4,85.8 349.6,86.6 350.8,87.5 351.9,88.4 353.1,89.3 354.3,90.2 355.5,91.1 356.7,92.1 357.8,93.0 359.0,94.0 360.2,95.0 361.3,95.9 362.5,96.9 363.7,97.9 364.9,98.9 366.1,99.8 367.2,100.8 368.4,101.7 369.6,102.6 370.8,103.6 371.9,104.5 373.1,105.3 374.3,106.2 375.4,107.0 376.6,107.8 377.8,108.6 379.0,109.3 380.2,110.1 381.3,110.7 382.5,111.4 383.7,112.0 384.8,112.6 386.0,113.1 387.2,113.6 388.4,114.1 389.6,114.5 390.7,114.9 391.9,115.2 393.1,115.5 394.2,115.8 395.4,116.0 396.6,116.2 397.8,116.3 398.9,116.4 400.1,116.5 401.3,116.5 402.5,116.5 403.7,116.4 404.8,116.3 406.0,116.1 407.2,115.9 408.4,115.7 409.5,115.5 410.7,115.1 411.9,114.8 413.1,114.4 414.2,114.0 415.4,113.6 416.6,113.2 417.8,112.7 418.9,112.1 420.1,111.6 421.3,111.0 422.4,110.5 423.6,109.8 424.8,109.2 426.0,108.6 427.1,107.9 428.3,107.3 429.5,106.6 430.7,105.9 431.9,105.2 433.0,104.5 434.2,103.8 435.4,103.1 436.6,102.4 437.7,101.6 438.9,100.9 440.1,100.2 441.2,99.5 442.4,98.8 443.6,98.2 444.8,97.5 445.9,96.8 447.1,96.2 448.3,95.6 449.5,95.0 450.6,94.4 451.8,93.8 453.0,93.3 454.2,92.7 455.4,92.2 456.5,91.8 457.7,91.3 458.9,90.9 460.1,90.5 461.2,90.1 462.4,89.8 463.6,89.5 464.8,89.2 465.9,88.9 467.1,88.7 468.3,88.5 469.4,88.3 470.6,88.2 471.8,88.1 473.0,88.0 474.1,88.0 475.3,88.0 476.5,88.0 477.7,88.0 478.9,88.1 480.0,88.2 481.2,88.4 482.4,88.5 483.6,88.7 484.7,88.9 485.9,89.2 487.1,89.4 488.2,89.7 489.4,90.0 490.6,90.4 491.8,90.7 492.9,91.1 494.1,91.5 495.3,91.9 496.5,92.3 497.6,92.8 498.8,93.2 500.0,93.7" fill="none" stroke="#1a6faf" stroke-width="2.5" stroke-linejoin="round"></polyline> <!-- Exponential envelopes --> <polyline points="30.0,19.6 31.2,20.0 32.4,20.4 33.5,20.8 34.7,21.2 35.9,21.6 37.0,22.0 38.2,22.4 39.4,22.7 40.6,23.1 41.8,23.5 42.9,23.9 44.1,24.3 45.3,24.7 46.5,25.0 47.6,25.4 48.8,25.8 50.0,26.1 51.2,26.5 52.3,26.9 53.5,27.2 54.7,27.6 55.9,28.0 57.0,28.3 58.2,28.7 59.4,29.0 60.5,29.4 61.7,29.8 62.9,30.1 64.1,30.4 65.2,30.8 66.4,31.1 67.6,31.5 68.8,31.8 69.9,32.2 71.1,32.5 72.3,32.8 73.5,33.2 74.7,33.5 75.8,33.8 77.0,34.2 78.2,34.5 79.3,34.8 80.5,35.2 81.7,35.5 82.9,35.8 84.0,36.1 85.2,36.4 86.4,36.8 87.6,37.1 88.8,37.4 89.9,37.7 91.1,38.0 92.3,38.3 93.5,38.6 94.6,38.9 95.8,39.2 97.0,39.5 98.1,39.8 99.3,40.1 100.5,40.4 101.7,40.7 102.9,41.0 104.0,41.3 105.2,41.6 106.4,41.9 107.5,42.2 108.7,42.5 109.9,42.8 111.1,43.1 112.2,43.3 113.4,43.6 114.6,43.9 115.8,44.2 117.0,44.5 118.1,44.7 119.3,45.0 120.5,45.3 121.6,45.6 122.8,45.8 124.0,46.1 125.2,46.4 126.3,46.6 127.5,46.9 128.7,47.2 129.9,47.4 131.1,47.7 132.2,48.0 133.4,48.2 134.6,48.5 135.8,48.7 136.9,49.0 138.1,49.2 139.3,49.5 140.4,49.7 141.6,50.0 142.8,50.2 144.0,50.5 145.2,50.7 146.3,51.0 147.5,51.2 148.7,51.5 149.8,51.7 151.0,52.0 152.2,52.2 153.4,52.4 154.6,52.7 155.7,52.9 156.9,53.1 158.1,53.4 159.2,53.6 160.4,53.8 161.6,54.1 162.8,54.3 164.0,54.5 165.1,54.8 166.3,55.0 167.5,55.2 168.7,55.4 169.8,55.7 171.0,55.9 172.2,56.1 173.3,56.3 174.5,56.5 175.7,56.7 176.9,57.0 178.0,57.2 179.2,57.4 180.4,57.6 181.6,57.8 182.8,58.0 183.9,58.2 185.1,58.4 186.3,58.7 187.5,58.9 188.6,59.1 189.8,59.3 191.0,59.5 192.2,59.7 193.3,59.9 194.5,60.1 195.7,60.3 196.8,60.5 198.0,60.7 199.2,60.9 200.4,61.1 201.5,61.3 202.7,61.4 203.9,61.6 205.1,61.8 206.2,62.0 207.4,62.2 208.6,62.4 209.8,62.6 211.0,62.8 212.1,63.0 213.3,63.1 214.5,63.3 215.7,63.5 216.8,63.7 218.0,63.9 219.2,64.1 220.3,64.2 221.5,64.4 222.7,64.6 223.9,64.8 225.1,64.9 226.2,65.1 227.4,65.3 228.6,65.5 229.8,65.6 230.9,65.8 232.1,66.0 233.3,66.1 234.4,66.3 235.6,66.5 236.8,66.7 238.0,66.8 239.2,67.0 240.3,67.1 241.5,67.3 242.7,67.5 243.8,67.6 245.0,67.8 246.2,68.0 247.4,68.1 248.6,68.3 249.7,68.4 250.9,68.6 252.1,68.7 253.2,68.9 254.4,69.1 255.6,69.2 256.8,69.4 257.9,69.5 259.1,69.7 260.3,69.8 261.5,70.0 262.6,70.1 263.8,70.3 265.0,70.4 266.2,70.6 267.4,70.7 268.5,70.9 269.7,71.0 270.9,71.2 272.1,71.3 273.2,71.4 274.4,71.6 275.6,71.7 276.8,71.9 277.9,72.0 279.1,72.1 280.3,72.3 281.4,72.4 282.6,72.6 283.8,72.7 285.0,72.8 286.2,73.0 287.3,73.1 288.5,73.2 289.7,73.4 290.8,73.5 292.0,73.6 293.2,73.8 294.4,73.9 295.6,74.0 296.7,74.2 297.9,74.3 299.1,74.4 300.2,74.5 301.4,74.7 302.6,74.8 303.8,74.9 304.9,75.0 306.1,75.2 307.3,75.3 308.5,75.4 309.7,75.5 310.8,75.7 312.0,75.8 313.2,75.9 314.3,76.0 315.5,76.1 316.7,76.3 317.9,76.4 319.1,76.5 320.2,76.6 321.4,76.7 322.6,76.8 323.8,77.0 324.9,77.1 326.1,77.2 327.3,77.3 328.4,77.4 329.6,77.5 330.8,77.6 332.0,77.8 333.2,77.9 334.3,78.0 335.5,78.1 336.7,78.2 337.8,78.3 339.0,78.4 340.2,78.5 341.4,78.6 342.6,78.7 343.7,78.8 344.9,78.9 346.1,79.1 347.2,79.2 348.4,79.3 349.6,79.4 350.8,79.5 351.9,79.6 353.1,79.7 354.3,79.8 355.5,79.9 356.7,80.0 357.8,80.1 359.0,80.2 360.2,80.3 361.3,80.4 362.5,80.5 363.7,80.6 364.9,80.7 366.1,80.8 367.2,80.9 368.4,81.0 369.6,81.0 370.8,81.1 371.9,81.2 373.1,81.3 374.3,81.4 375.4,81.5 376.6,81.6 377.8,81.7 379.0,81.8 380.2,81.9 381.3,82.0 382.5,82.1 383.7,82.1 384.8,82.2 386.0,82.3 387.2,82.4 388.4,82.5 389.6,82.6 390.7,82.7 391.9,82.8 393.1,82.8 394.2,82.9 395.4,83.0 396.6,83.1 397.8,83.2 398.9,83.3 400.1,83.4 401.3,83.4 402.5,83.5 403.7,83.6 404.8,83.7 406.0,83.8 407.2,83.8 408.4,83.9 409.5,84.0 410.7,84.1 411.9,84.2 413.1,84.2 414.2,84.3 415.4,84.4 416.6,84.5 417.8,84.6 418.9,84.6 420.1,84.7 421.3,84.8 422.4,84.9 423.6,84.9 424.8,85.0 426.0,85.1 427.1,85.2 428.3,85.2 429.5,85.3 430.7,85.4 431.9,85.5 433.0,85.5 434.2,85.6 435.4,85.7 436.6,85.7 437.7,85.8 438.9,85.9 440.1,86.0 441.2,86.0 442.4,86.1 443.6,86.2 444.8,86.2 445.9,86.3 447.1,86.4 448.3,86.4 449.5,86.5 450.6,86.6 451.8,86.6 453.0,86.7 454.2,86.8 455.4,86.8 456.5,86.9 457.7,87.0 458.9,87.0 460.1,87.1 461.2,87.2 462.4,87.2 463.6,87.3 464.8,87.4 465.9,87.4 467.1,87.5 468.3,87.5 469.4,87.6 470.6,87.7 471.8,87.7 473.0,87.8 474.1,87.9 475.3,87.9 476.5,88.0 477.7,88.0 478.9,88.1 480.0,88.2 481.2,88.2 482.4,88.3 483.6,88.3 484.7,88.4 485.9,88.4 487.1,88.5 488.2,88.6 489.4,88.6 490.6,88.7 491.8,88.7 492.9,88.8 494.1,88.8 495.3,88.9 496.5,89.0 497.6,89.0 498.8,89.1 500.0,89.1" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="7,4" stroke-linejoin="round"></polyline> <polyline points="30.0,180.4 31.2,180.0 32.4,179.6 33.5,179.2 34.7,178.8 35.9,178.4 37.0,178.0 38.2,177.6 39.4,177.3 40.6,176.9 41.8,176.5 42.9,176.1 44.1,175.7 45.3,175.3 46.5,175.0 47.6,174.6 48.8,174.2 50.0,173.9 51.2,173.5 52.3,173.1 53.5,172.8 54.7,172.4 55.9,172.0 57.0,171.7 58.2,171.3 59.4,171.0 60.5,170.6 61.7,170.2 62.9,169.9 64.1,169.6 65.2,169.2 66.4,168.9 67.6,168.5 68.8,168.2 69.9,167.8 71.1,167.5 72.3,167.2 73.5,166.8 74.7,166.5 75.8,166.2 77.0,165.8 78.2,165.5 79.3,165.2 80.5,164.8 81.7,164.5 82.9,164.2 84.0,163.9 85.2,163.6 86.4,163.2 87.6,162.9 88.8,162.6 89.9,162.3 91.1,162.0 92.3,161.7 93.5,161.4 94.6,161.1 95.8,160.8 97.0,160.5 98.1,160.2 99.3,159.9 100.5,159.6 101.7,159.3 102.9,159.0 104.0,158.7 105.2,158.4 106.4,158.1 107.5,157.8 108.7,157.5 109.9,157.2 111.1,156.9 112.2,156.7 113.4,156.4 114.6,156.1 115.8,155.8 117.0,155.5 118.1,155.3 119.3,155.0 120.5,154.7 121.6,154.4 122.8,154.2 124.0,153.9 125.2,153.6 126.3,153.4 127.5,153.1 128.7,152.8 129.9,152.6 131.1,152.3 132.2,152.0 133.4,151.8 134.6,151.5 135.8,151.3 136.9,151.0 138.1,150.8 139.3,150.5 140.4,150.3 141.6,150.0 142.8,149.8 144.0,149.5 145.2,149.3 146.3,149.0 147.5,148.8 148.7,148.5 149.8,148.3 151.0,148.0 152.2,147.8 153.4,147.6 154.6,147.3 155.7,147.1 156.9,146.9 158.1,146.6 159.2,146.4 160.4,146.2 161.6,145.9 162.8,145.7 164.0,145.5 165.1,145.2 166.3,145.0 167.5,144.8 168.7,144.6 169.8,144.3 171.0,144.1 172.2,143.9 173.3,143.7 174.5,143.5 175.7,143.3 176.9,143.0 178.0,142.8 179.2,142.6 180.4,142.4 181.6,142.2 182.8,142.0 183.9,141.8 185.1,141.6 186.3,141.3 187.5,141.1 188.6,140.9 189.8,140.7 191.0,140.5 192.2,140.3 193.3,140.1 194.5,139.9 195.7,139.7 196.8,139.5 198.0,139.3 199.2,139.1 200.4,138.9 201.5,138.7 202.7,138.6 203.9,138.4 205.1,138.2 206.2,138.0 207.4,137.8 208.6,137.6 209.8,137.4 211.0,137.2 212.1,137.0 213.3,136.9 214.5,136.7 215.7,136.5 216.8,136.3 218.0,136.1 219.2,135.9 220.3,135.8 221.5,135.6 222.7,135.4 223.9,135.2 225.1,135.1 226.2,134.9 227.4,134.7 228.6,134.5 229.8,134.4 230.9,134.2 232.1,134.0 233.3,133.9 234.4,133.7 235.6,133.5 236.8,133.3 238.0,133.2 239.2,133.0 240.3,132.9 241.5,132.7 242.7,132.5 243.8,132.4 245.0,132.2 246.2,132.0 247.4,131.9 248.6,131.7 249.7,131.6 250.9,131.4 252.1,131.3 253.2,131.1 254.4,130.9 255.6,130.8 256.8,130.6 257.9,130.5 259.1,130.3 260.3,130.2 261.5,130.0 262.6,129.9 263.8,129.7 265.0,129.6 266.2,129.4 267.4,129.3 268.5,129.1 269.7,129.0 270.9,128.8 272.1,128.7 273.2,128.6 274.4,128.4 275.6,128.3 276.8,128.1 277.9,128.0 279.1,127.9 280.3,127.7 281.4,127.6 282.6,127.4 283.8,127.3 285.0,127.2 286.2,127.0 287.3,126.9 288.5,126.8 289.7,126.6 290.8,126.5 292.0,126.4 293.2,126.2 294.4,126.1 295.6,126.0 296.7,125.8 297.9,125.7 299.1,125.6 300.2,125.5 301.4,125.3 302.6,125.2 303.8,125.1 304.9,125.0 306.1,124.8 307.3,124.7 308.5,124.6 309.7,124.5 310.8,124.3 312.0,124.2 313.2,124.1 314.3,124.0 315.5,123.9 316.7,123.7 317.9,123.6 319.1,123.5 320.2,123.4 321.4,123.3 322.6,123.2 323.8,123.0 324.9,122.9 326.1,122.8 327.3,122.7 328.4,122.6 329.6,122.5 330.8,122.4 332.0,122.2 333.2,122.1 334.3,122.0 335.5,121.9 336.7,121.8 337.8,121.7 339.0,121.6 340.2,121.5 341.4,121.4 342.6,121.3 343.7,121.2 344.9,121.1 346.1,120.9 347.2,120.8 348.4,120.7 349.6,120.6 350.8,120.5 351.9,120.4 353.1,120.3 354.3,120.2 355.5,120.1 356.7,120.0 357.8,119.9 359.0,119.8 360.2,119.7 361.3,119.6 362.5,119.5 363.7,119.4 364.9,119.3 366.1,119.2 367.2,119.1 368.4,119.0 369.6,119.0 370.8,118.9 371.9,118.8 373.1,118.7 374.3,118.6 375.4,118.5 376.6,118.4 377.8,118.3 379.0,118.2 380.2,118.1 381.3,118.0 382.5,117.9 383.7,117.9 384.8,117.8 386.0,117.7 387.2,117.6 388.4,117.5 389.6,117.4 390.7,117.3 391.9,117.2 393.1,117.2 394.2,117.1 395.4,117.0 396.6,116.9 397.8,116.8 398.9,116.7 400.1,116.6 401.3,116.6 402.5,116.5 403.7,116.4 404.8,116.3 406.0,116.2 407.2,116.2 408.4,116.1 409.5,116.0 410.7,115.9 411.9,115.8 413.1,115.8 414.2,115.7 415.4,115.6 416.6,115.5 417.8,115.4 418.9,115.4 420.1,115.3 421.3,115.2 422.4,115.1 423.6,115.1 424.8,115.0 426.0,114.9 427.1,114.8 428.3,114.8 429.5,114.7 430.7,114.6 431.9,114.5 433.0,114.5 434.2,114.4 435.4,114.3 436.6,114.3 437.7,114.2 438.9,114.1 440.1,114.0 441.2,114.0 442.4,113.9 443.6,113.8 444.8,113.8 445.9,113.7 447.1,113.6 448.3,113.6 449.5,113.5 450.6,113.4 451.8,113.4 453.0,113.3 454.2,113.2 455.4,113.2 456.5,113.1 457.7,113.0 458.9,113.0 460.1,112.9 461.2,112.8 462.4,112.8 463.6,112.7 464.8,112.6 465.9,112.6 467.1,112.5 468.3,112.5 469.4,112.4 470.6,112.3 471.8,112.3 473.0,112.2 474.1,112.1 475.3,112.1 476.5,112.0 477.7,112.0 478.9,111.9 480.0,111.8 481.2,111.8 482.4,111.7 483.6,111.7 484.7,111.6 485.9,111.6 487.1,111.5 488.2,111.4 489.4,111.4 490.6,111.3 491.8,111.3 492.9,111.2 494.1,111.2 495.3,111.1 496.5,111.0 497.6,111.0 498.8,110.9 500.0,110.9" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="7,4" stroke-linejoin="round"></polyline> <!-- Peak u1 at t=0 --> <line x1="30" y1="20" x2="30" y2="100" stroke="#e67e22" stroke-width="1.2" stroke-dasharray="4,3"></line> <circle cx="30" cy="20" r="5" fill="#e67e22"></circle> <text x="36" y="17" font-size="12" font-style="italic" fill="#e67e22">u₁</text> <!-- Peak u2 at t=Td --> <line x1="178" y1="57.5" x2="178" y2="100" stroke="#27ae60" stroke-width="1.2" stroke-dasharray="4,3"></line> <circle cx="178" cy="57.5" r="5" fill="#27ae60"></circle> <text x="184" y="53" font-size="12" font-style="italic" fill="#27ae60">u₂</text> <!-- Td double arrow --> <line x1="30" y1="176" x2="178" y2="176" stroke="#555" stroke-width="1.5" marker-start="url(#fr_axl)" marker-end="url(#fr_ax)"></line> <text x="104" y="172" text-anchor="middle" font-size="11" fill="#555">T_d</text> <!-- Envelope label --> <text x="420" y="77" font-size="11" fill="#c0392b" font-style="italic">e^(−ζω_n t)</text>
+</svg>
+<figcaption>
+Underdamped free response: oscillation at <span class="math inline">\(\omega_d\)</span> contained within an exponentially decaying envelope <span class="math inline">\(e^{-\zeta\omega_n t}\)</span>. Peaks <span class="math inline">\(u_1\)</span> and <span class="math inline">\(u_2\)</span> are separated by one damped period <span class="math inline">\(T_d\)</span>.
+</figcaption>
+</figure>
+</section>
+<section id="case-2-critically-damped-system-zeta-1" class="level2">
+<h2 class="anchored" data-anchor-id="case-2-critically-damped-system-zeta-1">Case 2 — Critically Damped System (<span class="math inline">\(\zeta = 1\)</span>)</h2>
+<p>When <span class="math inline">\(\zeta = 1\)</span>, the discriminant vanishes and <span class="math inline">\(s = -\omega_n\)</span> is a <strong>repeated root</strong>:</p>
+<p><span class="math display">\[s^2 + 2\omega_n s + \omega_n^2 = (s + \omega_n)^2 \quad \Rightarrow \quad S_1 = S_2 = -\omega_n\]</span></p>
+<p>Since the equation is second order, we need <strong>two independent solutions</strong>. The first is:</p>
+<p><span class="math display">\[u_1(t) = A\,e^{-\omega_n t}\]</span></p>
+<p>The second independent solution comes from the theory of repeated roots (Taylor expansion):</p>
+<p><span class="math display">\[u_2(t) = Bt\,e^{-\omega_n t}\]</span></p>
+<p>The complete critically damped solution is:</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Critically Damped Free Response
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\boxed{u(t) = (A + Bt)\,e^{-\omega_n t}}\]</span></p>
+<p>Critical damping returns the system to equilibrium <strong>as fast as possible</strong> without any oscillation.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="case-3-overdamped-system-zeta-1" class="level2">
+<h2 class="anchored" data-anchor-id="case-3-overdamped-system-zeta-1">Case 3 — Overdamped System (<span class="math inline">\(\zeta &gt; 1\)</span>)</h2>
+<p>When <span class="math inline">\(\zeta &gt; 1\)</span>, both roots are <strong>real and distinct</strong>:</p>
+<p><span class="math display">\[s_1 = -\zeta\omega_n + \omega_n\sqrt{\zeta^2-1}, \qquad s_2 = -\zeta\omega_n - \omega_n\sqrt{\zeta^2-1}\]</span></p>
+<p>The general solution is:</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Overdamped Free Response
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\boxed{u(t) = A\,e^{s_1 t} + B\,e^{s_2 t}}\]</span></p>
+<p>Since <span class="math inline">\(s_1 &lt; 0\)</span> and <span class="math inline">\(s_2 &lt; 0\)</span>, both terms decay exponentially — the response is non-oscillatory and <strong>slower</strong> than critical damping.</p>
+</div>
+</div>
+<hr>
+<section id="summary-the-three-damping-regimes" class="level3">
+<h3 class="anchored" data-anchor-id="summary-the-three-damping-regimes">Summary: The Three Damping Regimes</h3>
+<p>The discriminant <span class="math inline">\(\sqrt{\zeta^2-1}\)</span> controls the qualitative behaviour. <strong><span class="math inline">\(\zeta\)</span> controls the qualitative motion of the system.</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 26%">
+<col style="width: 20%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Regime</th>
+<th><span class="math inline">\(\zeta\)</span></th>
+<th>Roots</th>
+<th>Response</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Underdamped</td>
+<td><span class="math inline">\(0 &lt; \zeta &lt; 1\)</span></td>
+<td>Complex conjugates</td>
+<td>Oscillatory decay</td>
+</tr>
+<tr class="even">
+<td>Critically damped</td>
+<td><span class="math inline">\(\zeta = 1\)</span></td>
+<td>Real, repeated</td>
+<td>Fastest non-oscillatory decay</td>
+</tr>
+<tr class="odd">
+<td>Overdamped</td>
+<td><span class="math inline">\(\zeta &gt; 1\)</span></td>
+<td>Real, distinct</td>
+<td>Pure exponential decay</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="logarithmic-decrement" class="level2">
+<h2 class="anchored" data-anchor-id="logarithmic-decrement">5.3 Logarithmic Decrement</h2>
+<p>A key application of underdamped free vibration is <strong>experimental damping identification</strong>. Given measured free vibration data, we can extract <span class="math inline">\(\zeta\)</span> from the ratio of successive peaks. The interactive below shows which peaks are being compared and computes <span class="math inline">\(\delta\)</span> and <span class="math inline">\(\zeta\)</span> live.</p>
+<div class="cell panel-input card bg-light p-2">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="247" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 246;"><span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a>viewof zeta_ld <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.02</span><span class="op">,</span> <span class="fl">0.5</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Damping ratio  ζ"</span>})</span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a>viewof wn_ld   <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.5</span><span class="op">,</span> <span class="dv">10</span>]<span class="op">,</span>  {<span class="dt">value</span><span class="op">:</span> <span class="fl">2.0</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Natural frequency  ωₙ  (rad/s)"</span>})</span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a>viewof peak_n  <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span>     {<span class="dt">value</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span>   <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Compare peak n  with peak n+1"</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="253" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 252;"><span id="cb2-253"><a href="#cb2-253" aria-hidden="true" tabindex="-1"></a>wd_ld  <span class="op">=</span> wn_ld <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">1</span> <span class="op">-</span> zeta_ld<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb2-254"><a href="#cb2-254" aria-hidden="true" tabindex="-1"></a>Td_ld  <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">/</span> wd_ld</span>
+<span id="cb2-255"><a href="#cb2-255" aria-hidden="true" tabindex="-1"></a>tEnd_ld <span class="op">=</span> (peak_n <span class="op">+</span> <span class="fl">2.5</span>) <span class="op">*</span> Td_ld</span>
+<span id="cb2-256"><a href="#cb2-256" aria-hidden="true" tabindex="-1"></a>dt_ld  <span class="op">=</span> tEnd_ld <span class="op">/</span> <span class="dv">600</span></span>
+<span id="cb2-257"><a href="#cb2-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-258"><a href="#cb2-258" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">u_ld</span>(t) {</span>
+<span id="cb2-259"><a href="#cb2-259" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>zeta_ld <span class="op">*</span> wn_ld <span class="op">*</span> t) <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">cos</span>(wd_ld <span class="op">*</span> t)</span>
+<span id="cb2-260"><a href="#cb2-260" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-261"><a href="#cb2-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-262"><a href="#cb2-262" aria-hidden="true" tabindex="-1"></a>data_ld <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({<span class="dt">length</span><span class="op">:</span> <span class="dv">601</span>}<span class="op">,</span> (_<span class="op">,</span> i) <span class="kw">=&gt;</span> ({<span class="dt">t</span><span class="op">:</span> i <span class="op">*</span> dt_ld<span class="op">,</span> <span class="dt">u</span><span class="op">:</span> <span class="fu">u_ld</span>(i <span class="op">*</span> dt_ld)}))</span>
+<span id="cb2-263"><a href="#cb2-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-264"><a href="#cb2-264" aria-hidden="true" tabindex="-1"></a><span class="co">// Peak times: cosine peaks at t = n * Td</span></span>
+<span id="cb2-265"><a href="#cb2-265" aria-hidden="true" tabindex="-1"></a>t1_ld <span class="op">=</span> (peak_n <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> Td_ld</span>
+<span id="cb2-266"><a href="#cb2-266" aria-hidden="true" tabindex="-1"></a>t2_ld <span class="op">=</span> peak_n <span class="op">*</span> Td_ld</span>
+<span id="cb2-267"><a href="#cb2-267" aria-hidden="true" tabindex="-1"></a>u1_ld <span class="op">=</span> <span class="fu">u_ld</span>(t1_ld)</span>
+<span id="cb2-268"><a href="#cb2-268" aria-hidden="true" tabindex="-1"></a>u2_ld <span class="op">=</span> <span class="fu">u_ld</span>(t2_ld)</span>
+<span id="cb2-269"><a href="#cb2-269" aria-hidden="true" tabindex="-1"></a>delta_ld <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">log</span>(u1_ld <span class="op">/</span> u2_ld)</span>
+<span id="cb2-270"><a href="#cb2-270" aria-hidden="true" tabindex="-1"></a>zeta_from_delta <span class="op">=</span> delta_ld <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">4</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span><span class="op">**</span><span class="dv">2</span> <span class="op">+</span> delta_ld<span class="op">**</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-9" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-10" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-11" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-12" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="273" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 272;"><span id="cb3-273"><a href="#cb3-273" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb3-274"><a href="#cb3-274" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Log-Decrement: Consecutive Peaks"</span><span class="op">,</span></span>
+<span id="cb3-275"><a href="#cb3-275" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb3-276"><a href="#cb3-276" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#ddd"</span>})<span class="op">,</span></span>
+<span id="cb3-277"><a href="#cb3-277" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(data_ld<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"t"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"u"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#1a6faf"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">2.5</span>})<span class="op">,</span></span>
+<span id="cb3-278"><a href="#cb3-278" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Decay envelope</span></span>
+<span id="cb3-279"><a href="#cb3-279" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(data_ld<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"t"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>zeta_ld <span class="op">*</span> wn_ld <span class="op">*</span> d<span class="op">.</span><span class="at">t</span>)<span class="op">,</span></span>
+<span id="cb3-280"><a href="#cb3-280" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#c0392b"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"6,4"</span>})<span class="op">,</span></span>
+<span id="cb3-281"><a href="#cb3-281" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(data_ld<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"t"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="op">-</span><span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>zeta_ld <span class="op">*</span> wn_ld <span class="op">*</span> d<span class="op">.</span><span class="at">t</span>)<span class="op">,</span></span>
+<span id="cb3-282"><a href="#cb3-282" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#c0392b"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"6,4"</span>})<span class="op">,</span></span>
+<span id="cb3-283"><a href="#cb3-283" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Peak markers</span></span>
+<span id="cb3-284"><a href="#cb3-284" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>([{<span class="dt">t</span><span class="op">:</span> t1_ld<span class="op">,</span> <span class="dt">u</span><span class="op">:</span> u1_ld}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"t"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"u"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#e67e22"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">9</span>})<span class="op">,</span></span>
+<span id="cb3-285"><a href="#cb3-285" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>([{<span class="dt">t</span><span class="op">:</span> t2_ld<span class="op">,</span> <span class="dt">u</span><span class="op">:</span> u2_ld}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"t"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"u"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#27ae60"</span><span class="op">,</span>  <span class="dt">r</span><span class="op">:</span> <span class="dv">9</span>})<span class="op">,</span></span>
+<span id="cb3-286"><a href="#cb3-286" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">text</span>([{<span class="dt">t</span><span class="op">:</span> t1_ld<span class="op">,</span> <span class="dt">u</span><span class="op">:</span> u1_ld}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"t"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"u"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`u₁`</span><span class="op">,</span> <span class="dt">dy</span><span class="op">:</span> <span class="op">-</span><span class="dv">14</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">13</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#e67e22"</span><span class="op">,</span> <span class="dt">fontWeight</span><span class="op">:</span> <span class="st">"bold"</span>})<span class="op">,</span></span>
+<span id="cb3-287"><a href="#cb3-287" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">text</span>([{<span class="dt">t</span><span class="op">:</span> t2_ld<span class="op">,</span> <span class="dt">u</span><span class="op">:</span> u2_ld}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"t"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"u"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`u₂`</span><span class="op">,</span> <span class="dt">dy</span><span class="op">:</span> <span class="op">-</span><span class="dv">14</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">13</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#27ae60"</span><span class="op">,</span> <span class="dt">fontWeight</span><span class="op">:</span> <span class="st">"bold"</span>})<span class="op">,</span></span>
+<span id="cb3-288"><a href="#cb3-288" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Td arrow line</span></span>
+<span id="cb3-289"><a href="#cb3-289" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([t1_ld<span class="op">,</span> t2_ld]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#999"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"3,3"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">1</span>})</span>
+<span id="cb3-290"><a href="#cb3-290" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb3-291"><a href="#cb3-291" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Time  t  (s)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb3-292"><a href="#cb3-292" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"u(t)  (normalised)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb3-293"><a href="#cb3-293" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">700</span><span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">300</span><span class="op">,</span></span>
+<span id="cb3-294"><a href="#cb3-294" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {<span class="dt">fontSize</span><span class="op">:</span> <span class="st">"13px"</span>}</span>
+<span id="cb3-295"><a href="#cb3-295" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="299" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 298;"><span id="cb4-299"><a href="#cb4-299" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;div style="display:flex;gap:2rem;flex-wrap:wrap;font-size:0.93em;background:#f8f9fa;padding:0.6rem 1.2rem;border-radius:6px;margin-top:0.4rem"&gt;</span></span>
+<span id="cb4-300"><a href="#cb4-300" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span&gt;u₁ = &lt;strong&gt;</span><span class="sc">${</span>u1_ld<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs">&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb4-301"><a href="#cb4-301" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span&gt;u₂ = &lt;strong&gt;</span><span class="sc">${</span>u2_ld<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs">&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb4-302"><a href="#cb4-302" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span&gt;δ = ln(u₁/u₂) = &lt;strong&gt;</span><span class="sc">${</span>delta_ld<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs">&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb4-303"><a href="#cb4-303" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span&gt;ζ (recovered) = &lt;strong style="color:#1a6faf"&gt;</span><span class="sc">${</span>zeta_from_delta<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs">&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb4-304"><a href="#cb4-304" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span&gt;True ζ = &lt;strong&gt;</span><span class="sc">${</span>zeta_ld<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs">&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb4-305"><a href="#cb4-305" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span&gt;T_d = &lt;strong&gt;</span><span class="sc">${</span>Td_ld<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> s&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb4-306"><a href="#cb4-306" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<section id="derivation" class="level3">
+<h3 class="anchored" data-anchor-id="derivation">Derivation</h3>
+<p>For two consecutive peaks at times <span class="math inline">\(t_1\)</span> and <span class="math inline">\(t_1 + T_d\)</span> (where <span class="math inline">\(T_d = 2\pi/\omega_d\)</span> is the damped period):</p>
+<p><span class="math display">\[u_1 = V\,e^{-\zeta\omega_n t_1}\cos(\omega_d t_1 - \psi)\]</span> <span class="math display">\[u_2 = V\,e^{-\zeta\omega_n(t_1+T_d)}\cos(\omega_d(t_1+T_d) - \psi)\]</span></p>
+<p>Since at consecutive peaks the cosine has the same value, the ratio is:</p>
+<p><span class="math display">\[\frac{u_1}{u_2} = \frac{e^{-\zeta\omega_n t_1}}{e^{-\zeta\omega_n(t_1+T_d)}} = e^{\zeta\omega_n T_d}\]</span></p>
+<p>Taking the natural logarithm:</p>
+<p><span class="math display">\[\delta = \ln\!\left(\frac{u_1}{u_2}\right) = \zeta\omega_n T_d = \zeta\omega_n \cdot \frac{2\pi}{\omega_d} = \frac{2\pi\zeta}{\sqrt{1-\zeta^2}}\]</span></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Logarithmic Decrement
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\boxed{\delta = \ln\!\left(\frac{u_1}{u_2}\right) = \frac{2\pi\zeta}{\sqrt{1-\zeta^2}}}\]</span></p>
+<p><strong>Measuring damping in practice:</strong> Record the free vibration signal, identify two peaks, and compute:</p>
+<p><span class="math display">\[\zeta = \frac{\delta}{\sqrt{4\pi^2 + \delta^2}}\]</span></p>
+<p>For <strong>small damping</strong> (<span class="math inline">\(\zeta \ll 1\)</span>), <span class="math inline">\(\sqrt{1-\zeta^2} \approx 1\)</span> and <span class="math inline">\(\delta \approx 2\pi\zeta\)</span>, so:</p>
+<p><span class="math display">\[\zeta \approx \frac{\delta}{2\pi}\]</span></p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="interactive-free-damped-response-explorer" class="level2">
+<h2 class="anchored" data-anchor-id="interactive-free-damped-response-explorer">🎛️ Interactive: Free Damped Response Explorer</h2>
+<p>Explore how the damping ratio <span class="math inline">\(\zeta\)</span> and initial conditions shape the free vibration response. Watch the transition between underdamped, critically damped, and overdamped behaviour.</p>
+<div class="cell panel-input card bg-light p-2">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="347" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 346;"><span id="cb5-347"><a href="#cb5-347" aria-hidden="true" tabindex="-1"></a>viewof zeta5 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.01</span><span class="op">,</span> <span class="fl">2.5</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Damping ratio  ζ"</span>})</span>
+<span id="cb5-348"><a href="#cb5-348" aria-hidden="true" tabindex="-1"></a>viewof wn5   <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.5</span><span class="op">,</span> <span class="dv">20</span>]<span class="op">,</span>   {<span class="dt">value</span><span class="op">:</span> <span class="fl">5.0</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Natural frequency  ωₙ  (rad/s)"</span>})</span>
+<span id="cb5-349"><a href="#cb5-349" aria-hidden="true" tabindex="-1"></a>viewof u0_5  <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">3</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">,</span>     {<span class="dt">value</span><span class="op">:</span> <span class="fl">1.0</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Initial displacement  u₀  (m)"</span>})</span>
+<span id="cb5-350"><a href="#cb5-350" aria-hidden="true" tabindex="-1"></a>viewof v0_5  <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">15</span><span class="op">,</span> <span class="dv">15</span>]<span class="op">,</span>   {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.0</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Initial velocity  v₀  (m/s)"</span>})</span>
+<span id="cb5-351"><a href="#cb5-351" aria-hidden="true" tabindex="-1"></a>viewof show_envelope <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">toggle</span>({<span class="dt">label</span><span class="op">:</span> <span class="st">"Show decay envelope"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="kw">true</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="356" data-source-offset="-18"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 355;"><span id="cb6-356"><a href="#cb6-356" aria-hidden="true" tabindex="-1"></a>regime5 <span class="op">=</span> zeta5 <span class="op">&lt;</span> <span class="fl">0.999</span> <span class="op">?</span> <span class="st">"underdamped"</span> <span class="op">:</span> (zeta5 <span class="op">&lt;</span> <span class="fl">1.001</span> <span class="op">?</span> <span class="st">"critical"</span> <span class="op">:</span> <span class="st">"overdamped"</span>)</span>
+<span id="cb6-357"><a href="#cb6-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-358"><a href="#cb6-358" aria-hidden="true" tabindex="-1"></a><span class="co">// Time setup</span></span>
+<span id="cb6-359"><a href="#cb6-359" aria-hidden="true" tabindex="-1"></a>tEnd5 <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(<span class="dv">5</span> <span class="op">*</span> <span class="dv">2</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(wn5 <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span>(<span class="dv">1</span> <span class="op">-</span> zeta5<span class="op">**</span><span class="dv">2</span>))<span class="op">,</span> <span class="fl">0.1</span>)<span class="op">,</span> <span class="dv">8</span> <span class="op">/</span> (zeta5 <span class="op">*</span> wn5))</span>
+<span id="cb6-360"><a href="#cb6-360" aria-hidden="true" tabindex="-1"></a>tEnd5c <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(tEnd5<span class="op">,</span> <span class="dv">60</span>)</span>
+<span id="cb6-361"><a href="#cb6-361" aria-hidden="true" tabindex="-1"></a>dt5 <span class="op">=</span> tEnd5c <span class="op">/</span> <span class="dv">800</span></span>
+<span id="cb6-362"><a href="#cb6-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-363"><a href="#cb6-363" aria-hidden="true" tabindex="-1"></a><span class="co">// Response function</span></span>
+<span id="cb6-364"><a href="#cb6-364" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">u5</span>(t) {</span>
+<span id="cb6-365"><a href="#cb6-365" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (regime5 <span class="op">===</span> <span class="st">"underdamped"</span>) {</span>
+<span id="cb6-366"><a href="#cb6-366" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> wd <span class="op">=</span> wn5 <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">1</span> <span class="op">-</span> zeta5<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb6-367"><a href="#cb6-367" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> A5 <span class="op">=</span> u0_5</span>
+<span id="cb6-368"><a href="#cb6-368" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> B5 <span class="op">=</span> (v0_5 <span class="op">+</span> zeta5 <span class="op">*</span> wn5 <span class="op">*</span> u0_5) <span class="op">/</span> wd</span>
+<span id="cb6-369"><a href="#cb6-369" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>zeta5 <span class="op">*</span> wn5 <span class="op">*</span> t) <span class="op">*</span> (A5 <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">cos</span>(wd <span class="op">*</span> t) <span class="op">+</span> B5 <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sin</span>(wd <span class="op">*</span> t))</span>
+<span id="cb6-370"><a href="#cb6-370" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (regime5 <span class="op">===</span> <span class="st">"critical"</span>) {</span>
+<span id="cb6-371"><a href="#cb6-371" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> A5 <span class="op">=</span> u0_5</span>
+<span id="cb6-372"><a href="#cb6-372" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> B5 <span class="op">=</span> v0_5 <span class="op">+</span> wn5 <span class="op">*</span> u0_5</span>
+<span id="cb6-373"><a href="#cb6-373" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (A5 <span class="op">+</span> B5 <span class="op">*</span> t) <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>wn5 <span class="op">*</span> t)</span>
+<span id="cb6-374"><a href="#cb6-374" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb6-375"><a href="#cb6-375" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> sq <span class="op">=</span> wn5 <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(zeta5<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>)</span>
+<span id="cb6-376"><a href="#cb6-376" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> s1 <span class="op">=</span> <span class="op">-</span>zeta5<span class="op">*</span>wn5 <span class="op">+</span> sq<span class="op">,</span> s2 <span class="op">=</span> <span class="op">-</span>zeta5<span class="op">*</span>wn5 <span class="op">-</span> sq</span>
+<span id="cb6-377"><a href="#cb6-377" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> A5 <span class="op">=</span> (v0_5 <span class="op">-</span> s2 <span class="op">*</span> u0_5) <span class="op">/</span> (s1 <span class="op">-</span> s2)</span>
+<span id="cb6-378"><a href="#cb6-378" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> B5 <span class="op">=</span> u0_5 <span class="op">-</span> A5</span>
+<span id="cb6-379"><a href="#cb6-379" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> A5 <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(s1 <span class="op">*</span> t) <span class="op">+</span> B5 <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(s2 <span class="op">*</span> t)</span>
+<span id="cb6-380"><a href="#cb6-380" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-381"><a href="#cb6-381" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-382"><a href="#cb6-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-383"><a href="#cb6-383" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">env5</span>(t) {</span>
+<span id="cb6-384"><a href="#cb6-384" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> V5 <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(u0_5<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> ((v0_5 <span class="op">+</span> zeta5<span class="op">*</span>wn5<span class="op">*</span>u0_5)<span class="op">/</span><span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(wn5<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">1</span><span class="op">-</span>zeta5<span class="op">**</span><span class="dv">2</span>)<span class="op">,</span><span class="fl">0.01</span>))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb6-385"><a href="#cb6-385" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> V5 <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span>zeta5 <span class="op">*</span> wn5 <span class="op">*</span> t)</span>
+<span id="cb6-386"><a href="#cb6-386" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-387"><a href="#cb6-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-388"><a href="#cb6-388" aria-hidden="true" tabindex="-1"></a>t_arr5 <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({<span class="dt">length</span><span class="op">:</span> <span class="dv">801</span>}<span class="op">,</span> (_<span class="op">,</span> i) <span class="kw">=&gt;</span> i <span class="op">*</span> dt5)</span>
+<span id="cb6-389"><a href="#cb6-389" aria-hidden="true" tabindex="-1"></a>data5 <span class="op">=</span> t_arr5<span class="op">.</span><span class="fu">map</span>(t <span class="kw">=&gt;</span> ({t<span class="op">,</span> <span class="dt">u</span><span class="op">:</span> <span class="fu">u5</span>(t)}))</span>
+<span id="cb6-390"><a href="#cb6-390" aria-hidden="true" tabindex="-1"></a>data5env_pos <span class="op">=</span> (show_envelope <span class="op">&amp;&amp;</span> regime5 <span class="op">===</span> <span class="st">"underdamped"</span>)</span>
+<span id="cb6-391"><a href="#cb6-391" aria-hidden="true" tabindex="-1"></a>  <span class="op">?</span> t_arr5<span class="op">.</span><span class="fu">map</span>(t <span class="kw">=&gt;</span> ({t<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="fu">env5</span>(t)})) <span class="op">:</span> []</span>
+<span id="cb6-392"><a href="#cb6-392" aria-hidden="true" tabindex="-1"></a>data5env_neg <span class="op">=</span> (show_envelope <span class="op">&amp;&amp;</span> regime5 <span class="op">===</span> <span class="st">"underdamped"</span>)</span>
+<span id="cb6-393"><a href="#cb6-393" aria-hidden="true" tabindex="-1"></a>  <span class="op">?</span> t_arr5<span class="op">.</span><span class="fu">map</span>(t <span class="kw">=&gt;</span> ({t<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="op">-</span><span class="fu">env5</span>(t)})) <span class="op">:</span> []</span>
+<span id="cb6-394"><a href="#cb6-394" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-395"><a href="#cb6-395" aria-hidden="true" tabindex="-1"></a><span class="co">// Logarithmic decrement (for underdamped)</span></span>
+<span id="cb6-396"><a href="#cb6-396" aria-hidden="true" tabindex="-1"></a>delta5 <span class="op">=</span> regime5 <span class="op">===</span> <span class="st">"underdamped"</span> <span class="op">?</span> <span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">*</span> zeta5 <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">1</span> <span class="op">-</span> zeta5<span class="op">**</span><span class="dv">2</span>) <span class="op">:</span> <span class="kw">NaN</span></span>
+<span id="cb6-397"><a href="#cb6-397" aria-hidden="true" tabindex="-1"></a>wd5 <span class="op">=</span> regime5 <span class="op">===</span> <span class="st">"underdamped"</span> <span class="op">?</span> wn5 <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">1</span> <span class="op">-</span> zeta5<span class="op">**</span><span class="dv">2</span>) <span class="op">:</span> <span class="kw">NaN</span></span>
+<span id="cb6-398"><a href="#cb6-398" aria-hidden="true" tabindex="-1"></a>Td5 <span class="op">=</span> regime5 <span class="op">===</span> <span class="st">"underdamped"</span> <span class="op">?</span> <span class="dv">2</span> <span class="op">*</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span> <span class="op">/</span> wd5 <span class="op">:</span> <span class="kw">NaN</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-9" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-10" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-11" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-12" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-6-13" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="401" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 400;"><span id="cb7-401"><a href="#cb7-401" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb7-402"><a href="#cb7-402" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;div style="display:flex;gap:1.2rem;flex-wrap:wrap;margin:0.4rem 0 1rem 0;font-size:0.93em;background:#f8f9fa;padding:0.6rem 1rem;border-radius:6px"&gt;</span></span>
+<span id="cb7-403"><a href="#cb7-403" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span&gt;Regime: &lt;strong style="color:</span><span class="sc">${</span>regime5<span class="op">===</span><span class="st">'underdamped'</span><span class="op">?</span><span class="st">'#1a6faf'</span><span class="op">:</span>regime5<span class="op">===</span><span class="st">'critical'</span><span class="op">?</span><span class="st">'#27ae60'</span><span class="op">:</span><span class="st">'#c0392b'</span><span class="sc">}</span><span class="vs">"&gt;</span><span class="sc">${</span>regime5<span class="op">.</span><span class="fu">charAt</span>(<span class="dv">0</span>)<span class="op">.</span><span class="fu">toUpperCase</span>()<span class="op">+</span>regime5<span class="op">.</span><span class="fu">slice</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb7-404"><a href="#cb7-404" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span><span class="sc">${</span>regime5<span class="op">===</span><span class="st">"underdamped"</span> <span class="op">?</span> <span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb7-405"><a href="#cb7-405" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;span&gt;ω_d = &lt;strong&gt;</span><span class="sc">${</span>wd5<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> rad/s&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb7-406"><a href="#cb7-406" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;span&gt;T_d = &lt;strong&gt;</span><span class="sc">${</span>Td5<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> s&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb7-407"><a href="#cb7-407" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;span&gt;δ = &lt;strong&gt;</span><span class="sc">${</span>delta5<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs">&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb7-408"><a href="#cb7-408" aria-hidden="true" tabindex="-1"></a><span class="vs">    &lt;span&gt;ζ (from δ) ≈ &lt;strong&gt;</span><span class="sc">${</span>(delta5<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span>))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs">&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb7-409"><a href="#cb7-409" aria-hidden="true" tabindex="-1"></a><span class="vs">  `</span> <span class="op">:</span> <span class="fu">html</span><span class="vs">``</span><span class="sc">}</span></span>
+<span id="cb7-410"><a href="#cb7-410" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-7" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb8" data-startfrom="414" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 413;"><span id="cb8-414"><a href="#cb8-414" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb8-415"><a href="#cb8-415" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="vs">`Free Damped Response — </span><span class="sc">${</span>regime5<span class="op">.</span><span class="fu">charAt</span>(<span class="dv">0</span>)<span class="op">.</span><span class="fu">toUpperCase</span>()<span class="op">+</span>regime5<span class="op">.</span><span class="fu">slice</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs"> (ζ = </span><span class="sc">${</span>zeta5<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">)`</span><span class="op">,</span></span>
+<span id="cb8-416"><a href="#cb8-416" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb8-417"><a href="#cb8-417" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#ccc"</span>})<span class="op">,</span></span>
+<span id="cb8-418"><a href="#cb8-418" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span>(show_envelope <span class="op">&amp;&amp;</span> regime5 <span class="op">===</span> <span class="st">"underdamped"</span> <span class="op">?</span> [</span>
+<span id="cb8-419"><a href="#cb8-419" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">line</span>(data5env_pos<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"t"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#c0392b"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"6,4"</span>})<span class="op">,</span></span>
+<span id="cb8-420"><a href="#cb8-420" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">line</span>(data5env_neg<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"t"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#c0392b"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"6,4"</span>})</span>
+<span id="cb8-421"><a href="#cb8-421" aria-hidden="true" tabindex="-1"></a>    ] <span class="op">:</span> [])<span class="op">,</span></span>
+<span id="cb8-422"><a href="#cb8-422" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(data5<span class="op">,</span> {</span>
+<span id="cb8-423"><a href="#cb8-423" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"t"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"u"</span><span class="op">,</span></span>
+<span id="cb8-424"><a href="#cb8-424" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> regime5 <span class="op">===</span> <span class="st">"underdamped"</span> <span class="op">?</span> <span class="st">"#1a6faf"</span> <span class="op">:</span> (regime5 <span class="op">===</span> <span class="st">"critical"</span> <span class="op">?</span> <span class="st">"#27ae60"</span> <span class="op">:</span> <span class="st">"#c0392b"</span>)<span class="op">,</span></span>
+<span id="cb8-425"><a href="#cb8-425" aria-hidden="true" tabindex="-1"></a>      <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">2.8</span></span>
+<span id="cb8-426"><a href="#cb8-426" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
+<span id="cb8-427"><a href="#cb8-427" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>([{<span class="dt">t</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">u</span><span class="op">:</span> u0_5}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"t"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"u"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#e67e22"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">6</span>})</span>
+<span id="cb8-428"><a href="#cb8-428" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb8-429"><a href="#cb8-429" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Time  t  (s)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb8-430"><a href="#cb8-430" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Displacement  u(t)  (m)"</span><span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb8-431"><a href="#cb8-431" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">700</span><span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">340</span><span class="op">,</span></span>
+<span id="cb8-432"><a href="#cb8-432" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {<span class="dt">fontSize</span><span class="op">:</span> <span class="st">"13px"</span>}</span>
+<span id="cb8-433"><a href="#cb8-433" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-8" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Explore the three regimes:</strong></p>
+<ul>
+<li><strong>Underdamped (<span class="math inline">\(\zeta &lt; 1\)</span>):</strong> Set <span class="math inline">\(\zeta = 0.05\)</span>–<span class="math inline">\(0.3\)</span>. The system oscillates at <span class="math inline">\(\omega_d &lt; \omega_n\)</span>, with an exponentially decaying envelope. The smaller <span class="math inline">\(\zeta\)</span>, the longer it takes to settle.</li>
+<li><strong>Critically damped (<span class="math inline">\(\zeta \approx 1\)</span>):</strong> The system returns to zero the fastest possible without crossing the axis. Look for the zero crossing near <span class="math inline">\(t = 1/\omega_n\)</span>.</li>
+<li><strong>Overdamped (<span class="math inline">\(\zeta &gt; 1\)</span>):</strong> Two real decay rates give a sluggish, non-oscillatory return. Very large <span class="math inline">\(\zeta\)</span> makes the system extremely slow.</li>
+<li><strong>Toggle envelope:</strong> For underdamped response, the dashed red lines show the exponential decay envelope <span class="math inline">\(\pm Ve^{-\zeta\omega_n t}\)</span>.</li>
+</ul>
+</blockquote>
+
+
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiB6ZXRhX2xkID0gSW5wdXRzLnJhbmdlKFswLjAyLCAwLjVdLCB7dmFsdWU6IDAuMSwgc3RlcDogMC4wMSwgbGFiZWw6IFwiRGFtcGluZyByYXRpbyAgzrZcIn0pXG52aWV3b2Ygd25fbGQgICA9IElucHV0cy5yYW5nZShbMC41LCAxMF0sICB7dmFsdWU6IDIuMCwgc3RlcDogMC41LCAgbGFiZWw6IFwiTmF0dXJhbCBmcmVxdWVuY3kgIM+J4oKZICAocmFkL3MpXCJ9KVxudmlld29mIHBlYWtfbiAgPSBJbnB1dHMucmFuZ2UoWzEsIDVdLCAgICAge3ZhbHVlOiAxLCAgIHN0ZXA6IDEsICAgIGxhYmVsOiBcIkNvbXBhcmUgcGVhayBuICB3aXRoIHBlYWsgbisxXCJ9KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoid2RfbGQgID0gd25fbGQgKiBNYXRoLnNxcnQoMSAtIHpldGFfbGQqKjIpXG5UZF9sZCAgPSAyICogTWF0aC5QSSAvIHdkX2xkXG50RW5kX2xkID0gKHBlYWtfbiArIDIuNSkgKiBUZF9sZFxuZHRfbGQgID0gdEVuZF9sZCAvIDYwMFxuXG5mdW5jdGlvbiB1X2xkKHQpIHtcbiAgcmV0dXJuIE1hdGguZXhwKC16ZXRhX2xkICogd25fbGQgKiB0KSAqIE1hdGguY29zKHdkX2xkICogdClcbn1cblxuZGF0YV9sZCA9IEFycmF5LmZyb20oe2xlbmd0aDogNjAxfSwgKF8sIGkpID0+ICh7dDogaSAqIGR0X2xkLCB1OiB1X2xkKGkgKiBkdF9sZCl9KSlcblxuLy8gUGVhayB0aW1lczogY29zaW5lIHBlYWtzIGF0IHQgPSBuICogVGRcbnQxX2xkID0gKHBlYWtfbiAtIDEpICogVGRfbGRcbnQyX2xkID0gcGVha19uICogVGRfbGRcbnUxX2xkID0gdV9sZCh0MV9sZClcbnUyX2xkID0gdV9sZCh0Ml9sZClcbmRlbHRhX2xkID0gTWF0aC5sb2codTFfbGQgLyB1Ml9sZClcbnpldGFfZnJvbV9kZWx0YSA9IGRlbHRhX2xkIC8gTWF0aC5zcXJ0KDQgKiBNYXRoLlBJKioyICsgZGVsdGFfbGQqKjIpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJQbG90LnBsb3Qoe1xuICB0aXRsZTogXCJMb2ctRGVjcmVtZW50OiBDb25zZWN1dGl2ZSBQZWFrc1wiLFxuICBtYXJrczogW1xuICAgIFBsb3QucnVsZVkoWzBdLCB7c3Ryb2tlOiBcIiNkZGRcIn0pLFxuICAgIFBsb3QubGluZShkYXRhX2xkLCB7eDogXCJ0XCIsIHk6IFwidVwiLCBzdHJva2U6IFwiIzFhNmZhZlwiLCBzdHJva2VXaWR0aDogMi41fSksXG4gICAgLy8gRGVjYXkgZW52ZWxvcGVcbiAgICBQbG90LmxpbmUoZGF0YV9sZCwge3g6IFwidFwiLCB5OiBkID0+IE1hdGguZXhwKC16ZXRhX2xkICogd25fbGQgKiBkLnQpLFxuICAgICAgc3Ryb2tlOiBcIiNjMDM5MmJcIiwgc3Ryb2tlV2lkdGg6IDEuNSwgc3Ryb2tlRGFzaGFycmF5OiBcIjYsNFwifSksXG4gICAgUGxvdC5saW5lKGRhdGFfbGQsIHt4OiBcInRcIiwgeTogZCA9PiAtTWF0aC5leHAoLXpldGFfbGQgKiB3bl9sZCAqIGQudCksXG4gICAgICBzdHJva2U6IFwiI2MwMzkyYlwiLCBzdHJva2VXaWR0aDogMS41LCBzdHJva2VEYXNoYXJyYXk6IFwiNiw0XCJ9KSxcbiAgICAvLyBQZWFrIG1hcmtlcnNcbiAgICBQbG90LmRvdChbe3Q6IHQxX2xkLCB1OiB1MV9sZH1dLCB7eDogXCJ0XCIsIHk6IFwidVwiLCBmaWxsOiBcIiNlNjdlMjJcIiwgcjogOX0pLFxuICAgIFBsb3QuZG90KFt7dDogdDJfbGQsIHU6IHUyX2xkfV0sIHt4OiBcInRcIiwgeTogXCJ1XCIsIGZpbGw6IFwiIzI3YWU2MFwiLCAgcjogOX0pLFxuICAgIFBsb3QudGV4dChbe3Q6IHQxX2xkLCB1OiB1MV9sZH1dLCB7eDogXCJ0XCIsIHk6IFwidVwiLCB0ZXh0OiBkID0+IGB14oKBYCwgZHk6IC0xNCwgZm9udFNpemU6IDEzLCBmaWxsOiBcIiNlNjdlMjJcIiwgZm9udFdlaWdodDogXCJib2xkXCJ9KSxcbiAgICBQbG90LnRleHQoW3t0OiB0Ml9sZCwgdTogdTJfbGR9XSwge3g6IFwidFwiLCB5OiBcInVcIiwgdGV4dDogZCA9PiBgdeKCgmAsIGR5OiAtMTQsIGZvbnRTaXplOiAxMywgZmlsbDogXCIjMjdhZTYwXCIsIGZvbnRXZWlnaHQ6IFwiYm9sZFwifSksXG4gICAgLy8gVGQgYXJyb3cgbGluZVxuICAgIFBsb3QucnVsZVgoW3QxX2xkLCB0Ml9sZF0sIHtzdHJva2U6IFwiIzk5OVwiLCBzdHJva2VEYXNoYXJyYXk6IFwiMywzXCIsIHN0cm9rZVdpZHRoOiAxfSlcbiAgXSxcbiAgeDoge2xhYmVsOiBcIlRpbWUgIHQgIChzKVwiLCBncmlkOiB0cnVlfSxcbiAgeToge2xhYmVsOiBcInUodCkgIChub3JtYWxpc2VkKVwiLCBncmlkOiB0cnVlfSxcbiAgd2lkdGg6IDcwMCwgaGVpZ2h0OiAzMDAsXG4gIHN0eWxlOiB7Zm9udFNpemU6IFwiMTNweFwifVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Imh0bWxgPGRpdiBzdHlsZT1cImRpc3BsYXk6ZmxleDtnYXA6MnJlbTtmbGV4LXdyYXA6d3JhcDtmb250LXNpemU6MC45M2VtO2JhY2tncm91bmQ6I2Y4ZjlmYTtwYWRkaW5nOjAuNnJlbSAxLjJyZW07Ym9yZGVyLXJhZGl1czo2cHg7bWFyZ2luLXRvcDowLjRyZW1cIj5cbiAgPHNwYW4+deKCgSA9IDxzdHJvbmc+JHt1MV9sZC50b0ZpeGVkKDQpfTwvc3Ryb25nPjwvc3Bhbj5cbiAgPHNwYW4+deKCgiA9IDxzdHJvbmc+JHt1Ml9sZC50b0ZpeGVkKDQpfTwvc3Ryb25nPjwvc3Bhbj5cbiAgPHNwYW4+zrQgPSBsbih14oKBL3XigoIpID0gPHN0cm9uZz4ke2RlbHRhX2xkLnRvRml4ZWQoNCl9PC9zdHJvbmc+PC9zcGFuPlxuICA8c3Bhbj7OtiAocmVjb3ZlcmVkKSA9IDxzdHJvbmcgc3R5bGU9XCJjb2xvcjojMWE2ZmFmXCI+JHt6ZXRhX2Zyb21fZGVsdGEudG9GaXhlZCg0KX08L3N0cm9uZz48L3NwYW4+XG4gIDxzcGFuPlRydWUgzrYgPSA8c3Ryb25nPiR7emV0YV9sZC50b0ZpeGVkKDQpfTwvc3Ryb25nPjwvc3Bhbj5cbiAgPHNwYW4+VF9kID0gPHN0cm9uZz4ke1RkX2xkLnRvRml4ZWQoMyl9IHM8L3N0cm9uZz48L3NwYW4+XG48L2Rpdj5gXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTUiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ2aWV3b2YgemV0YTUgPSBJbnB1dHMucmFuZ2UoWzAuMDEsIDIuNV0sIHt2YWx1ZTogMC4xLCBzdGVwOiAwLjAxLCBsYWJlbDogXCJEYW1waW5nIHJhdGlvICDOtlwifSlcbnZpZXdvZiB3bjUgICA9IElucHV0cy5yYW5nZShbMC41LCAyMF0sICAge3ZhbHVlOiA1LjAsIHN0ZXA6IDAuNSwgIGxhYmVsOiBcIk5hdHVyYWwgZnJlcXVlbmN5ICDPieKCmSAgKHJhZC9zKVwifSlcbnZpZXdvZiB1MF81ICA9IElucHV0cy5yYW5nZShbLTMsIDNdLCAgICAge3ZhbHVlOiAxLjAsIHN0ZXA6IDAuMSwgIGxhYmVsOiBcIkluaXRpYWwgZGlzcGxhY2VtZW50ICB14oKAICAobSlcIn0pXG52aWV3b2YgdjBfNSAgPSBJbnB1dHMucmFuZ2UoWy0xNSwgMTVdLCAgIHt2YWx1ZTogMC4wLCBzdGVwOiAwLjUsICBsYWJlbDogXCJJbml0aWFsIHZlbG9jaXR5ICB24oKAICAobS9zKVwifSlcbnZpZXdvZiBzaG93X2VudmVsb3BlID0gSW5wdXRzLnRvZ2dsZSh7bGFiZWw6IFwiU2hvdyBkZWNheSBlbnZlbG9wZVwiLCB2YWx1ZTogdHJ1ZX0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTYiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiIvLyBEYW1waW5nIHJlZ2ltZVxucmVnaW1lNSA9IHpldGE1IDwgMC45OTkgPyBcInVuZGVyZGFtcGVkXCIgOiAoemV0YTUgPCAxLjAwMSA/IFwiY3JpdGljYWxcIiA6IFwib3ZlcmRhbXBlZFwiKVxuXG4vLyBUaW1lIHNldHVwXG50RW5kNSA9IE1hdGgubWF4KDUgKiAyKk1hdGguUEkgLyBNYXRoLm1heCh3bjUgKiBNYXRoLnNxcnQoTWF0aC5hYnMoMSAtIHpldGE1KioyKSksIDAuMSksIDggLyAoemV0YTUgKiB3bjUpKVxudEVuZDVjID0gTWF0aC5taW4odEVuZDUsIDYwKVxuZHQ1ID0gdEVuZDVjIC8gODAwXG5cbi8vIFJlc3BvbnNlIGZ1bmN0aW9uXG5mdW5jdGlvbiB1NSh0KSB7XG4gIGlmIChyZWdpbWU1ID09PSBcInVuZGVyZGFtcGVkXCIpIHtcbiAgICBsZXQgd2QgPSB3bjUgKiBNYXRoLnNxcnQoMSAtIHpldGE1KioyKVxuICAgIGxldCBBNSA9IHUwXzVcbiAgICBsZXQgQjUgPSAodjBfNSArIHpldGE1ICogd241ICogdTBfNSkgLyB3ZFxuICAgIHJldHVybiBNYXRoLmV4cCgtemV0YTUgKiB3bjUgKiB0KSAqIChBNSAqIE1hdGguY29zKHdkICogdCkgKyBCNSAqIE1hdGguc2luKHdkICogdCkpXG4gIH0gZWxzZSBpZiAocmVnaW1lNSA9PT0gXCJjcml0aWNhbFwiKSB7XG4gICAgbGV0IEE1ID0gdTBfNVxuICAgIGxldCBCNSA9IHYwXzUgKyB3bjUgKiB1MF81XG4gICAgcmV0dXJuIChBNSArIEI1ICogdCkgKiBNYXRoLmV4cCgtd241ICogdClcbiAgfSBlbHNlIHtcbiAgICBsZXQgc3EgPSB3bjUgKiBNYXRoLnNxcnQoemV0YTUqKjIgLSAxKVxuICAgIGxldCBzMSA9IC16ZXRhNSp3bjUgKyBzcSwgczIgPSAtemV0YTUqd241IC0gc3FcbiAgICBsZXQgQTUgPSAodjBfNSAtIHMyICogdTBfNSkgLyAoczEgLSBzMilcbiAgICBsZXQgQjUgPSB1MF81IC0gQTVcbiAgICByZXR1cm4gQTUgKiBNYXRoLmV4cChzMSAqIHQpICsgQjUgKiBNYXRoLmV4cChzMiAqIHQpXG4gIH1cbn1cblxuZnVuY3Rpb24gZW52NSh0KSB7XG4gIGxldCBWNSA9IE1hdGguc3FydCh1MF81KioyICsgKCh2MF81ICsgemV0YTUqd241KnUwXzUpL01hdGgubWF4KHduNSpNYXRoLnNxcnQoMS16ZXRhNSoqMiksMC4wMSkpKioyKVxuICByZXR1cm4gVjUgKiBNYXRoLmV4cCgtemV0YTUgKiB3bjUgKiB0KVxufVxuXG50X2FycjUgPSBBcnJheS5mcm9tKHtsZW5ndGg6IDgwMX0sIChfLCBpKSA9PiBpICogZHQ1KVxuZGF0YTUgPSB0X2FycjUubWFwKHQgPT4gKHt0LCB1OiB1NSh0KX0pKVxuZGF0YTVlbnZfcG9zID0gKHNob3dfZW52ZWxvcGUgJiYgcmVnaW1lNSA9PT0gXCJ1bmRlcmRhbXBlZFwiKVxuICA/IHRfYXJyNS5tYXAodCA9PiAoe3QsIHk6IGVudjUodCl9KSkgOiBbXVxuZGF0YTVlbnZfbmVnID0gKHNob3dfZW52ZWxvcGUgJiYgcmVnaW1lNSA9PT0gXCJ1bmRlcmRhbXBlZFwiKVxuICA/IHRfYXJyNS5tYXAodCA9PiAoe3QsIHk6IC1lbnY1KHQpfSkpIDogW11cblxuLy8gTG9nYXJpdGhtaWMgZGVjcmVtZW50IChmb3IgdW5kZXJkYW1wZWQpXG5kZWx0YTUgPSByZWdpbWU1ID09PSBcInVuZGVyZGFtcGVkXCIgPyAyICogTWF0aC5QSSAqIHpldGE1IC8gTWF0aC5zcXJ0KDEgLSB6ZXRhNSoqMikgOiBOYU5cbndkNSA9IHJlZ2ltZTUgPT09IFwidW5kZXJkYW1wZWRcIiA/IHduNSAqIE1hdGguc3FydCgxIC0gemV0YTUqKjIpIDogTmFOXG5UZDUgPSByZWdpbWU1ID09PSBcInVuZGVyZGFtcGVkXCIgPyAyICogTWF0aC5QSSAvIHdkNSA6IE5hTlxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC03IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiaHRtbGBcbjxkaXYgc3R5bGU9XCJkaXNwbGF5OmZsZXg7Z2FwOjEuMnJlbTtmbGV4LXdyYXA6d3JhcDttYXJnaW46MC40cmVtIDAgMXJlbSAwO2ZvbnQtc2l6ZTowLjkzZW07YmFja2dyb3VuZDojZjhmOWZhO3BhZGRpbmc6MC42cmVtIDFyZW07Ym9yZGVyLXJhZGl1czo2cHhcIj5cbiAgPHNwYW4+UmVnaW1lOiA8c3Ryb25nIHN0eWxlPVwiY29sb3I6JHtyZWdpbWU1PT09J3VuZGVyZGFtcGVkJz8nIzFhNmZhZic6cmVnaW1lNT09PSdjcml0aWNhbCc/JyMyN2FlNjAnOicjYzAzOTJiJ31cIj4ke3JlZ2ltZTUuY2hhckF0KDApLnRvVXBwZXJDYXNlKCkrcmVnaW1lNS5zbGljZSgxKX08L3N0cm9uZz48L3NwYW4+XG4gICR7cmVnaW1lNT09PVwidW5kZXJkYW1wZWRcIiA/IGh0bWxgXG4gICAgPHNwYW4+z4lfZCA9IDxzdHJvbmc+JHt3ZDUudG9GaXhlZCgzKX0gcmFkL3M8L3N0cm9uZz48L3NwYW4+XG4gICAgPHNwYW4+VF9kID0gPHN0cm9uZz4ke1RkNS50b0ZpeGVkKDMpfSBzPC9zdHJvbmc+PC9zcGFuPlxuICAgIDxzcGFuPs60ID0gPHN0cm9uZz4ke2RlbHRhNS50b0ZpeGVkKDQpfTwvc3Ryb25nPjwvc3Bhbj5cbiAgICA8c3Bhbj7OtiAoZnJvbSDOtCkg4omIIDxzdHJvbmc+JHsoZGVsdGE1LygyKk1hdGguUEkpKS50b0ZpeGVkKDQpfTwvc3Ryb25nPjwvc3Bhbj5cbiAgYCA6IGh0bWxgYH1cbjwvZGl2PmBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtOCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlBsb3QucGxvdCh7XG4gIHRpdGxlOiBgRnJlZSBEYW1wZWQgUmVzcG9uc2Ug4oCUICR7cmVnaW1lNS5jaGFyQXQoMCkudG9VcHBlckNhc2UoKStyZWdpbWU1LnNsaWNlKDEpfSAozrYgPSAke3pldGE1LnRvRml4ZWQoMil9KWAsXG4gIG1hcmtzOiBbXG4gICAgUGxvdC5ydWxlWShbMF0sIHtzdHJva2U6IFwiI2NjY1wifSksXG4gICAgLi4uKHNob3dfZW52ZWxvcGUgJiYgcmVnaW1lNSA9PT0gXCJ1bmRlcmRhbXBlZFwiID8gW1xuICAgICAgUGxvdC5saW5lKGRhdGE1ZW52X3Bvcywge3g6IFwidFwiLCB5OiBcInlcIiwgc3Ryb2tlOiBcIiNjMDM5MmJcIiwgc3Ryb2tlV2lkdGg6IDEuNSwgc3Ryb2tlRGFzaGFycmF5OiBcIjYsNFwifSksXG4gICAgICBQbG90LmxpbmUoZGF0YTVlbnZfbmVnLCB7eDogXCJ0XCIsIHk6IFwieVwiLCBzdHJva2U6IFwiI2MwMzkyYlwiLCBzdHJva2VXaWR0aDogMS41LCBzdHJva2VEYXNoYXJyYXk6IFwiNiw0XCJ9KVxuICAgIF0gOiBbXSksXG4gICAgUGxvdC5saW5lKGRhdGE1LCB7XG4gICAgICB4OiBcInRcIiwgeTogXCJ1XCIsXG4gICAgICBzdHJva2U6IHJlZ2ltZTUgPT09IFwidW5kZXJkYW1wZWRcIiA/IFwiIzFhNmZhZlwiIDogKHJlZ2ltZTUgPT09IFwiY3JpdGljYWxcIiA/IFwiIzI3YWU2MFwiIDogXCIjYzAzOTJiXCIpLFxuICAgICAgc3Ryb2tlV2lkdGg6IDIuOFxuICAgIH0pLFxuICAgIFBsb3QuZG90KFt7dDogMCwgdTogdTBfNX1dLCB7eDogXCJ0XCIsIHk6IFwidVwiLCBmaWxsOiBcIiNlNjdlMjJcIiwgcjogNn0pXG4gIF0sXG4gIHg6IHtsYWJlbDogXCJUaW1lICB0ICAocylcIiwgZ3JpZDogdHJ1ZX0sXG4gIHk6IHtsYWJlbDogXCJEaXNwbGFjZW1lbnQgIHUodCkgIChtKVwiLCBncmlkOiB0cnVlfSxcbiAgd2lkdGg6IDcwMCwgaGVpZ2h0OiAzNDAsXG4gIHN0eWxlOiB7Zm9udFNpemU6IFwiMTNweFwifVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnemV0YV9sZCcpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCd3bl9sZCcpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdwZWFrX24nKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnemV0YTUnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnd241JykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3UwXzUnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgndjBfNScpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdzaG93X2VudmVsb3BlJykifV19
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Fundamentals of Mechanical Vibrations — 1-DOF Systems</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,67 @@
+---
+title: "Fundamentals of Mechanical Vibrations"
+page-layout: full
+---
+
+<div style="max-width:700px;margin:3rem auto;text-align:center">
+
+<p style="font-size:1.15rem;color:#555;margin-bottom:2.5rem">
+A 3-credit course taught by Prof. Hugo de Souza Oliveira. These are the lecture notes for the course.
+</p>
+
+</div>
+
+## Course Notes
+
+::: {.grid}
+
+::: {.g-col-6}
+### [Class 2 — Springs, Dampers & Free Vibration](class2.qmd)
+Combining springs and dampers in series and parallel. Deriving the equation of motion from a free body diagram. Natural frequency. Free vibration response and initial conditions.
+
+**Interactive:** Free vibration explorer — change $m$, $k$, $u_0$, $v_0$.
+:::
+
+::: {.g-col-6}
+### [Class 3 — Forced Vibration (Undamped)](class3.qmd)
+Harmonic excitation of an undamped system. Homogeneous and particular solutions. Resonance. Phase shift and the phasor diagram. Introduction to damped forced vibration.
+
+**Interactive:** Frequency response and time-domain explorer.
+:::
+
+::: {.g-col-6}
+### [Class 4 — Damped Forced Vibration & Dimensionless Form](class4.qmd)
+Completing the damped forced response derivation. Amplitude $U$ and phase $\phi$. Behaviour at resonance. Dimensionless parameters ($\zeta$, $r$, $c_c$). Bode plots.
+
+**Interactive:** Bode plot explorer — drag $\zeta$ and overlay multiple curves.
+:::
+
+::: {.g-col-6}
+### [Class 5 — Free Damped Systems](class5.qmd)
+Euler identity and complex notation. Characteristic equation. Underdamped, critically damped, and overdamped cases. Logarithmic decrement for experimental damping identification.
+
+**Interactive:** Free response explorer — watch the transition between all three regimes.
+:::
+
+::: {.g-col-6}
+### [Class 6 — Transmissibility](class6.qmd)
+Force transmissibility and motion transmissibility. The isolation threshold at $r = \sqrt{2}$. Base excitation: relative and absolute displacement. The damping trade-off.
+
+**Interactive:** Transmissibility explorer — drag $\zeta$ and $r$, overlay $U/Y$ and $T_F$, compare curves.
+:::
+
+::: {.g-col-6}
+### [Class 7 — Introduction to 2DOF Systems](class7.qmd)
+From SDOF to two-degree-of-freedom systems. Coupled equations of motion. Matrix form. Eigenvalue problem. Natural frequencies and mode shapes for the general and symmetric cases.
+
+**Interactive:** Natural frequencies and mode shapes explorer — change $m_1$, $m_2$, $k_1$, $k_2$.
+:::
+
+::: {.g-col-6}
+### [Class 8 — Forced Vibration & Dynamic Vibration Absorber](class8.qmd)
+Forced 2DOF response. Dynamic stiffness matrix. Resonance and anti-resonance. The dynamic vibration absorber: tuning condition, physical interpretation, and design.
+
+**Interactive:** DVA frequency response explorer — change mass ratio $\mu$ and tuning ratio $f$.
+:::
+
+:::

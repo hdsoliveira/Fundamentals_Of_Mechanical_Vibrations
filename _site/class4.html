@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Class 4 — Damped Forced Vibration &amp; Dimensionless Form – Fundamentals of Mechanical Vibrations</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Fundamentals of Mechanical Vibrations</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class2.html"> 
+<span class="menu-text">Class 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class3.html"> 
+<span class="menu-text">Class 3</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./class4.html" aria-current="page"> 
+<span class="menu-text">Class 4</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class5.html"> 
+<span class="menu-text">Class 5</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class6.html"> 
+<span class="menu-text">Class 6</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class7.html"> 
+<span class="menu-text">Class 7</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class8.html"> 
+<span class="menu-text">Class 8</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#damped-forced-vibration" id="toc-damped-forced-vibration" class="nav-link active" data-scroll-target="#damped-forced-vibration">4.1 Damped Forced Vibration</a>
+  <ul class="collapse">
+  <li><a href="#finding-a-and-b" id="toc-finding-a-and-b" class="nav-link" data-scroll-target="#finding-a-and-b">Finding A and B</a></li>
+  <li><a href="#physical-interpretation-of-a-and-b" id="toc-physical-interpretation-of-a-and-b" class="nav-link" data-scroll-target="#physical-interpretation-of-a-and-b">Physical Interpretation of A and B</a></li>
+  </ul></li>
+  <li><a href="#physical-amplitude-and-phase" id="toc-physical-amplitude-and-phase" class="nav-link" data-scroll-target="#physical-amplitude-and-phase">4.2 Physical Amplitude and Phase</a></li>
+  <li><a href="#key-physical-conclusions" id="toc-key-physical-conclusions" class="nav-link" data-scroll-target="#key-physical-conclusions">4.3 Key Physical Conclusions</a>
+  <ul class="collapse">
+  <li><a href="#the-damping-term-eliminates-the-singularity" id="toc-the-damping-term-eliminates-the-singularity" class="nav-link" data-scroll-target="#the-damping-term-eliminates-the-singularity">The Damping Term Eliminates the Singularity</a></li>
+  <li><a href="#at-resonance-response-comes-only-from-b" id="toc-at-resonance-response-comes-only-from-b" class="nav-link" data-scroll-target="#at-resonance-response-comes-only-from-b">At Resonance: Response Comes Only from B</a></li>
+  </ul></li>
+  <li><a href="#dimensionless-form" id="toc-dimensionless-form" class="nav-link" data-scroll-target="#dimensionless-form">4.4 Dimensionless Form</a>
+  <ul class="collapse">
+  <li><a href="#rewriting-the-equation-of-motion" id="toc-rewriting-the-equation-of-motion" class="nav-link" data-scroll-target="#rewriting-the-equation-of-motion">Rewriting the Equation of Motion</a></li>
+  <li><a href="#dimensionless-frequency-response" id="toc-dimensionless-frequency-response" class="nav-link" data-scroll-target="#dimensionless-frequency-response">Dimensionless Frequency Response</a></li>
+  </ul></li>
+  <li><a href="#interactive-bode-plot-explorer" id="toc-interactive-bode-plot-explorer" class="nav-link" data-scroll-target="#interactive-bode-plot-explorer">🎛️ Interactive: Bode Plot Explorer</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Class 4 — Damped Forced Vibration &amp; Dimensionless Form</h1>
+<p class="subtitle lead">Structural Dynamics · Single Degree of Freedom Systems</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="damped-forced-vibration" class="level2">
+<h2 class="anchored" data-anchor-id="damped-forced-vibration">4.1 Damped Forced Vibration</h2>
+<p>Systems without damping are an idealization. <strong>Real structures dissipate energy</strong> through damping — viscous, dry friction, and other mechanisms.</p>
+<p>In undamped systems, the free response <span class="math inline">\(u_h(t)\)</span> <strong>never disappears</strong>:</p>
+<p><span class="math display">\[u(t) = u_h(t) + u_p(t)\]</span></p>
+<p><strong>Damping introduces energy dissipation</strong> to our systems, and they become <strong>physically realistic</strong>: <span class="math inline">\(u_h(t)\)</span> eventually decays, leaving only the steady-state particular response <span class="math inline">\(u_p(t)\)</span>.</p>
+<p>Our forced damped system is governed by:</p>
+<p><span class="math display">\[\boxed{m\ddot{u} + \underset{=}{c\dot{u}} + ku = F_0\sin(\omega t)}\]</span></p>
+<p>Similarly to the undamped case, we try a particular solution:</p>
+<p><span class="math display">\[u_p(t) = A\sin(\omega t) + B\cos(\omega t)\]</span></p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Why a cosine term?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In the undamped case, a pure sine <span class="math inline">\(u_p = U\sin(\omega t)\)</span> was sufficient. With damping, the <span class="math inline">\(c\dot{u}\)</span> term introduces a component proportional to <span class="math inline">\(\cos(\omega t)\)</span>, so we need <strong>two components</strong>. If <span class="math inline">\(c = 0\)</span>, we will find <span class="math inline">\(B = 0\)</span> and recover the undamped result.</p>
+</div>
+</div>
+<section id="finding-a-and-b" class="level3">
+<h3 class="anchored" data-anchor-id="finding-a-and-b">Finding A and B</h3>
+<p>Computing derivatives of the trial solution:</p>
+<p><span class="math display">\[\dot{u}_p(t) = A\omega\cos(\omega t) - B\omega\sin(\omega t)\]</span> <span class="math display">\[\ddot{u}_p(t) = -A\omega^2\sin(\omega t) - B\omega^2\cos(\omega t)\]</span></p>
+<p>Substituting into the equation of motion term by term:</p>
+<ul>
+<li><strong>Inertia term:</strong> <span class="math inline">\(m\ddot{u}_p = -mA\omega^2\sin(\omega t) - mB\omega^2\cos(\omega t)\)</span></li>
+<li><strong>Damping term:</strong> <span class="math inline">\(c\dot{u}_p = \phantom{-}cA\omega\cos(\omega t) - cB\omega\sin(\omega t)\)</span></li>
+<li><strong>Elastic term:</strong> <span class="math inline">\(ku_p = \phantom{-m}kA\sin(\omega t) + kB\cos(\omega t)\)</span></li>
+</ul>
+<p>Grouping by <span class="math inline">\(\sin(\omega t)\)</span> and <span class="math inline">\(\cos(\omega t)\)</span> and setting equal to <span class="math inline">\(F_0\sin(\omega t)\)</span>:</p>
+<p><span class="math display">\[\underbrace{[A(k-m\omega^2) - cB\omega]}_{\alpha}\sin(\omega t) + \underbrace{[B(k-m\omega^2) + cA\omega]}_{\beta}\cos(\omega t) = F_0\sin(\omega t)\]</span></p>
+<p>For this to hold <strong>at all times</strong> <span class="math inline">\(t\)</span>:</p>
+<p><span class="math display">\[\alpha = F_0 \qquad \text{and} \qquad \beta = 0\]</span></p>
+<p>Defining <span class="math inline">\(D = k - m\omega^2\)</span> for convenience:</p>
+<p><span class="math display">\[\begin{cases} AD - cB\omega = F_0 \\ BD + cA\omega = 0 \end{cases}\]</span></p>
+<p>Solving this <span class="math inline">\(2\times 2\)</span> system:</p>
+<p><span class="math display">\[\boxed{A = \frac{F_0 D}{D^2+(c\omega)^2} = \frac{F_0(k-m\omega^2)}{(k-m\omega^2)^2+(c\omega)^2}}\]</span></p>
+<p><span class="math display">\[\boxed{B = -\frac{c\omega A}{D} = \frac{-F_0 c\omega}{(k-m\omega^2)^2+(c\omega)^2}}\]</span></p>
+<p>Therefore:</p>
+<p><span class="math display">\[u_p(t) = A\sin(\omega t) + B\cos(\omega t)\]</span></p>
+</section>
+<section id="physical-interpretation-of-a-and-b" class="level3">
+<h3 class="anchored" data-anchor-id="physical-interpretation-of-a-and-b">Physical Interpretation of A and B</h3>
+<p>The two components play different roles:</p>
+<ul>
+<li><span class="math inline">\(A\sin(\omega t)\)</span>: can only be <strong>in phase</strong> (<span class="math inline">\(A &gt; 0\)</span>) or <strong>180° delayed</strong> (<span class="math inline">\(A &lt; 0\)</span>) relative to <span class="math inline">\(F_0\sin(\omega t)\)</span>.</li>
+<li><span class="math inline">\(B\cos(\omega t)\)</span>: is always <strong>90° delayed</strong> relative to <span class="math inline">\(F_0\sin(\omega t)\)</span>.</li>
+</ul>
+<p>Note that <span class="math inline">\(B = -F_0 c\omega\big/[D^2 + (c\omega)^2]\)</span>: if <span class="math inline">\(c = 0\)</span> then <span class="math inline">\(B = 0\)</span> — the 90°-delayed component <strong>only exists because of damping <span class="math inline">\(c\)</span></strong>.</p>
+<hr>
+</section>
+</section>
+<section id="physical-amplitude-and-phase" class="level2">
+<h2 class="anchored" data-anchor-id="physical-amplitude-and-phase">4.2 Physical Amplitude and Phase</h2>
+<p>The components <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> alone are not the physical amplitude and phase — they are only the two contributions of the response. The actual <strong>physical amplitude</strong> <span class="math inline">\(U\)</span> and <strong>phase angle</strong> <span class="math inline">\(\phi\)</span> come from combining them:</p>
+<p><span class="math display">\[U = \sqrt{A^2 + B^2}, \qquad \phi = \arctan\!\left(\frac{-B}{A}\right)\]</span></p>
+<p>Substituting the expressions for <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>:</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Amplitude and Phase of Damped Forced Response
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\boxed{U = \frac{F_0}{\sqrt{(k-m\omega^2)^2+(c\omega)^2}}}\]</span></p>
+<p><span class="math display">\[\boxed{\phi = \arctan\!\left(\frac{c\omega}{k - m\omega^2}\right)}\]</span></p>
+<p>Unlike the undamped case, <span class="math inline">\(U\)</span> is always <strong>finite</strong> — the damping term <span class="math inline">\((c\omega)^2\)</span> prevents the denominator from ever reaching zero.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="key-physical-conclusions" class="level2">
+<h2 class="anchored" data-anchor-id="key-physical-conclusions">4.3 Key Physical Conclusions</h2>
+<section id="the-damping-term-eliminates-the-singularity" class="level3">
+<h3 class="anchored" data-anchor-id="the-damping-term-eliminates-the-singularity">The Damping Term Eliminates the Singularity</h3>
+<p>At <span class="math inline">\(\omega = \omega_n\)</span>, we have <span class="math inline">\(k - m\omega_n^2 = 0\)</span>, so the denominator of <span class="math inline">\(U\)</span> becomes:</p>
+<p><span class="math display">\[(k - m\omega_n^2)^2 + (c\omega_n)^2 = 0 + (c\omega_n)^2 = (c\omega_n)^2\]</span></p>
+<p>The term <span class="math inline">\((c\omega_n)^2\)</span> <strong>eliminates the singularity</strong> that occurred in the undamped case. Also at <span class="math inline">\(\omega = \omega_n\)</span>:</p>
+<p><span class="math display">\[A = \frac{F_0(k - m\omega_n^2)}{(c\omega_n)^2} = \frac{F_0 \cdot 0}{(c\omega_n)^2} = 0\]</span></p>
+</section>
+<section id="at-resonance-response-comes-only-from-b" class="level3">
+<h3 class="anchored" data-anchor-id="at-resonance-response-comes-only-from-b">At Resonance: Response Comes Only from B</h3>
+<p>Since <span class="math inline">\(A = 0\)</span> at <span class="math inline">\(\omega = \omega_n\)</span>, the response is <strong>entirely governed by the cosine term</strong>:</p>
+<p><span class="math display">\[u_p(t) = B\cos(\omega_n t), \qquad B = \frac{-F_0 c\omega_n}{(c\omega_n)^2} = -\frac{F_0}{c\omega_n}\]</span></p>
+<p>Using the identity <span class="math inline">\(-\cos(\omega_n t) = \sin(\omega_n t - 90°)\)</span>:</p>
+<p><span class="math display">\[\boxed{u_p(t) = \frac{F_0}{c\omega_n}\sin(\omega_n t - 90°)}\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Two Important Conclusions at <span class="math inline">\(\omega = \omega_n\)</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><strong>The amplitude is bounded</strong>: <span class="math inline">\(U = F_0/(c\omega_n)\)</span>. More damping → smaller resonant amplitude.</p></li>
+<li><p><strong>The displacement lags the force by exactly 90°</strong>. This is a key experimental signature of resonance and is used to identify <span class="math inline">\(\omega_n\)</span> in vibration tests.</p></li>
+</ol>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="dimensionless-form" class="level2">
+<h2 class="anchored" data-anchor-id="dimensionless-form">4.4 Dimensionless Form</h2>
+<p>The physical form of the frequency response depends on five independent parameters: <span class="math inline">\(m\)</span>, <span class="math inline">\(k\)</span>, <span class="math inline">\(c\)</span>, <span class="math inline">\(F_0\)</span>, and <span class="math inline">\(\omega\)</span>. This means that every time we change the system — a different mass, a stiffer spring, a stronger force — we would need to recompute everything from scratch. There is no universal picture.</p>
+<p>The dimensionless form solves this by collapsing those five parameters into just <strong>two dimensionless numbers</strong>: the frequency ratio <span class="math inline">\(r = \omega/\omega_n\)</span> and the damping ratio <span class="math inline">\(\zeta = c/c_c\)</span>. The result is that:</p>
+<ul>
+<li>A <strong>single plot</strong> of <span class="math inline">\(U/u_{st}\)</span> vs <span class="math inline">\(r\)</span> describes every possible 1-DOF system with the same <span class="math inline">\(\zeta\)</span>, regardless of the specific values of <span class="math inline">\(m\)</span>, <span class="math inline">\(k\)</span>, or <span class="math inline">\(F_0\)</span>.</li>
+<li>We can immediately read off physical behaviour — stiffness-controlled (<span class="math inline">\(r \ll 1\)</span>), mass-controlled (<span class="math inline">\(r \gg 1\)</span>), or resonance-dominated (<span class="math inline">\(r \approx 1\)</span>) — without solving anything.</li>
+<li>The damping ratio <span class="math inline">\(\zeta\)</span> becomes the single most important parameter: it controls the peak amplitude, the phase transition, and whether resonance is dangerous or benign.</li>
+</ul>
+<p>This is why structural dynamics uses dimensionless form as the standard: one set of curves covers the entire design space.</p>
+<p>To better analyse our systems in the future, we define a set of <strong>dimensionless parameters</strong>:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Dimensionless Parameters
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Name</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\omega_n\)</span></td>
+<td>Natural / resonance frequency</td>
+<td><span class="math inline">\(\sqrt{k/m}\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(r\)</span></td>
+<td>Frequency ratio</td>
+<td><span class="math inline">\(\omega/\omega_n\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(c_c\)</span></td>
+<td>Critical damping</td>
+<td><span class="math inline">\(2m\omega_n\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\zeta\)</span></td>
+<td>Damping ratio</td>
+<td><span class="math inline">\(c/c_c = c/(2m\omega_n)\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(u_{st}\)</span></td>
+<td>Static displacement</td>
+<td><span class="math inline">\(F_0/k\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<section id="rewriting-the-equation-of-motion" class="level3">
+<h3 class="anchored" data-anchor-id="rewriting-the-equation-of-motion">Rewriting the Equation of Motion</h3>
+<p>Starting from <span class="math inline">\(m\ddot{u} + c\dot{u} + ku = F_0\sin(\omega t)\)</span>:</p>
+<p><strong>Step A</strong> — divide by <span class="math inline">\(m\)</span>:</p>
+<p><span class="math display">\[\ddot{u} + \frac{c}{m}\dot{u} + \frac{k}{m}u = \frac{F_0}{m}\sin(\omega t)\]</span></p>
+<p><strong>Step B</strong> — substitute <span class="math inline">\(k/m = \omega_n^2\)</span> and <span class="math inline">\(c/m = 2\zeta\omega_n\)</span>:</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Dimensionless Equation of Motion
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\boxed{\ddot{u} + 2\zeta\omega_n\dot{u} + \omega_n^2 u = \frac{F_0}{m}\sin(\omega t)}\]</span></p>
+<p>The equation is now <strong>described only by <span class="math inline">\(\omega_n\)</span> and <span class="math inline">\(\zeta\)</span></strong>.</p>
+</div>
+</div>
+</section>
+<section id="dimensionless-frequency-response" class="level3">
+<h3 class="anchored" data-anchor-id="dimensionless-frequency-response">Dimensionless Frequency Response</h3>
+<p>Applying the dimensionless parameters to <span class="math inline">\(U\)</span> and <span class="math inline">\(\phi\)</span>:</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Dimensionless Frequency Response
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\boxed{\frac{U}{u_{st}} = \frac{1}{\sqrt{(1-r^2)^2 + (2\zeta r)^2}}}\]</span></p>
+<p><span class="math display">\[\boxed{\phi = \arctan\!\left(\frac{2\zeta r}{1-r^2}\right)}\]</span></p>
+<p>These two curves fully characterise the 1-DOF forced response, independent of the specific values of <span class="math inline">\(m\)</span>, <span class="math inline">\(k\)</span>, or <span class="math inline">\(F_0\)</span>.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="interactive-bode-plot-explorer" class="level2">
+<h2 class="anchored" data-anchor-id="interactive-bode-plot-explorer">🎛️ Interactive: Bode Plot Explorer</h2>
+<p>The frequency response plots (amplitude and phase vs.&nbsp;<span class="math inline">\(r\)</span>) are known as <strong>Bode plots</strong> in control engineering and <strong>frequency response functions</strong> in structural dynamics. Use the controls below to explore how the damping ratio <span class="math inline">\(\zeta\)</span> shapes the response.</p>
+<div class="cell panel-input card bg-light p-2">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="206" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 205;"><span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>viewof zeta_val <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.01</span><span class="op">,</span> <span class="fl">2.0</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Damping ratio  ζ"</span>})</span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a>viewof show_multi <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">toggle</span>({<span class="dt">label</span><span class="op">:</span> <span class="st">"Show multiple ζ curves"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="kw">false</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="212" data-source-offset="-32"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 211;"><span id="cb2-212"><a href="#cb2-212" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">ampRatio</span>(r<span class="op">,</span> zeta) {</span>
+<span id="cb2-213"><a href="#cb2-213" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>((<span class="dv">1</span> <span class="op">-</span> r<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (<span class="dv">2</span><span class="op">*</span>zeta<span class="op">*</span>r)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb2-214"><a href="#cb2-214" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-215"><a href="#cb2-215" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">phaseAngle</span>(r<span class="op">,</span> zeta) {</span>
+<span id="cb2-216"><a href="#cb2-216" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> phi <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">atan2</span>(<span class="dv">2</span><span class="op">*</span>zeta<span class="op">*</span>r<span class="op">,</span> <span class="dv">1</span> <span class="op">-</span> r<span class="op">**</span><span class="dv">2</span>) <span class="op">*</span> <span class="dv">180</span> <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="cn">PI</span></span>
+<span id="cb2-217"><a href="#cb2-217" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (phi <span class="op">&lt;</span> <span class="dv">0</span>) phi <span class="op">+=</span> <span class="dv">180</span></span>
+<span id="cb2-218"><a href="#cb2-218" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> phi</span>
+<span id="cb2-219"><a href="#cb2-219" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-220"><a href="#cb2-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-221"><a href="#cb2-221" aria-hidden="true" tabindex="-1"></a>r_pts <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({<span class="dt">length</span><span class="op">:</span> <span class="dv">800</span>}<span class="op">,</span> (_<span class="op">,</span> i) <span class="kw">=&gt;</span> <span class="fl">0.01</span> <span class="op">+</span> i <span class="op">*</span> (<span class="fl">2.99</span> <span class="op">/</span> <span class="dv">799</span>))</span>
+<span id="cb2-222"><a href="#cb2-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-223"><a href="#cb2-223" aria-hidden="true" tabindex="-1"></a><span class="co">// Single curve data</span></span>
+<span id="cb2-224"><a href="#cb2-224" aria-hidden="true" tabindex="-1"></a>data_amp <span class="op">=</span> r_pts<span class="op">.</span><span class="fu">map</span>(r <span class="kw">=&gt;</span> ({r<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="fu">ampRatio</span>(r<span class="op">,</span> zeta_val)}))</span>
+<span id="cb2-225"><a href="#cb2-225" aria-hidden="true" tabindex="-1"></a>data_phase <span class="op">=</span> r_pts<span class="op">.</span><span class="fu">map</span>(r <span class="kw">=&gt;</span> ({r<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="fu">phaseAngle</span>(r<span class="op">,</span> zeta_val)}))</span>
+<span id="cb2-226"><a href="#cb2-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-227"><a href="#cb2-227" aria-hidden="true" tabindex="-1"></a><span class="co">// Multi-curve data</span></span>
+<span id="cb2-228"><a href="#cb2-228" aria-hidden="true" tabindex="-1"></a>zeta_list <span class="op">=</span> [<span class="fl">0.05</span><span class="op">,</span> <span class="fl">0.1</span><span class="op">,</span> <span class="fl">0.2</span><span class="op">,</span> <span class="fl">0.3</span><span class="op">,</span> <span class="fl">0.5</span><span class="op">,</span> <span class="fl">0.7</span><span class="op">,</span> <span class="fl">1.0</span>]</span>
+<span id="cb2-229"><a href="#cb2-229" aria-hidden="true" tabindex="-1"></a>colors_zeta <span class="op">=</span> [<span class="st">"#c0392b"</span><span class="op">,</span><span class="st">"#e67e22"</span><span class="op">,</span><span class="st">"#f1c40f"</span><span class="op">,</span><span class="st">"#27ae60"</span><span class="op">,</span><span class="st">"#1a6faf"</span><span class="op">,</span><span class="st">"#8e44ad"</span><span class="op">,</span><span class="st">"#555"</span>]</span>
+<span id="cb2-230"><a href="#cb2-230" aria-hidden="true" tabindex="-1"></a>data_multi_amp <span class="op">=</span> zeta_list<span class="op">.</span><span class="fu">flatMap</span>((z<span class="op">,</span> i) <span class="kw">=&gt;</span></span>
+<span id="cb2-231"><a href="#cb2-231" aria-hidden="true" tabindex="-1"></a>  r_pts<span class="op">.</span><span class="fu">map</span>(r <span class="kw">=&gt;</span> ({r<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="fu">ampRatio</span>(r<span class="op">,</span> z)<span class="op">,</span> <span class="dv">15</span>)<span class="op">,</span> <span class="dt">zeta</span><span class="op">:</span> z<span class="op">,</span> <span class="dt">color</span><span class="op">:</span> colors_zeta[i]}))</span>
+<span id="cb2-232"><a href="#cb2-232" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-233"><a href="#cb2-233" aria-hidden="true" tabindex="-1"></a>data_multi_phase <span class="op">=</span> zeta_list<span class="op">.</span><span class="fu">flatMap</span>((z<span class="op">,</span> i) <span class="kw">=&gt;</span></span>
+<span id="cb2-234"><a href="#cb2-234" aria-hidden="true" tabindex="-1"></a>  r_pts<span class="op">.</span><span class="fu">map</span>(r <span class="kw">=&gt;</span> ({r<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="fu">phaseAngle</span>(r<span class="op">,</span> z)<span class="op">,</span> <span class="dt">zeta</span><span class="op">:</span> z<span class="op">,</span> <span class="dt">color</span><span class="op">:</span> colors_zeta[i]}))</span>
+<span id="cb2-235"><a href="#cb2-235" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-9" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="238" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 237;"><span id="cb3-238"><a href="#cb3-238" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb3-239"><a href="#cb3-239" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin:0.4rem 0 1rem 0;font-size:0.93em;color:#333;background:#f8f9fa;padding:0.6rem 1rem;border-radius:6px"&gt;</span></span>
+<span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span&gt;ζ = &lt;strong&gt;</span><span class="sc">${</span>zeta_val<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span&gt;Peak |U/u_st| = &lt;strong&gt;</span><span class="sc">${</span>(<span class="dv">1</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>zeta_val<span class="op">*</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">1</span><span class="op">-</span>zeta_val<span class="op">**</span><span class="dv">2</span>)))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs"> &lt;/strong&gt;</span><span class="sc">${</span>zeta_val <span class="op">&lt;</span> <span class="dv">1</span><span class="op">/</span><span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">2</span>) <span class="op">?</span> <span class="st">'@ r ≈ '</span> <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">1</span> <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>zeta_val<span class="op">**</span><span class="dv">2</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>) <span class="op">:</span> <span class="st">'(no peak for ζ ≥ 1/√2)'</span><span class="sc">}</span><span class="vs">&lt;/span&gt;</span></span>
+<span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span&gt;At r=1: &lt;strong&gt;</span><span class="sc">${</span>(<span class="dv">1</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>zeta_val))<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span&gt;Regime: &lt;strong style="color:</span><span class="sc">${</span>zeta_val <span class="op">&lt;</span> <span class="dv">1</span> <span class="op">?</span> <span class="st">'#1a6faf'</span> <span class="op">:</span> zeta_val <span class="op">===</span> <span class="dv">1</span> <span class="op">?</span> <span class="st">'#27ae60'</span> <span class="op">:</span> <span class="st">'#c0392b'</span><span class="sc">}</span><span class="vs">"&gt;</span><span class="sc">${</span>zeta_val <span class="op">&lt;</span> <span class="dv">1</span> <span class="op">?</span> <span class="st">'Underdamped'</span> <span class="op">:</span> zeta_val <span class="op">===</span> <span class="dv">1</span> <span class="op">?</span> <span class="st">'Critical'</span> <span class="op">:</span> <span class="st">'Overdamped'</span><span class="sc">}</span><span class="vs">&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb3-244"><a href="#cb3-244" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="248" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 247;"><span id="cb4-248"><a href="#cb4-248" aria-hidden="true" tabindex="-1"></a><span class="co">// Amplitude plot</span></span>
+<span id="cb4-249"><a href="#cb4-249" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb4-250"><a href="#cb4-250" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Amplitude Ratio  |U / u_st|  vs  Frequency Ratio  r"</span><span class="op">,</span></span>
+<span id="cb4-251"><a href="#cb4-251" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb4-252"><a href="#cb4-252" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#eee"</span>})<span class="op">,</span></span>
+<span id="cb4-253"><a href="#cb4-253" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">1</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#ccc"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"5,4"</span>})<span class="op">,</span></span>
+<span id="cb4-254"><a href="#cb4-254" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span>(show_multi</span>
+<span id="cb4-255"><a href="#cb4-255" aria-hidden="true" tabindex="-1"></a>      <span class="op">?</span> zeta_list<span class="op">.</span><span class="fu">map</span>((z<span class="op">,</span> i) <span class="kw">=&gt;</span></span>
+<span id="cb4-256"><a href="#cb4-256" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">line</span>(data_multi_amp<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">zeta</span> <span class="op">===</span> z)<span class="op">,</span> {</span>
+<span id="cb4-257"><a href="#cb4-257" aria-hidden="true" tabindex="-1"></a>            <span class="dt">x</span><span class="op">:</span> <span class="st">"r"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> colors_zeta[i]<span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.6</span><span class="op">,</span></span>
+<span id="cb4-258"><a href="#cb4-258" aria-hidden="true" tabindex="-1"></a>            <span class="dt">strokeOpacity</span><span class="op">:</span> z <span class="op">===</span> zeta_val <span class="op">?</span> <span class="fl">1.0</span> <span class="op">:</span> <span class="fl">0.4</span></span>
+<span id="cb4-259"><a href="#cb4-259" aria-hidden="true" tabindex="-1"></a>          })</span>
+<span id="cb4-260"><a href="#cb4-260" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb4-261"><a href="#cb4-261" aria-hidden="true" tabindex="-1"></a>      <span class="op">:</span> [])<span class="op">,</span></span>
+<span id="cb4-262"><a href="#cb4-262" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(show_multi <span class="op">?</span> data_multi_amp<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">zeta</span> <span class="op">===</span> zeta_val) <span class="op">:</span> data_amp<span class="op">,</span> {</span>
+<span id="cb4-263"><a href="#cb4-263" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"r"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> show_multi <span class="op">?</span> <span class="st">"y"</span> <span class="op">:</span> <span class="st">"y"</span><span class="op">,</span></span>
+<span id="cb4-264"><a href="#cb4-264" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#1a4a7a"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> show_multi <span class="op">?</span> <span class="fl">3.0</span> <span class="op">:</span> <span class="fl">2.8</span></span>
+<span id="cb4-265"><a href="#cb4-265" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
+<span id="cb4-266"><a href="#cb4-266" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>([{<span class="dt">r</span><span class="op">:</span> <span class="fl">1.0</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">1</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>zeta_val)}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"r"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#e67e22"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">6</span>})</span>
+<span id="cb4-267"><a href="#cb4-267" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb4-268"><a href="#cb4-268" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"r = ω / ωₙ"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb4-269"><a href="#cb4-269" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"|U| / u_st"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="dv">12</span><span class="op">,</span> <span class="dv">1</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>zeta_val) <span class="op">*</span> <span class="fl">1.3</span> <span class="op">+</span> <span class="dv">1</span>)]<span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb4-270"><a href="#cb4-270" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">700</span><span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">300</span><span class="op">,</span></span>
+<span id="cb4-271"><a href="#cb4-271" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {<span class="dt">fontSize</span><span class="op">:</span> <span class="st">"13px"</span>}</span>
+<span id="cb4-272"><a href="#cb4-272" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="276" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 275;"><span id="cb5-276"><a href="#cb5-276" aria-hidden="true" tabindex="-1"></a><span class="co">// Phase plot</span></span>
+<span id="cb5-277"><a href="#cb5-277" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb5-278"><a href="#cb5-278" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Phase Angle  φ  vs  Frequency Ratio  r"</span><span class="op">,</span></span>
+<span id="cb5-279"><a href="#cb5-279" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb5-280"><a href="#cb5-280" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">90</span><span class="op">,</span> <span class="dv">180</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#eee"</span>})<span class="op">,</span></span>
+<span id="cb5-281"><a href="#cb5-281" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">1</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#ccc"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"5,4"</span>})<span class="op">,</span></span>
+<span id="cb5-282"><a href="#cb5-282" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span>(show_multi</span>
+<span id="cb5-283"><a href="#cb5-283" aria-hidden="true" tabindex="-1"></a>      <span class="op">?</span> zeta_list<span class="op">.</span><span class="fu">map</span>((z<span class="op">,</span> i) <span class="kw">=&gt;</span></span>
+<span id="cb5-284"><a href="#cb5-284" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">line</span>(data_multi_phase<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">zeta</span> <span class="op">===</span> z)<span class="op">,</span> {</span>
+<span id="cb5-285"><a href="#cb5-285" aria-hidden="true" tabindex="-1"></a>            <span class="dt">x</span><span class="op">:</span> <span class="st">"r"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> colors_zeta[i]<span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.6</span><span class="op">,</span></span>
+<span id="cb5-286"><a href="#cb5-286" aria-hidden="true" tabindex="-1"></a>            <span class="dt">strokeOpacity</span><span class="op">:</span> z <span class="op">===</span> zeta_val <span class="op">?</span> <span class="fl">1.0</span> <span class="op">:</span> <span class="fl">0.4</span></span>
+<span id="cb5-287"><a href="#cb5-287" aria-hidden="true" tabindex="-1"></a>          })</span>
+<span id="cb5-288"><a href="#cb5-288" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb5-289"><a href="#cb5-289" aria-hidden="true" tabindex="-1"></a>      <span class="op">:</span> [])<span class="op">,</span></span>
+<span id="cb5-290"><a href="#cb5-290" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(show_multi <span class="op">?</span> data_multi_phase<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">zeta</span> <span class="op">===</span> zeta_val) <span class="op">:</span> data_phase<span class="op">,</span> {</span>
+<span id="cb5-291"><a href="#cb5-291" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"r"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> show_multi <span class="op">?</span> <span class="st">"y"</span> <span class="op">:</span> <span class="st">"y"</span><span class="op">,</span></span>
+<span id="cb5-292"><a href="#cb5-292" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#c0392b"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> show_multi <span class="op">?</span> <span class="fl">3.0</span> <span class="op">:</span> <span class="fl">2.8</span></span>
+<span id="cb5-293"><a href="#cb5-293" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
+<span id="cb5-294"><a href="#cb5-294" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>([{<span class="dt">r</span><span class="op">:</span> <span class="fl">1.0</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">90</span>}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"r"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#e67e22"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">6</span>})</span>
+<span id="cb5-295"><a href="#cb5-295" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb5-296"><a href="#cb5-296" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"r = ω / ωₙ"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb5-297"><a href="#cb5-297" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Phase φ (degrees)"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">185</span>]<span class="op">,</span> <span class="dt">ticks</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">45</span><span class="op">,</span> <span class="dv">90</span><span class="op">,</span> <span class="dv">135</span><span class="op">,</span> <span class="dv">180</span>]<span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb5-298"><a href="#cb5-298" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">700</span><span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">260</span><span class="op">,</span></span>
+<span id="cb5-299"><a href="#cb5-299" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {<span class="dt">fontSize</span><span class="op">:</span> <span class="st">"13px"</span>}</span>
+<span id="cb5-300"><a href="#cb5-300" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="304" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 303;"><span id="cb6-304"><a href="#cb6-304" aria-hidden="true" tabindex="-1"></a>show_multi <span class="op">?</span> <span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb6-305"><a href="#cb6-305" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;div style="display:flex;gap:1.2rem;flex-wrap:wrap;font-size:0.82em;margin-top:0.4rem"&gt;</span></span>
+<span id="cb6-306"><a href="#cb6-306" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span><span class="sc">${</span>zeta_list<span class="op">.</span><span class="fu">map</span>((z<span class="op">,</span>i) <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`&lt;span&gt;&lt;span style="color:</span><span class="sc">${</span>colors_zeta[i]<span class="sc">}</span><span class="vs">;font-weight:bold"&gt;—&lt;/span&gt; ζ = </span><span class="sc">${</span>z<span class="sc">}</span><span class="vs">&lt;/span&gt;`</span>)<span class="sc">}</span></span>
+<span id="cb6-307"><a href="#cb6-307" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/div&gt;`</span> <span class="op">:</span> <span class="fu">html</span><span class="vs">``</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Key observations:</strong> - As <span class="math inline">\(\zeta\)</span> decreases, the resonant peak grows sharper and taller. - At <span class="math inline">\(r = 1\)</span> (resonance), the phase is <strong>always 90°</strong>, regardless of <span class="math inline">\(\zeta\)</span>. - For <span class="math inline">\(\zeta \geq 1/\sqrt{2} \approx 0.707\)</span>, the amplitude ratio has no peak above the static value. - Toggle “Show multiple ζ curves” to compare responses across damping levels simultaneously.</p>
+</blockquote>
+
+
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiB6ZXRhX3ZhbCA9IElucHV0cy5yYW5nZShbMC4wMSwgMi4wXSwge3ZhbHVlOiAwLjEsIHN0ZXA6IDAuMDEsIGxhYmVsOiBcIkRhbXBpbmcgcmF0aW8gIM62XCJ9KVxudmlld29mIHNob3dfbXVsdGkgPSBJbnB1dHMudG9nZ2xlKHtsYWJlbDogXCJTaG93IG11bHRpcGxlIM62IGN1cnZlc1wiLCB2YWx1ZTogZmFsc2V9KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiLy8gRnJlcXVlbmN5IHJlc3BvbnNlIGZ1bmN0aW9uc1xuZnVuY3Rpb24gYW1wUmF0aW8ociwgemV0YSkge1xuICByZXR1cm4gMSAvIE1hdGguc3FydCgoMSAtIHIqKjIpKioyICsgKDIqemV0YSpyKSoqMilcbn1cbmZ1bmN0aW9uIHBoYXNlQW5nbGUociwgemV0YSkge1xuICBsZXQgcGhpID0gTWF0aC5hdGFuMigyKnpldGEqciwgMSAtIHIqKjIpICogMTgwIC8gTWF0aC5QSVxuICBpZiAocGhpIDwgMCkgcGhpICs9IDE4MFxuICByZXR1cm4gcGhpXG59XG5cbnJfcHRzID0gQXJyYXkuZnJvbSh7bGVuZ3RoOiA4MDB9LCAoXywgaSkgPT4gMC4wMSArIGkgKiAoMi45OSAvIDc5OSkpXG5cbi8vIFNpbmdsZSBjdXJ2ZSBkYXRhXG5kYXRhX2FtcCA9IHJfcHRzLm1hcChyID0+ICh7ciwgeTogYW1wUmF0aW8ociwgemV0YV92YWwpfSkpXG5kYXRhX3BoYXNlID0gcl9wdHMubWFwKHIgPT4gKHtyLCB5OiBwaGFzZUFuZ2xlKHIsIHpldGFfdmFsKX0pKVxuXG4vLyBNdWx0aS1jdXJ2ZSBkYXRhXG56ZXRhX2xpc3QgPSBbMC4wNSwgMC4xLCAwLjIsIDAuMywgMC41LCAwLjcsIDEuMF1cbmNvbG9yc196ZXRhID0gW1wiI2MwMzkyYlwiLFwiI2U2N2UyMlwiLFwiI2YxYzQwZlwiLFwiIzI3YWU2MFwiLFwiIzFhNmZhZlwiLFwiIzhlNDRhZFwiLFwiIzU1NVwiXVxuZGF0YV9tdWx0aV9hbXAgPSB6ZXRhX2xpc3QuZmxhdE1hcCgoeiwgaSkgPT5cbiAgcl9wdHMubWFwKHIgPT4gKHtyLCB5OiBNYXRoLm1pbihhbXBSYXRpbyhyLCB6KSwgMTUpLCB6ZXRhOiB6LCBjb2xvcjogY29sb3JzX3pldGFbaV19KSlcbilcbmRhdGFfbXVsdGlfcGhhc2UgPSB6ZXRhX2xpc3QuZmxhdE1hcCgoeiwgaSkgPT5cbiAgcl9wdHMubWFwKHIgPT4gKHtyLCB5OiBwaGFzZUFuZ2xlKHIsIHopLCB6ZXRhOiB6LCBjb2xvcjogY29sb3JzX3pldGFbaV19KSlcbilcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Imh0bWxgXG48ZGl2IHN0eWxlPVwiZGlzcGxheTpmbGV4O2dhcDoxLjVyZW07ZmxleC13cmFwOndyYXA7bWFyZ2luOjAuNHJlbSAwIDFyZW0gMDtmb250LXNpemU6MC45M2VtO2NvbG9yOiMzMzM7YmFja2dyb3VuZDojZjhmOWZhO3BhZGRpbmc6MC42cmVtIDFyZW07Ym9yZGVyLXJhZGl1czo2cHhcIj5cbiAgPHNwYW4+zrYgPSA8c3Ryb25nPiR7emV0YV92YWwudG9GaXhlZCgyKX08L3N0cm9uZz48L3NwYW4+XG4gIDxzcGFuPlBlYWsgfFUvdV9zdHwgPSA8c3Ryb25nPiR7KDEvKDIqemV0YV92YWwqTWF0aC5zcXJ0KDEtemV0YV92YWwqKjIpKSkudG9GaXhlZCgyKX0gPC9zdHJvbmc+JHt6ZXRhX3ZhbCA8IDEvTWF0aC5zcXJ0KDIpID8gJ0AgciDiiYggJyArIE1hdGguc3FydCgxIC0gMip6ZXRhX3ZhbCoqMikudG9GaXhlZCgzKSA6ICcobm8gcGVhayBmb3IgzrYg4omlIDEv4oiaMiknfTwvc3Bhbj5cbiAgPHNwYW4+QXQgcj0xOiA8c3Ryb25nPiR7KDEvKDIqemV0YV92YWwpKS50b0ZpeGVkKDIpfTwvc3Ryb25nPjwvc3Bhbj5cbiAgPHNwYW4+UmVnaW1lOiA8c3Ryb25nIHN0eWxlPVwiY29sb3I6JHt6ZXRhX3ZhbCA8IDEgPyAnIzFhNmZhZicgOiB6ZXRhX3ZhbCA9PT0gMSA/ICcjMjdhZTYwJyA6ICcjYzAzOTJiJ31cIj4ke3pldGFfdmFsIDwgMSA/ICdVbmRlcmRhbXBlZCcgOiB6ZXRhX3ZhbCA9PT0gMSA/ICdDcml0aWNhbCcgOiAnT3ZlcmRhbXBlZCd9PC9zdHJvbmc+PC9zcGFuPlxuPC9kaXY+YFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC00IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiLy8gQW1wbGl0dWRlIHBsb3RcblBsb3QucGxvdCh7XG4gIHRpdGxlOiBcIkFtcGxpdHVkZSBSYXRpbyAgfFUgLyB1X3N0fCAgdnMgIEZyZXF1ZW5jeSBSYXRpbyAgclwiLFxuICBtYXJrczogW1xuICAgIFBsb3QucnVsZVkoWzBdLCB7c3Ryb2tlOiBcIiNlZWVcIn0pLFxuICAgIFBsb3QucnVsZVgoWzFdLCB7c3Ryb2tlOiBcIiNjY2NcIiwgc3Ryb2tlRGFzaGFycmF5OiBcIjUsNFwifSksXG4gICAgLi4uKHNob3dfbXVsdGlcbiAgICAgID8gemV0YV9saXN0Lm1hcCgoeiwgaSkgPT5cbiAgICAgICAgICBQbG90LmxpbmUoZGF0YV9tdWx0aV9hbXAuZmlsdGVyKGQgPT4gZC56ZXRhID09PSB6KSwge1xuICAgICAgICAgICAgeDogXCJyXCIsIHk6IFwieVwiLCBzdHJva2U6IGNvbG9yc196ZXRhW2ldLCBzdHJva2VXaWR0aDogMS42LFxuICAgICAgICAgICAgc3Ryb2tlT3BhY2l0eTogeiA9PT0gemV0YV92YWwgPyAxLjAgOiAwLjRcbiAgICAgICAgICB9KVxuICAgICAgICApXG4gICAgICA6IFtdKSxcbiAgICBQbG90LmxpbmUoc2hvd19tdWx0aSA/IGRhdGFfbXVsdGlfYW1wLmZpbHRlcihkID0+IGQuemV0YSA9PT0gemV0YV92YWwpIDogZGF0YV9hbXAsIHtcbiAgICAgIHg6IFwiclwiLCB5OiBzaG93X211bHRpID8gXCJ5XCIgOiBcInlcIixcbiAgICAgIHN0cm9rZTogXCIjMWE0YTdhXCIsIHN0cm9rZVdpZHRoOiBzaG93X211bHRpID8gMy4wIDogMi44XG4gICAgfSksXG4gICAgUGxvdC5kb3QoW3tyOiAxLjAsIHk6IDEvKDIqemV0YV92YWwpfV0sIHt4OiBcInJcIiwgeTogXCJ5XCIsIGZpbGw6IFwiI2U2N2UyMlwiLCByOiA2fSlcbiAgXSxcbiAgeDoge2xhYmVsOiBcInIgPSDPiSAvIM+J4oKZXCIsIGRvbWFpbjogWzAsIDNdLCBncmlkOiB0cnVlfSxcbiAgeToge2xhYmVsOiBcInxVfCAvIHVfc3RcIiwgZG9tYWluOiBbMCwgTWF0aC5taW4oMTIsIDEvKDIqemV0YV92YWwpICogMS4zICsgMSldLCBncmlkOiB0cnVlfSxcbiAgd2lkdGg6IDcwMCwgaGVpZ2h0OiAzMDAsXG4gIHN0eWxlOiB7Zm9udFNpemU6IFwiMTNweFwifVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ii8vIFBoYXNlIHBsb3RcblBsb3QucGxvdCh7XG4gIHRpdGxlOiBcIlBoYXNlIEFuZ2xlICDPhiAgdnMgIEZyZXF1ZW5jeSBSYXRpbyAgclwiLFxuICBtYXJrczogW1xuICAgIFBsb3QucnVsZVkoWzAsIDkwLCAxODBdLCB7c3Ryb2tlOiBcIiNlZWVcIn0pLFxuICAgIFBsb3QucnVsZVgoWzFdLCB7c3Ryb2tlOiBcIiNjY2NcIiwgc3Ryb2tlRGFzaGFycmF5OiBcIjUsNFwifSksXG4gICAgLi4uKHNob3dfbXVsdGlcbiAgICAgID8gemV0YV9saXN0Lm1hcCgoeiwgaSkgPT5cbiAgICAgICAgICBQbG90LmxpbmUoZGF0YV9tdWx0aV9waGFzZS5maWx0ZXIoZCA9PiBkLnpldGEgPT09IHopLCB7XG4gICAgICAgICAgICB4OiBcInJcIiwgeTogXCJ5XCIsIHN0cm9rZTogY29sb3JzX3pldGFbaV0sIHN0cm9rZVdpZHRoOiAxLjYsXG4gICAgICAgICAgICBzdHJva2VPcGFjaXR5OiB6ID09PSB6ZXRhX3ZhbCA/IDEuMCA6IDAuNFxuICAgICAgICAgIH0pXG4gICAgICAgIClcbiAgICAgIDogW10pLFxuICAgIFBsb3QubGluZShzaG93X211bHRpID8gZGF0YV9tdWx0aV9waGFzZS5maWx0ZXIoZCA9PiBkLnpldGEgPT09IHpldGFfdmFsKSA6IGRhdGFfcGhhc2UsIHtcbiAgICAgIHg6IFwiclwiLCB5OiBzaG93X211bHRpID8gXCJ5XCIgOiBcInlcIixcbiAgICAgIHN0cm9rZTogXCIjYzAzOTJiXCIsIHN0cm9rZVdpZHRoOiBzaG93X211bHRpID8gMy4wIDogMi44XG4gICAgfSksXG4gICAgUGxvdC5kb3QoW3tyOiAxLjAsIHk6IDkwfV0sIHt4OiBcInJcIiwgeTogXCJ5XCIsIGZpbGw6IFwiI2U2N2UyMlwiLCByOiA2fSlcbiAgXSxcbiAgeDoge2xhYmVsOiBcInIgPSDPiSAvIM+J4oKZXCIsIGRvbWFpbjogWzAsIDNdLCBncmlkOiB0cnVlfSxcbiAgeToge2xhYmVsOiBcIlBoYXNlIM+GIChkZWdyZWVzKVwiLCBkb21haW46IFswLCAxODVdLCB0aWNrczogWzAsIDQ1LCA5MCwgMTM1LCAxODBdLCBncmlkOiB0cnVlfSxcbiAgd2lkdGg6IDcwMCwgaGVpZ2h0OiAyNjAsXG4gIHN0eWxlOiB7Zm9udFNpemU6IFwiMTNweFwifVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InNob3dfbXVsdGkgPyBodG1sYFxuPGRpdiBzdHlsZT1cImRpc3BsYXk6ZmxleDtnYXA6MS4ycmVtO2ZsZXgtd3JhcDp3cmFwO2ZvbnQtc2l6ZTowLjgyZW07bWFyZ2luLXRvcDowLjRyZW1cIj5cbiAgJHt6ZXRhX2xpc3QubWFwKCh6LGkpID0+IGh0bWxgPHNwYW4+PHNwYW4gc3R5bGU9XCJjb2xvcjoke2NvbG9yc196ZXRhW2ldfTtmb250LXdlaWdodDpib2xkXCI+4oCUPC9zcGFuPiDOtiA9ICR7en08L3NwYW4+YCl9XG48L2Rpdj5gIDogaHRtbGBgXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3pldGFfdmFsJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3Nob3dfbXVsdGknKSJ9XX0=
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Fundamentals of Mechanical Vibrations — 1-DOF Systems</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

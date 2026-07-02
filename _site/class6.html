@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Class 6 — Transmissibility – Fundamentals of Mechanical Vibrations</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Fundamentals of Mechanical Vibrations</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class2.html"> 
+<span class="menu-text">Class 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class3.html"> 
+<span class="menu-text">Class 3</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class4.html"> 
+<span class="menu-text">Class 4</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class5.html"> 
+<span class="menu-text">Class 5</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./class6.html" aria-current="page"> 
+<span class="menu-text">Class 6</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class7.html"> 
+<span class="menu-text">Class 7</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class8.html"> 
+<span class="menu-text">Class 8</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">6.1 Introduction</a></li>
+  <li><a href="#force-transmissibility" id="toc-force-transmissibility" class="nav-link" data-scroll-target="#force-transmissibility">6.2 Force Transmissibility</a>
+  <ul class="collapse">
+  <li><a href="#physical-setup" id="toc-physical-setup" class="nav-link" data-scroll-target="#physical-setup">Physical Setup</a></li>
+  <li><a href="#transmitted-force-amplitude" id="toc-transmitted-force-amplitude" class="nav-link" data-scroll-target="#transmitted-force-amplitude">Transmitted Force Amplitude</a></li>
+  <li><a href="#deriving-the-transmissibility-formula" id="toc-deriving-the-transmissibility-formula" class="nav-link" data-scroll-target="#deriving-the-transmissibility-formula">Deriving the Transmissibility Formula</a></li>
+  </ul></li>
+  <li><a href="#interpreting-the-transmissibility-curve" id="toc-interpreting-the-transmissibility-curve" class="nav-link" data-scroll-target="#interpreting-the-transmissibility-curve">6.3 Interpreting the Transmissibility Curve</a>
+  <ul class="collapse">
+  <li><a href="#the-three-regimes" id="toc-the-three-regimes" class="nav-link" data-scroll-target="#the-three-regimes">The Three Regimes</a></li>
+  <li><a href="#regime-by-regime-analysis" id="toc-regime-by-regime-analysis" class="nav-link" data-scroll-target="#regime-by-regime-analysis">Regime-by-Regime Analysis</a></li>
+  <li><a href="#static-deflection-trade-off" id="toc-static-deflection-trade-off" class="nav-link" data-scroll-target="#static-deflection-trade-off">Static Deflection Trade-off</a></li>
+  <li><a href="#does-damping-always-help" id="toc-does-damping-always-help" class="nav-link" data-scroll-target="#does-damping-always-help">Does Damping Always Help?</a></li>
+  </ul></li>
+  <li><a href="#motion-transmissibility-base-excitation" id="toc-motion-transmissibility-base-excitation" class="nav-link" data-scroll-target="#motion-transmissibility-base-excitation">6.4 Motion Transmissibility — Base Excitation</a>
+  <ul class="collapse">
+  <li><a href="#physical-setup-1" id="toc-physical-setup-1" class="nav-link" data-scroll-target="#physical-setup-1">Physical Setup</a></li>
+  <li><a href="#equation-of-motion" id="toc-equation-of-motion" class="nav-link" data-scroll-target="#equation-of-motion">Equation of Motion</a></li>
+  <li><a href="#relative-displacement-u-x---y" id="toc-relative-displacement-u-x---y" class="nav-link" data-scroll-target="#relative-displacement-u-x---y">Relative Displacement <span class="math inline">\(u = x - y\)</span></a></li>
+  </ul></li>
+  <li><a href="#absolute-displacement-transmissibility" id="toc-absolute-displacement-transmissibility" class="nav-link" data-scroll-target="#absolute-displacement-transmissibility">6.5 Absolute Displacement Transmissibility</a></li>
+  <li><a href="#summary-three-frequency-regimes" id="toc-summary-three-frequency-regimes" class="nav-link" data-scroll-target="#summary-three-frequency-regimes">6.6 Summary — Three Frequency Regimes</a></li>
+  <li><a href="#interactive-transmissibility-explorer" id="toc-interactive-transmissibility-explorer" class="nav-link" data-scroll-target="#interactive-transmissibility-explorer">🎛️ Interactive: Transmissibility Explorer</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Class 6 — Transmissibility</h1>
+<p class="subtitle lead">Structural Dynamics · Single Degree of Freedom Systems</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">6.1 Introduction</h2>
+<p>Imagine a mass <span class="math inline">\(m\)</span> sitting on a spring <span class="math inline">\(k\)</span> and a damper <span class="math inline">\(c\)</span>, driven by a harmonic force <span class="math inline">\(F_0\sin(\omega t)\)</span>. We already know from Class 4 how the mass moves. Now we ask the next engineering question:</p>
+<blockquote class="blockquote">
+<p><strong>What forces <span class="math inline">\(F_k\)</span> and <span class="math inline">\(F_c\)</span> are transmitted to the ground?</strong></p>
+</blockquote>
+<p>The spring and damper are the only mechanical links between mass and ground — all force reaching the support must pass through them. This is the problem of <strong>transmissibility</strong>.</p>
+<p><strong>General definition of transmissibility <span class="math inline">\(T\)</span>:</strong></p>
+<p><span class="math display">\[T = \frac{\text{transmitted output}}{\text{input excitation}}\]</span></p>
+<p>Two physically distinct cases arise:</p>
+<p><strong>Case 1 — Force transmissibility:</strong> A machine vibrates and transmits force to the ground.</p>
+<p><span class="math display">\[T_F = \frac{F_{t,0}}{F_0} = \frac{\text{output force amplitude}}{\text{input force amplitude}}\]</span></p>
+<p><strong>Case 2 — Motion transmissibility:</strong> The base/ground oscillates and transmits its movement to the mass.</p>
+<p><span class="math display">\[T_R = \frac{x}{y} = \frac{\text{oscillation of the mass}}{\text{oscillation of the base}}\]</span></p>
+<hr>
+<hr>
+</section>
+<section id="force-transmissibility" class="level2">
+<h2 class="anchored" data-anchor-id="force-transmissibility">6.2 Force Transmissibility</h2>
+<section id="physical-setup" class="level3">
+<h3 class="anchored" data-anchor-id="physical-setup">Physical Setup</h3>
+<p>A machine (mass <span class="math inline">\(m\)</span>) sits on a spring–damper isolation mount and is driven by a harmonic force <span class="math inline">\(F_0\sin(\omega t)\)</span>. The spring and damper are the only mechanical connections to the ground — all force reaching the support must pass through them.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images_class_6/fig_force_transmissibility.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
+</figure>
+</div>
+<p><em>Left: machine on spring–damper mount driven by <span class="math inline">\(F_0\sin(\omega t)\)</span>. Right: the spring and damper are the only force paths to ground, transmitting <span class="math inline">\(F_k = ku\)</span> and <span class="math inline">\(F_c = c\dot{u}\)</span>.</em></p>
+</section>
+<section id="transmitted-force-amplitude" class="level3">
+<h3 class="anchored" data-anchor-id="transmitted-force-amplitude">Transmitted Force Amplitude</h3>
+<p>The total instantaneous force at the support is the sum of the spring and damper reactions:</p>
+<p><span class="math display">\[F_t(t) = k\,u(t) + c\,\dot{u}(t)\]</span></p>
+<p>With the steady-state solution <span class="math inline">\(u(t) = U\sin(\omega t - \phi)\)</span> and <span class="math inline">\(\dot{u}(t) = U\omega\cos(\omega t - \phi)\)</span>:</p>
+<p><span class="math display">\[k\,u(t) = kU\sin(\omega t - \phi) \qquad \text{(elastic — in phase with }u\text{)}\]</span></p>
+<p><span class="math display">\[c\,\dot{u}(t) = c\omega U\cos(\omega t - \phi) \qquad \text{(damping — 90° ahead of }u\text{)}\]</span></p>
+<p>Since these two components are <strong>90° out of phase</strong>, their amplitudes combine quadratically:</p>
+<p><span class="math display">\[F_{t,0} = \sqrt{(kU)^2 + (c\omega U)^2} = U\sqrt{k^2 + (c\omega)^2}\]</span></p>
+</section>
+<section id="deriving-the-transmissibility-formula" class="level3">
+<h3 class="anchored" data-anchor-id="deriving-the-transmissibility-formula">Deriving the Transmissibility Formula</h3>
+<p>Substituting <span class="math inline">\(U = F_0/\sqrt{(k-m\omega^2)^2+(c\omega)^2}\)</span>:</p>
+<p><span class="math display">\[T_F = \frac{F_{t,0}}{F_0} = \frac{U\sqrt{k^2+(c\omega)^2}}{F_0} = \frac{\sqrt{k^2+(c\omega)^2}}{\sqrt{(k-m\omega^2)^2+(c\omega)^2}}\]</span></p>
+<p>Dividing numerator and denominator by <span class="math inline">\(k\)</span>, and using <span class="math inline">\(r = \omega/\omega_n\)</span>, <span class="math inline">\(\zeta = c/(2m\omega_n)\)</span>:</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Force Transmissibility
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\boxed{T_F = \frac{\sqrt{1+(2\zeta r)^2}}{\sqrt{(1-r^2)^2+(2\zeta r)^2}}}\]</span></p>
+<p>This dimensionless function depends only on <span class="math inline">\(r\)</span> (the frequency ratio) and <span class="math inline">\(\zeta\)</span> (the damping ratio). It is plotted below and reveals three distinct operating regimes.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="interpreting-the-transmissibility-curve" class="level2">
+<h2 class="anchored" data-anchor-id="interpreting-the-transmissibility-curve">6.3 Interpreting the Transmissibility Curve</h2>
+<section id="the-three-regimes" class="level3">
+<h3 class="anchored" data-anchor-id="the-three-regimes">The Three Regimes</h3>
+<figure style="text-align:center;margin:1.5rem auto" class="figure">
+<svg viewbox="0 0 560 265" width="620" xmlns="http://www.w3.org/2000/svg" style="max-width:100%">
+<!-- Uniform scale: x = 45 + r*142.857 (r=0→45, r=1→188, r=√2→247, r=2→331, r=3→474, r=3.5→545) -->
+<!-- T scale: y = 240 − T*36.667 (T=0→240, T=1→203, T=6→20) -->
+<!-- Background regions -->
+<rect x="45" y="25" width="202" height="215" fill="#fdecea" rx="2"></rect> <rect x="247" y="25" width="298" height="215" fill="#eafaf1" rx="2"></rect> <!-- Region labels --> <text x="146" y="50" text-anchor="middle" font-size="11" fill="#c0392b" font-weight="bold">Amplification</text> <text x="146" y="63" text-anchor="middle" font-size="11" fill="#c0392b">T &gt; 1</text> <text x="396" y="50" text-anchor="middle" font-size="11" fill="#27ae60" font-weight="bold">Isolation</text> <text x="396" y="63" text-anchor="middle" font-size="11" fill="#27ae60">T &lt; 1</text> <!-- Axes --> <line x1="45" y1="240" x2="550" y2="240" stroke="#333" stroke-width="1.8" marker-end="url(#ax6s)"></line> <line x1="45" y1="240" x2="45" y2="18" stroke="#333" stroke-width="1.8" marker-end="url(#ax6s)"></line> <text x="555" y="245" font-size="12" fill="#333" font-style="italic">r</text> <text x="50" y="16" font-size="12" fill="#333" font-style="italic">T</text> <!-- T = 1 horizontal dashed line --> <line x1="45" y1="203" x2="545" y2="203" stroke="#888" stroke-width="1.2" stroke-dasharray="5,4"></line> <text x="35" y="207" font-size="11" fill="#888" text-anchor="end">1</text> <!-- sqrt(2) vertical dashed line at x = 247 --> <line x1="247" y1="25" x2="247" y2="240" stroke="#555" stroke-width="1.5" stroke-dasharray="6,4"></line> <text x="247" y="256" text-anchor="middle" font-size="11" fill="#555">√2</text> <!-- Axis ticks at r = 0, 1, 2, 3 --> <line x1="45" y1="238" x2="45" y2="242" stroke="#555" stroke-width="1.2"></line> <text x="45" y="254" text-anchor="middle" font-size="11" fill="#555">0</text> <line x1="188" y1="238" x2="188" y2="242" stroke="#555" stroke-width="1.2"></line> <text x="188" y="254" text-anchor="middle" font-size="11" fill="#555">1</text> <line x1="331" y1="238" x2="331" y2="242" stroke="#555" stroke-width="1.2"></line> <text x="331" y="254" text-anchor="middle" font-size="11" fill="#555">2</text> <line x1="474" y1="238" x2="474" y2="242" stroke="#555" stroke-width="1.2"></line> <text x="474" y="254" text-anchor="middle" font-size="11" fill="#555">3</text> <!-- Transmissibility curve, ζ = 0.15, Python-computed polyline --> <!-- TF = sqrt(1+(2ζr)²) / sqrt((1-r²)²+(2ζr)²); scale x=45+r*142.857, y=240-TF*36.667 --> <!-- T_F > 1 for 0 < r < √2; T_F = 1 at r = √2; T_F < 1 for r > √2 (all ζ) --> <polyline points="45.1,203.3 48.0,203.3 50.9,203.3 53.7,203.2 56.6,203.1 59.4,203.0 62.3,202.8 65.1,202.6 68.0,202.4 70.9,202.1 73.7,201.8 76.6,201.5 79.4,201.1 82.3,200.7 85.1,200.2 88.0,199.7 90.9,199.2 93.7,198.6 96.6,197.9 99.4,197.2 102.3,196.4 105.1,195.6 108.0,194.7 110.9,193.7 113.7,192.6 116.6,191.5 119.4,190.2 122.3,188.8 125.1,187.3 128.0,185.7 130.9,183.9 133.7,181.9 136.6,179.7 139.4,177.4 142.3,174.8 145.1,171.9 148.0,168.8 150.9,165.3 153.7,161.5 156.6,157.2 159.4,152.6 162.3,147.6 165.1,142.1 168.0,136.4 170.9,130.5 173.7,124.7 176.6,119.3 179.4,114.9 182.3,112.1 185.1,111.2 188.0,112.5 190.9,116.0 193.7,121.2 196.6,127.6 199.4,134.5 202.3,141.6 205.1,148.6 208.0,155.1 210.9,161.1 213.7,166.7 216.6,171.7 219.4,176.2 222.3,180.4 225.1,184.1 228.0,187.4 230.9,190.5 233.7,193.3 236.6,195.8 239.4,198.1 242.3,200.2 245.1,202.1 248.0,203.9 250.9,205.6 253.7,207.1 256.6,208.5 259.4,209.8 262.3,211.0 265.1,212.1 268.0,213.2 270.9,214.2 273.7,215.1 276.6,216.0 279.4,216.8 282.3,217.6 285.1,218.3 288.0,219.0 290.9,219.7 293.7,220.3 296.6,220.9 299.4,221.4 302.3,221.9 305.1,222.4 308.0,222.9 310.9,223.4 313.7,223.8 316.6,224.2 319.4,224.6 322.3,225.0 325.1,225.4 328.0,225.7 330.9,226.0 333.7,226.4 336.6,226.7 339.4,227.0 342.3,227.2 345.1,227.5 348.0,227.8 350.9,228.0 353.7,228.3 356.6,228.5 359.4,228.7 362.3,229.0 365.1,229.2 368.0,229.4 370.9,229.6 373.7,229.8 376.6,229.9 379.4,230.1 382.3,230.3 385.1,230.5 388.0,230.6 390.9,230.8 393.7,230.9 396.6,231.1 399.4,231.2 402.3,231.4 405.1,231.5 408.0,231.6 410.9,231.8 413.7,231.9 416.6,232.0 419.4,232.1 422.3,232.2 425.1,232.4 428.0,232.5 430.9,232.6 433.7,232.7 436.6,232.8 439.4,232.9 442.3,233.0 445.1,233.1 448.0,233.1 450.9,233.2 453.7,233.3 456.6,233.4 459.4,233.5 462.3,233.6 465.1,233.6 468.0,233.7 470.9,233.8 473.7,233.9 476.6,233.9 479.4,234.0 482.3,234.1 485.1,234.2 488.0,234.2 490.9,234.3 493.7,234.3 496.6,234.4 499.4,234.5 502.3,234.5 505.1,234.6 508.0,234.6 510.9,234.7 513.7,234.8 516.6,234.8 519.4,234.9 522.3,234.9 525.1,235.0 528.0,235.0 530.9,235.1 533.7,235.1 536.6,235.2 539.4,235.2 542.3,235.3 545.1,235.3" fill="none" stroke="#1a4a7a" stroke-width="2.8" stroke-linejoin="round"></polyline> <!-- Peak at r≈0.978, TF≈3.513 → (185, 111) --> <circle cx="185" cy="111" r="5" fill="#c0392b"></circle> <text x="195" y="108" font-size="11" fill="#c0392b">Peak (r ≈ 1)</text> <!-- Isolation threshold marker at r=√2, T=1 --> <circle cx="247" cy="203" r="5" fill="#555"></circle> <text x="252" y="219" font-size="10" fill="#555">T = 1 for all ζ</text> <!-- Axis arrow defs --> <defs> <marker id="ax6s" markerwidth="7" markerheight="7" refx="5" refy="3" orient="auto"> <path d="M0,0 L0,6 L7,3 z" fill="#333"></path> </marker> </defs>
+</svg>
+<figcaption>
+Transmissibility <span class="math inline">\(T_F\)</span> versus frequency ratio <span class="math inline">\(r\)</span>. All curves (regardless of <span class="math inline">\(\zeta\)</span>) pass through <span class="math inline">\(T = 1\)</span> exactly at <span class="math inline">\(r = \sqrt{2}\)</span>, dividing the plot into an amplification zone and an isolation zone.
+</figcaption>
+</figure>
+</section>
+<section id="regime-by-regime-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="regime-by-regime-analysis">Regime-by-Regime Analysis</h3>
+<p><strong>Low frequencies (<span class="math inline">\(r \ll 1\)</span>) — No isolation</strong></p>
+<p><span class="math display">\[T \approx 1\]</span></p>
+<p>The excitation is “slow” relative to the system. The mount deforms quasi-statically and transmits nearly all the force. No vibration isolation occurs.</p>
+<p><strong>Near resonance (<span class="math inline">\(r \approx 1\)</span>) — Amplification</strong></p>
+<p><span class="math display">\[T &gt; 1 \quad \text{(much greater than 1 for small }\zeta\text{)}\]</span></p>
+<p>This is the <strong>worst operating region</strong>. The system magnifies the input — more force reaches the ground than was applied. Damping is essential here: increasing <span class="math inline">\(\zeta\)</span> dramatically reduces the resonant peak.</p>
+<p><strong>High frequencies (<span class="math inline">\(r &gt; \sqrt{2}\)</span>) — Isolation</strong></p>
+<p><span class="math display">\[T &lt; 1 \quad \text{(approaches 0 as }r \to \infty\text{)}\]</span></p>
+<p>Real isolation begins. The isolator attenuates the transmitted force. To achieve isolation, the system must be designed so that <span class="math inline">\(\omega/\omega_n &gt; \sqrt{2}\)</span>, i.e., <span class="math inline">\(\omega_n &lt; \omega/\sqrt{2}\)</span>.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>The Isolation Threshold and the Damping Dilemma
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>All transmissibility curves — regardless of <span class="math inline">\(\zeta\)</span> — cross <span class="math inline">\(T = 1\)</span> at <strong>exactly</strong> <span class="math inline">\(r = \sqrt{2}\)</span>. This is not a coincidence: setting <span class="math inline">\(T_F = 1\)</span> and solving for <span class="math inline">\(r\)</span> yields <span class="math inline">\(r = \sqrt{2}\)</span> for any <span class="math inline">\(\zeta\)</span>.</p>
+<p><strong>Key trade-off:</strong> Damping helps near resonance (<span class="math inline">\(\zeta \uparrow \Rightarrow T_\text{max} \downarrow\)</span>), but <strong>hurts in the isolation zone</strong> (<span class="math inline">\(r &gt; \sqrt{2}\)</span>): higher <span class="math inline">\(\zeta\)</span> raises <span class="math inline">\(T\)</span> above its undamped value. This is because at high frequencies the damper force <span class="math inline">\(c\dot{u} \sim c\omega U\)</span> grows with frequency and increasingly dominates the ground reaction.</p>
+<p>The ideal isolator has <strong>low stiffness</strong> (low <span class="math inline">\(\omega_n\)</span>, large <span class="math inline">\(r\)</span>) and <strong>low damping</strong> — but must survive the startup transient through resonance.</p>
+</div>
+</div>
+</section>
+<section id="static-deflection-trade-off" class="level3">
+<h3 class="anchored" data-anchor-id="static-deflection-trade-off">Static Deflection Trade-off</h3>
+<p>To lower <span class="math inline">\(\omega_n\)</span> (push the isolation zone to lower frequencies), we need softer springs: <span class="math inline">\(k \downarrow \Rightarrow \omega_n = \sqrt{k/m} \downarrow\)</span>. However, a softer spring causes larger static deflection under the weight of the machine:</p>
+<p><span class="math display">\[\Delta_{st} = \frac{mg}{k}\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images_class_6/fig_car_suspension.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+<p><em>A system with low <span class="math inline">\(k\)</span> isolates better at high frequencies but suffers from a large static displacement <span class="math inline">\(\Delta_{st}\)</span>.</em></p>
+<p>A system with lower <span class="math inline">\(k\)</span> isolates better at high frequencies but sags more under its own weight. This is a fundamental engineering constraint — softer isolators require more travel clearance (e.g., air springs in precision instruments, soft suspension in vehicles).</p>
+</section>
+<section id="does-damping-always-help" class="level3">
+<h3 class="anchored" data-anchor-id="does-damping-always-help">Does Damping Always Help?</h3>
+<p>Now we come to an important question: <strong>does damping always help?</strong></p>
+<p><strong>Answer:</strong></p>
+<ul>
+<li><p>Close to resonance (<span class="math inline">\(r \approx 1\)</span>) it definitely helps: <span class="math inline">\(\zeta \uparrow \Rightarrow T_\text{max} \downarrow\)</span>.</p></li>
+<li><p>But at high frequencies (<span class="math inline">\(r \gg 1\)</span>) it can make things <strong>much worse</strong>. The total transmitted force is:</p></li>
+</ul>
+<p><span class="math display">\[F_t(t) = k\,u(t) + c\,\dot{u}(t)\]</span></p>
+<p>and since <span class="math inline">\(\dot{u} \sim \omega U\)</span>, the damping force grows with frequency. <strong>The higher the frequency, the higher the damping contribution to the transmitted force.</strong> Adding more damping at high <span class="math inline">\(r\)</span> increases <span class="math inline">\(T_F\)</span> rather than reducing it.</p>
+<p>This is the fundamental trade-off of passive vibration isolation: the same damping that saves you at resonance hurts you in the isolation zone.</p>
+<hr>
+</section>
+</section>
+<section id="motion-transmissibility-base-excitation" class="level2">
+<h2 class="anchored" data-anchor-id="motion-transmissibility-base-excitation">6.4 Motion Transmissibility — Base Excitation</h2>
+<section id="physical-setup-1" class="level3">
+<h3 class="anchored" data-anchor-id="physical-setup-1">Physical Setup</h3>
+<p>In many applications the <strong>ground itself vibrates</strong>: an earthquake shakes a building’s foundation, or road irregularities excite a vehicle. The problem is inverted — the input is a prescribed base motion <span class="math inline">\(y(t) = Y\sin(\omega t)\)</span>, and we ask how much motion reaches the mass.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images_class_6/fig_base_excitation.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+<p><em>Base excitation: the platform oscillates as <span class="math inline">\(y(t) = Y\sin(\omega t)\)</span>, driving the mass through the spring–damper mount. <span class="math inline">\(x(t)\)</span> is the absolute displacement of the mass; <span class="math inline">\(u = x - y\)</span> is the relative displacement.</em></p>
+</section>
+<section id="equation-of-motion" class="level3">
+<h3 class="anchored" data-anchor-id="equation-of-motion">Equation of Motion</h3>
+<p>The spring and damper forces depend on the <strong>relative deformation</strong> between mass and base:</p>
+<p><span class="math display">\[F_k = k(x - y) = ku, \qquad F_c = c(\dot{x} - \dot{y}) = c\dot{u}\]</span></p>
+<p>Applying Newton’s second law to the mass:</p>
+<p><span class="math display">\[m\ddot{x} + c(\dot{x}-\dot{y}) + k(x-y) = 0 \quad \Longrightarrow \quad m\ddot{x} + c\dot{x} + kx = c\dot{y} + ky\]</span></p>
+</section>
+<section id="relative-displacement-u-x---y" class="level3">
+<h3 class="anchored" data-anchor-id="relative-displacement-u-x---y">Relative Displacement <span class="math inline">\(u = x - y\)</span></h3>
+<p>Substituting <span class="math inline">\(x = u + y\)</span> and <span class="math inline">\(\ddot{x} = \ddot{u} + \ddot{y}\)</span>:</p>
+<p><span class="math display">\[m(\ddot{u}+\ddot{y}) + c\dot{u} + ku = 0 \quad \Longrightarrow \quad m\ddot{u} + c\dot{u} + ku = -m\ddot{y}\]</span></p>
+<p>With <span class="math inline">\(y(t) = Ye^{i\omega t}\)</span>, we have <span class="math inline">\(\ddot{y} = -\omega^2 Ye^{i\omega t}\)</span>, so the right-hand side <span class="math inline">\(-m\ddot{y} = m\omega^2 Ye^{i\omega t}\)</span> acts like a <strong>harmonic inertial force</strong> of amplitude <span class="math inline">\(m\omega^2 Y\)</span>. Using complex notation:</p>
+<p><span class="math display">\[\bigl(k - m\omega^2 + ic\omega\bigr)U = m\omega^2 Y \quad \Longrightarrow \quad \frac{U}{Y} = \frac{m\omega^2}{k-m\omega^2+ic\omega}\]</span></p>
+<p>Taking the modulus:</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Relative Displacement Transmissibility
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\boxed{\frac{U}{Y} = \frac{r^2}{\sqrt{(1-r^2)^2+(2\zeta r)^2}}}\]</span></p>
+<p>This gives the amplitude of the mount’s deformation relative to the base oscillation amplitude <span class="math inline">\(Y\)</span>. It equals zero at <span class="math inline">\(r = 0\)</span> (rigid-body motion) and approaches 1 as <span class="math inline">\(r \to \infty\)</span>.</p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="absolute-displacement-transmissibility" class="level2">
+<h2 class="anchored" data-anchor-id="absolute-displacement-transmissibility">6.5 Absolute Displacement Transmissibility</h2>
+<p>For the absolute displacement <span class="math inline">\(x(t)\)</span>, we return to the equation <span class="math inline">\(m\ddot{x} + c\dot{x} + kx = c\dot{y} + ky\)</span>.</p>
+<p>With <span class="math inline">\(y(t) = Ye^{i\omega t}\)</span> and <span class="math inline">\(x(t) = Xe^{i\omega t}\)</span>:</p>
+<p><span class="math display">\[(-m\omega^2 + ic\omega + k)\,X = (k + ic\omega)\,Y \quad \Longrightarrow \quad \frac{X}{Y} = \frac{k + ic\omega}{k - m\omega^2 + ic\omega}\]</span></p>
+<p>Taking the modulus:</p>
+<p><span class="math display">\[T_x = \frac{X}{Y} = \frac{\sqrt{k^2+(c\omega)^2}}{\sqrt{(k-m\omega^2)^2+(c\omega)^2}}\]</span></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Absolute Motion Transmissibility = Force Transmissibility
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\boxed{T_x = \frac{X}{Y} = \frac{\sqrt{1+(2\zeta r)^2}}{\sqrt{(1-r^2)^2+(2\zeta r)^2}} = T_F}\]</span></p>
+<p>The formula is <strong>identical</strong> to the force transmissibility. This elegant result means the same plot and the same design rules apply to both problems: a machine on isolators and a structure on a shaking foundation.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="summary-three-frequency-regimes" class="level2">
+<h2 class="anchored" data-anchor-id="summary-three-frequency-regimes">6.6 Summary — Three Frequency Regimes</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 15%">
+<col style="width: 23%">
+<col style="width: 24%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Regime</th>
+<th>Condition</th>
+<th>Absolute <span class="math inline">\(X/Y\)</span></th>
+<th>Relative <span class="math inline">\(U/Y\)</span></th>
+<th>Physical meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Low frequency</strong></td>
+<td><span class="math inline">\(r \ll 1\)</span></td>
+<td><span class="math inline">\(\approx 1\)</span></td>
+<td><span class="math inline">\(\approx 0\)</span></td>
+<td>Mass moves with base; mount barely deforms</td>
+</tr>
+<tr class="even">
+<td><strong>Resonance</strong></td>
+<td><span class="math inline">\(r \approx 1\)</span></td>
+<td><span class="math inline">\(\gg 1\)</span></td>
+<td><span class="math inline">\(\gg 1\)</span></td>
+<td>Both amplified; worst region</td>
+</tr>
+<tr class="odd">
+<td><strong>High frequency</strong></td>
+<td><span class="math inline">\(r \gg 1\)</span></td>
+<td><span class="math inline">\(\approx 0\)</span></td>
+<td><span class="math inline">\(\approx 1\)</span></td>
+<td>Mass stays still; mount carries all deformation</td>
+</tr>
+</tbody>
+</table>
+<p>In the high-frequency regime, the mass is essentially <strong>stationary in space</strong> while the base oscillates beneath it — the ideal seismic isolation condition. The mount must accommodate the full relative displacement <span class="math inline">\(u \approx y\)</span>.</p>
+<hr>
+</section>
+<section id="interactive-transmissibility-explorer" class="level2">
+<h2 class="anchored" data-anchor-id="interactive-transmissibility-explorer">🎛️ Interactive: Transmissibility Explorer</h2>
+<p>Explore how the damping ratio <span class="math inline">\(\zeta\)</span> and frequency ratio <span class="math inline">\(r\)</span> shape both the force transmissibility <span class="math inline">\(T_F\)</span> (= absolute motion transmissibility <span class="math inline">\(X/Y\)</span>) and the relative displacement ratio <span class="math inline">\(U/Y\)</span>. The dashed vertical line marks the isolation threshold <span class="math inline">\(r = \sqrt{2}\)</span>.</p>
+<div class="cell panel-input card bg-light p-2">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="284" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 283;"><span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a>viewof zeta6    <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.01</span><span class="op">,</span> <span class="fl">1.5</span>]<span class="op">,</span>  {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.15</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Damping ratio  ζ"</span>})</span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>viewof show_multi6   <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">toggle</span>({<span class="dt">label</span><span class="op">:</span> <span class="st">"Show multiple ζ curves"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="kw">false</span>})</span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a>viewof show_rel6     <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">toggle</span>({<span class="dt">label</span><span class="op">:</span> <span class="st">"Show relative displacement  U/Y"</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="kw">true</span>})</span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>viewof r_op6    <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.01</span><span class="op">,</span> <span class="fl">3.5</span>]<span class="op">,</span>  {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.7</span><span class="op">,</span>  <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Operating point  r = ω/ωₙ"</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="292" data-source-offset="-30"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 291;"><span id="cb2-292"><a href="#cb2-292" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">TF6</span>(r<span class="op">,</span> zeta) {</span>
+<span id="cb2-293"><a href="#cb2-293" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">1</span> <span class="op">+</span> (<span class="dv">2</span><span class="op">*</span>zeta<span class="op">*</span>r)<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>((<span class="dv">1</span><span class="op">-</span>r<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (<span class="dv">2</span><span class="op">*</span>zeta<span class="op">*</span>r)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb2-294"><a href="#cb2-294" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-295"><a href="#cb2-295" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">relDisp6</span>(r<span class="op">,</span> zeta) {</span>
+<span id="cb2-296"><a href="#cb2-296" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> r<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>((<span class="dv">1</span><span class="op">-</span>r<span class="op">**</span><span class="dv">2</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (<span class="dv">2</span><span class="op">*</span>zeta<span class="op">*</span>r)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb2-297"><a href="#cb2-297" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-298"><a href="#cb2-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-299"><a href="#cb2-299" aria-hidden="true" tabindex="-1"></a>r6_pts <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({<span class="dt">length</span><span class="op">:</span> <span class="dv">900</span>}<span class="op">,</span> (_<span class="op">,</span> i) <span class="kw">=&gt;</span> {</span>
+<span id="cb2-300"><a href="#cb2-300" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> r <span class="op">=</span> <span class="fl">0.01</span> <span class="op">+</span> i <span class="op">*</span> (<span class="fl">3.49</span> <span class="op">/</span> <span class="dv">899</span>)</span>
+<span id="cb2-301"><a href="#cb2-301" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> r</span>
+<span id="cb2-302"><a href="#cb2-302" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-303"><a href="#cb2-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-304"><a href="#cb2-304" aria-hidden="true" tabindex="-1"></a><span class="co">// Single-curve data</span></span>
+<span id="cb2-305"><a href="#cb2-305" aria-hidden="true" tabindex="-1"></a>data6_TF  <span class="op">=</span> r6_pts<span class="op">.</span><span class="fu">map</span>(r <span class="kw">=&gt;</span> ({r<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="fu">TF6</span>(r<span class="op">,</span> zeta6)<span class="op">,</span> <span class="dv">14</span>)}))</span>
+<span id="cb2-306"><a href="#cb2-306" aria-hidden="true" tabindex="-1"></a>data6_rel <span class="op">=</span> r6_pts<span class="op">.</span><span class="fu">map</span>(r <span class="kw">=&gt;</span> ({r<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="fu">relDisp6</span>(r<span class="op">,</span> zeta6)<span class="op">,</span> <span class="dv">14</span>)}))</span>
+<span id="cb2-307"><a href="#cb2-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-308"><a href="#cb2-308" aria-hidden="true" tabindex="-1"></a><span class="co">// Multi-curve data</span></span>
+<span id="cb2-309"><a href="#cb2-309" aria-hidden="true" tabindex="-1"></a>zeta6_list   <span class="op">=</span> [<span class="fl">0.05</span><span class="op">,</span> <span class="fl">0.1</span><span class="op">,</span> <span class="fl">0.2</span><span class="op">,</span> <span class="fl">0.3</span><span class="op">,</span> <span class="fl">0.5</span><span class="op">,</span> <span class="fl">0.7</span><span class="op">,</span> <span class="fl">1.0</span>]</span>
+<span id="cb2-310"><a href="#cb2-310" aria-hidden="true" tabindex="-1"></a>colors6_zeta <span class="op">=</span> [<span class="st">"#c0392b"</span><span class="op">,</span><span class="st">"#e67e22"</span><span class="op">,</span><span class="st">"#f1c40f"</span><span class="op">,</span><span class="st">"#27ae60"</span><span class="op">,</span><span class="st">"#1a6faf"</span><span class="op">,</span><span class="st">"#8e44ad"</span><span class="op">,</span><span class="st">"#555"</span>]</span>
+<span id="cb2-311"><a href="#cb2-311" aria-hidden="true" tabindex="-1"></a>data6_multi_TF <span class="op">=</span> zeta6_list<span class="op">.</span><span class="fu">flatMap</span>((z<span class="op">,</span> i) <span class="kw">=&gt;</span></span>
+<span id="cb2-312"><a href="#cb2-312" aria-hidden="true" tabindex="-1"></a>  r6_pts<span class="op">.</span><span class="fu">map</span>(r <span class="kw">=&gt;</span> ({r<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="fu">TF6</span>(r<span class="op">,</span> z)<span class="op">,</span> <span class="dv">14</span>)<span class="op">,</span> <span class="dt">zeta</span><span class="op">:</span> z<span class="op">,</span> <span class="dt">color</span><span class="op">:</span> colors6_zeta[i]}))</span>
+<span id="cb2-313"><a href="#cb2-313" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-314"><a href="#cb2-314" aria-hidden="true" tabindex="-1"></a>data6_multi_rel <span class="op">=</span> zeta6_list<span class="op">.</span><span class="fu">flatMap</span>((z<span class="op">,</span> i) <span class="kw">=&gt;</span></span>
+<span id="cb2-315"><a href="#cb2-315" aria-hidden="true" tabindex="-1"></a>  r6_pts<span class="op">.</span><span class="fu">map</span>(r <span class="kw">=&gt;</span> ({r<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(<span class="fu">relDisp6</span>(r<span class="op">,</span> z)<span class="op">,</span> <span class="dv">14</span>)<span class="op">,</span> <span class="dt">zeta</span><span class="op">:</span> z<span class="op">,</span> <span class="dt">color</span><span class="op">:</span> colors6_zeta[i]}))</span>
+<span id="cb2-316"><a href="#cb2-316" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-317"><a href="#cb2-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-318"><a href="#cb2-318" aria-hidden="true" tabindex="-1"></a><span class="co">// Operating point values</span></span>
+<span id="cb2-319"><a href="#cb2-319" aria-hidden="true" tabindex="-1"></a>TF_op6  <span class="op">=</span> <span class="fu">TF6</span>(r_op6<span class="op">,</span> zeta6)</span>
+<span id="cb2-320"><a href="#cb2-320" aria-hidden="true" tabindex="-1"></a>rel_op6 <span class="op">=</span> <span class="fu">relDisp6</span>(r_op6<span class="op">,</span> zeta6)</span>
+<span id="cb2-321"><a href="#cb2-321" aria-hidden="true" tabindex="-1"></a>regime6 <span class="op">=</span> r_op6 <span class="op">&lt;</span> <span class="fl">0.8</span> <span class="op">?</span> <span class="st">"Low frequency (T ≈ 1, no isolation)"</span></span>
+<span id="cb2-322"><a href="#cb2-322" aria-hidden="true" tabindex="-1"></a>        <span class="op">:</span> r_op6 <span class="op">&lt;</span> <span class="fl">1.2</span> <span class="op">?</span> <span class="st">"Near resonance (T &gt; 1 — amplification)"</span></span>
+<span id="cb2-323"><a href="#cb2-323" aria-hidden="true" tabindex="-1"></a>        <span class="op">:</span> r_op6 <span class="op">&lt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">2</span>) <span class="op">?</span> <span class="st">"Transition (T &gt; 1)"</span></span>
+<span id="cb2-324"><a href="#cb2-324" aria-hidden="true" tabindex="-1"></a>        <span class="op">:</span> <span class="st">"Isolation zone (T &lt; 1) ✓"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-9" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-10" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-11" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-12" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="327" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 326;"><span id="cb3-327"><a href="#cb3-327" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb3-328"><a href="#cb3-328" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;div style="display:flex;gap:1.4rem;flex-wrap:wrap;margin:0.4rem 0 1rem 0;font-size:0.93em;background:#f8f9fa;padding:0.65rem 1.1rem;border-radius:6px"&gt;</span></span>
+<span id="cb3-329"><a href="#cb3-329" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span&gt;r = &lt;strong&gt;</span><span class="sc">${</span>r_op6<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb3-330"><a href="#cb3-330" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span&gt;ζ = &lt;strong&gt;</span><span class="sc">${</span>zeta6<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb3-331"><a href="#cb3-331" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span&gt;T_F = X/Y = &lt;strong style="color:</span><span class="sc">${</span>TF_op6 <span class="op">&gt;</span> <span class="dv">1</span> <span class="op">?</span> <span class="st">'#c0392b'</span> <span class="op">:</span> <span class="st">'#27ae60'</span><span class="sc">}</span><span class="vs">"&gt;</span><span class="sc">${</span>TF_op6 <span class="op">&gt;</span> <span class="dv">13</span> <span class="op">?</span> <span class="st">'→ ∞'</span> <span class="op">:</span> TF_op6<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs">&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb3-332"><a href="#cb3-332" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span><span class="sc">${</span>show_rel6 <span class="op">?</span> <span class="fu">html</span><span class="vs">`&lt;span&gt;U/Y = &lt;strong style="color:#e67e22"&gt;</span><span class="sc">${</span>rel_op6<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs">&lt;/strong&gt;&lt;/span&gt;`</span> <span class="op">:</span> <span class="fu">html</span><span class="vs">``</span><span class="sc">}</span></span>
+<span id="cb3-333"><a href="#cb3-333" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span&gt;Regime: &lt;strong style="color:</span><span class="sc">${</span>r_op6 <span class="op">&gt;</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">2</span>) <span class="op">?</span> <span class="st">'#27ae60'</span> <span class="op">:</span> <span class="st">'#c0392b'</span><span class="sc">}</span><span class="vs">"&gt;</span><span class="sc">${</span>regime6<span class="sc">}</span><span class="vs">&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb3-334"><a href="#cb3-334" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="338" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 337;"><span id="cb4-338"><a href="#cb4-338" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb4-339"><a href="#cb4-339" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Transmissibility  T_F = X/Y  (Force &amp; Absolute Motion)"</span><span class="op">,</span></span>
+<span id="cb4-340"><a href="#cb4-340" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb4-341"><a href="#cb4-341" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Isolation zone shading</span></span>
+<span id="cb4-342"><a href="#cb4-342" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">rect</span>([{}]<span class="op">,</span> {<span class="dt">x1</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">2</span>)<span class="op">,</span> <span class="dt">x2</span><span class="op">:</span> <span class="fl">3.5</span><span class="op">,</span> <span class="dt">y1</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">y2</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb4-343"><a href="#cb4-343" aria-hidden="true" tabindex="-1"></a>      <span class="dt">fill</span><span class="op">:</span> <span class="st">"#eafaf1"</span><span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.6</span>})<span class="op">,</span></span>
+<span id="cb4-344"><a href="#cb4-344" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Reference lines</span></span>
+<span id="cb4-345"><a href="#cb4-345" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">1</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#aaa"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"5,4"</span>})<span class="op">,</span></span>
+<span id="cb4-346"><a href="#cb4-346" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">2</span>)]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#555"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"6,4"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.8</span>})<span class="op">,</span></span>
+<span id="cb4-347"><a href="#cb4-347" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#eee"</span>})<span class="op">,</span></span>
+<span id="cb4-348"><a href="#cb4-348" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Multi-curves (optional)</span></span>
+<span id="cb4-349"><a href="#cb4-349" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span>(show_multi6</span>
+<span id="cb4-350"><a href="#cb4-350" aria-hidden="true" tabindex="-1"></a>      <span class="op">?</span> zeta6_list<span class="op">.</span><span class="fu">map</span>((z<span class="op">,</span> i) <span class="kw">=&gt;</span></span>
+<span id="cb4-351"><a href="#cb4-351" aria-hidden="true" tabindex="-1"></a>          Plot<span class="op">.</span><span class="fu">line</span>(data6_multi_TF<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">zeta</span> <span class="op">===</span> z)<span class="op">,</span> {</span>
+<span id="cb4-352"><a href="#cb4-352" aria-hidden="true" tabindex="-1"></a>            <span class="dt">x</span><span class="op">:</span> <span class="st">"r"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> colors6_zeta[i]<span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">1.5</span><span class="op">,</span></span>
+<span id="cb4-353"><a href="#cb4-353" aria-hidden="true" tabindex="-1"></a>            <span class="dt">strokeOpacity</span><span class="op">:</span> z <span class="op">===</span> zeta6 <span class="op">?</span> <span class="fl">1.0</span> <span class="op">:</span> <span class="fl">0.4</span></span>
+<span id="cb4-354"><a href="#cb4-354" aria-hidden="true" tabindex="-1"></a>          })</span>
+<span id="cb4-355"><a href="#cb4-355" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb4-356"><a href="#cb4-356" aria-hidden="true" tabindex="-1"></a>      <span class="op">:</span> [])<span class="op">,</span></span>
+<span id="cb4-357"><a href="#cb4-357" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Main TF curve</span></span>
+<span id="cb4-358"><a href="#cb4-358" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(show_multi6 <span class="op">?</span> data6_multi_TF<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">zeta</span> <span class="op">===</span> zeta6) <span class="op">:</span> data6_TF<span class="op">,</span> {</span>
+<span id="cb4-359"><a href="#cb4-359" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"r"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#1a4a7a"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> show_multi6 <span class="op">?</span> <span class="fl">3.0</span> <span class="op">:</span> <span class="fl">2.8</span></span>
+<span id="cb4-360"><a href="#cb4-360" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
+<span id="cb4-361"><a href="#cb4-361" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Relative displacement U/Y (optional overlay)</span></span>
+<span id="cb4-362"><a href="#cb4-362" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span>(show_rel6 <span class="op">?</span> [</span>
+<span id="cb4-363"><a href="#cb4-363" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">line</span>(show_multi6 <span class="op">?</span> data6_multi_rel<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">zeta</span> <span class="op">===</span> zeta6) <span class="op">:</span> data6_rel<span class="op">,</span> {</span>
+<span id="cb4-364"><a href="#cb4-364" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"r"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#e67e22"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">2.2</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"7,4"</span></span>
+<span id="cb4-365"><a href="#cb4-365" aria-hidden="true" tabindex="-1"></a>      })</span>
+<span id="cb4-366"><a href="#cb4-366" aria-hidden="true" tabindex="-1"></a>    ] <span class="op">:</span> [])<span class="op">,</span></span>
+<span id="cb4-367"><a href="#cb4-367" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Operating point dots</span></span>
+<span id="cb4-368"><a href="#cb4-368" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>([{<span class="dt">r</span><span class="op">:</span> r_op6<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(TF_op6<span class="op">,</span> <span class="fl">9.9</span>)}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"r"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#1a4a7a"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">6</span>})<span class="op">,</span></span>
+<span id="cb4-369"><a href="#cb4-369" aria-hidden="true" tabindex="-1"></a>    <span class="op">...</span>(show_rel6 <span class="op">?</span> [Plot<span class="op">.</span><span class="fu">dot</span>([{<span class="dt">r</span><span class="op">:</span> r_op6<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(rel_op6<span class="op">,</span> <span class="fl">9.9</span>)}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"r"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#e67e22"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="dv">6</span>})] <span class="op">:</span> [])<span class="op">,</span></span>
+<span id="cb4-370"><a href="#cb4-370" aria-hidden="true" tabindex="-1"></a>    <span class="co">// sqrt(2) label</span></span>
+<span id="cb4-371"><a href="#cb4-371" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">text</span>([{<span class="dt">r</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(<span class="dv">2</span>)<span class="op">+</span><span class="fl">0.05</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="fl">9.2</span>}]<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"r"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"y"</span><span class="op">,</span> <span class="dt">text</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="st">"r = √2"</span><span class="op">,</span> <span class="dt">fontSize</span><span class="op">:</span> <span class="dv">11</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"#555"</span>})</span>
+<span id="cb4-372"><a href="#cb4-372" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb4-373"><a href="#cb4-373" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Frequency ratio  r = ω/ωₙ"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">3.5</span>]<span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb4-374"><a href="#cb4-374" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {<span class="dt">label</span><span class="op">:</span> <span class="st">"Transmissibility"</span><span class="op">,</span> <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">10</span>]<span class="op">,</span> <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb4-375"><a href="#cb4-375" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">720</span><span class="op">,</span> <span class="dt">height</span><span class="op">:</span> <span class="dv">320</span><span class="op">,</span></span>
+<span id="cb4-376"><a href="#cb4-376" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {<span class="dt">fontSize</span><span class="op">:</span> <span class="st">"13px"</span>}</span>
+<span id="cb4-377"><a href="#cb4-377" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="381" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 380;"><span id="cb5-381"><a href="#cb5-381" aria-hidden="true" tabindex="-1"></a>show_multi6 <span class="op">?</span> <span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb5-382"><a href="#cb5-382" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;div style="display:flex;gap:1.1rem;flex-wrap:wrap;font-size:0.82em;margin-top:0.3rem"&gt;</span></span>
+<span id="cb5-383"><a href="#cb5-383" aria-hidden="true" tabindex="-1"></a><span class="vs">  </span><span class="sc">${</span>zeta6_list<span class="op">.</span><span class="fu">map</span>((z<span class="op">,</span>i) <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`&lt;span&gt;&lt;span style="color:</span><span class="sc">${</span>colors6_zeta[i]<span class="sc">}</span><span class="vs">;font-weight:bold"&gt;—&lt;/span&gt; ζ = </span><span class="sc">${</span>z<span class="sc">}</span><span class="vs">&lt;/span&gt;`</span>)<span class="sc">}</span></span>
+<span id="cb5-384"><a href="#cb5-384" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/div&gt;`</span> <span class="op">:</span> <span class="fu">html</span><span class="vs">``</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="388" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 387;"><span id="cb6-388"><a href="#cb6-388" aria-hidden="true" tabindex="-1"></a>show_rel6 <span class="op">?</span> <span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb6-389"><a href="#cb6-389" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;div style="font-size:0.85em;color:#666;margin-top:0.3rem"&gt;</span></span>
+<span id="cb6-390"><a href="#cb6-390" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span style="color:#1a4a7a;font-weight:bold"&gt;——&lt;/span&gt;&amp;nbsp; Force/absolute transmissibility T_F = X/Y &amp;emsp;</span></span>
+<span id="cb6-391"><a href="#cb6-391" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span style="color:#e67e22"&gt;— — —&lt;/span&gt;&amp;nbsp; Relative displacement U/Y</span></span>
+<span id="cb6-392"><a href="#cb6-392" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/div&gt;`</span> <span class="op">:</span> <span class="fu">html</span><span class="vs">``</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Key observations:</strong></p>
+<ul>
+<li><strong>All curves cross <span class="math inline">\(T = 1\)</span> at <span class="math inline">\(r = \sqrt{2}\)</span></strong>, regardless of <span class="math inline">\(\zeta\)</span>. Below this threshold, the mount amplifies; above it, the mount isolates.</li>
+<li><strong>Near resonance:</strong> Increasing <span class="math inline">\(\zeta\)</span> strongly reduces the peak — damping is beneficial here.</li>
+<li><strong>Above <span class="math inline">\(r = \sqrt{2}\)</span>:</strong> Increasing <span class="math inline">\(\zeta\)</span> <em>raises</em> the transmissibility — damping degrades isolation at high frequencies. The trade-off is unavoidable with passive linear isolators.</li>
+<li><strong>Relative displacement <span class="math inline">\(U/Y\)</span>:</strong> starts near 0 at low <span class="math inline">\(r\)</span> and approaches 1 at high <span class="math inline">\(r\)</span>. In the isolation regime, the mount deformation is nearly equal to the base amplitude — the mount must accommodate this travel.</li>
+</ul>
+</blockquote>
+
+
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiB6ZXRhNiAgICA9IElucHV0cy5yYW5nZShbMC4wMSwgMS41XSwgIHt2YWx1ZTogMC4xNSwgc3RlcDogMC4wMSwgIGxhYmVsOiBcIkRhbXBpbmcgcmF0aW8gIM62XCJ9KVxudmlld29mIHNob3dfbXVsdGk2ICAgPSBJbnB1dHMudG9nZ2xlKHtsYWJlbDogXCJTaG93IG11bHRpcGxlIM62IGN1cnZlc1wiLCB2YWx1ZTogZmFsc2V9KVxudmlld29mIHNob3dfcmVsNiAgICAgPSBJbnB1dHMudG9nZ2xlKHtsYWJlbDogXCJTaG93IHJlbGF0aXZlIGRpc3BsYWNlbWVudCAgVS9ZXCIsIHZhbHVlOiB0cnVlfSlcbnZpZXdvZiByX29wNiAgICA9IElucHV0cy5yYW5nZShbMC4wMSwgMy41XSwgIHt2YWx1ZTogMC43LCAgc3RlcDogMC4wMSwgIGxhYmVsOiBcIk9wZXJhdGluZyBwb2ludCAgciA9IM+JL8+J4oKZXCJ9KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiLy8gVHJhbnNtaXNzaWJpbGl0eSBmdW5jdGlvbnNcbmZ1bmN0aW9uIFRGNihyLCB6ZXRhKSB7XG4gIHJldHVybiBNYXRoLnNxcnQoMSArICgyKnpldGEqcikqKjIpIC8gTWF0aC5zcXJ0KCgxLXIqKjIpKioyICsgKDIqemV0YSpyKSoqMilcbn1cbmZ1bmN0aW9uIHJlbERpc3A2KHIsIHpldGEpIHtcbiAgcmV0dXJuIHIqKjIgLyBNYXRoLnNxcnQoKDEtcioqMikqKjIgKyAoMip6ZXRhKnIpKioyKVxufVxuXG5yNl9wdHMgPSBBcnJheS5mcm9tKHtsZW5ndGg6IDkwMH0sIChfLCBpKSA9PiB7XG4gIGxldCByID0gMC4wMSArIGkgKiAoMy40OSAvIDg5OSlcbiAgcmV0dXJuIHJcbn0pXG5cbi8vIFNpbmdsZS1jdXJ2ZSBkYXRhXG5kYXRhNl9URiAgPSByNl9wdHMubWFwKHIgPT4gKHtyLCB5OiBNYXRoLm1pbihURjYociwgemV0YTYpLCAxNCl9KSlcbmRhdGE2X3JlbCA9IHI2X3B0cy5tYXAociA9PiAoe3IsIHk6IE1hdGgubWluKHJlbERpc3A2KHIsIHpldGE2KSwgMTQpfSkpXG5cbi8vIE11bHRpLWN1cnZlIGRhdGFcbnpldGE2X2xpc3QgICA9IFswLjA1LCAwLjEsIDAuMiwgMC4zLCAwLjUsIDAuNywgMS4wXVxuY29sb3JzNl96ZXRhID0gW1wiI2MwMzkyYlwiLFwiI2U2N2UyMlwiLFwiI2YxYzQwZlwiLFwiIzI3YWU2MFwiLFwiIzFhNmZhZlwiLFwiIzhlNDRhZFwiLFwiIzU1NVwiXVxuZGF0YTZfbXVsdGlfVEYgPSB6ZXRhNl9saXN0LmZsYXRNYXAoKHosIGkpID0+XG4gIHI2X3B0cy5tYXAociA9PiAoe3IsIHk6IE1hdGgubWluKFRGNihyLCB6KSwgMTQpLCB6ZXRhOiB6LCBjb2xvcjogY29sb3JzNl96ZXRhW2ldfSkpXG4pXG5kYXRhNl9tdWx0aV9yZWwgPSB6ZXRhNl9saXN0LmZsYXRNYXAoKHosIGkpID0+XG4gIHI2X3B0cy5tYXAociA9PiAoe3IsIHk6IE1hdGgubWluKHJlbERpc3A2KHIsIHopLCAxNCksIHpldGE6IHosIGNvbG9yOiBjb2xvcnM2X3pldGFbaV19KSlcbilcblxuLy8gT3BlcmF0aW5nIHBvaW50IHZhbHVlc1xuVEZfb3A2ICA9IFRGNihyX29wNiwgemV0YTYpXG5yZWxfb3A2ID0gcmVsRGlzcDYocl9vcDYsIHpldGE2KVxucmVnaW1lNiA9IHJfb3A2IDwgMC44ID8gXCJMb3cgZnJlcXVlbmN5IChUIOKJiCAxLCBubyBpc29sYXRpb24pXCJcbiAgICAgICAgOiByX29wNiA8IDEuMiA/IFwiTmVhciByZXNvbmFuY2UgKFQgPiAxIOKAlCBhbXBsaWZpY2F0aW9uKVwiXG4gICAgICAgIDogcl9vcDYgPCBNYXRoLnNxcnQoMikgPyBcIlRyYW5zaXRpb24gKFQgPiAxKVwiXG4gICAgICAgIDogXCJJc29sYXRpb24gem9uZSAoVCA8IDEpIOKck1wiXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJodG1sYFxuPGRpdiBzdHlsZT1cImRpc3BsYXk6ZmxleDtnYXA6MS40cmVtO2ZsZXgtd3JhcDp3cmFwO21hcmdpbjowLjRyZW0gMCAxcmVtIDA7Zm9udC1zaXplOjAuOTNlbTtiYWNrZ3JvdW5kOiNmOGY5ZmE7cGFkZGluZzowLjY1cmVtIDEuMXJlbTtib3JkZXItcmFkaXVzOjZweFwiPlxuICA8c3Bhbj5yID0gPHN0cm9uZz4ke3Jfb3A2LnRvRml4ZWQoMil9PC9zdHJvbmc+PC9zcGFuPlxuICA8c3Bhbj7OtiA9IDxzdHJvbmc+JHt6ZXRhNi50b0ZpeGVkKDIpfTwvc3Ryb25nPjwvc3Bhbj5cbiAgPHNwYW4+VF9GID0gWC9ZID0gPHN0cm9uZyBzdHlsZT1cImNvbG9yOiR7VEZfb3A2ID4gMSA/ICcjYzAzOTJiJyA6ICcjMjdhZTYwJ31cIj4ke1RGX29wNiA+IDEzID8gJ+KGkiDiiJ4nIDogVEZfb3A2LnRvRml4ZWQoMyl9PC9zdHJvbmc+PC9zcGFuPlxuICAke3Nob3dfcmVsNiA/IGh0bWxgPHNwYW4+VS9ZID0gPHN0cm9uZyBzdHlsZT1cImNvbG9yOiNlNjdlMjJcIj4ke3JlbF9vcDYudG9GaXhlZCgzKX08L3N0cm9uZz48L3NwYW4+YCA6IGh0bWxgYH1cbiAgPHNwYW4+UmVnaW1lOiA8c3Ryb25nIHN0eWxlPVwiY29sb3I6JHtyX29wNiA+IE1hdGguc3FydCgyKSA/ICcjMjdhZTYwJyA6ICcjYzAzOTJiJ31cIj4ke3JlZ2ltZTZ9PC9zdHJvbmc+PC9zcGFuPlxuPC9kaXY+YFxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC00IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiUGxvdC5wbG90KHtcbiAgdGl0bGU6IFwiVHJhbnNtaXNzaWJpbGl0eSAgVF9GID0gWC9ZICAoRm9yY2UgJiBBYnNvbHV0ZSBNb3Rpb24pXCIsXG4gIG1hcmtzOiBbXG4gICAgLy8gSXNvbGF0aW9uIHpvbmUgc2hhZGluZ1xuICAgIFBsb3QucmVjdChbe31dLCB7eDE6IE1hdGguc3FydCgyKSwgeDI6IDMuNSwgeTE6IDAsIHkyOiAxMCxcbiAgICAgIGZpbGw6IFwiI2VhZmFmMVwiLCBmaWxsT3BhY2l0eTogMC42fSksXG4gICAgLy8gUmVmZXJlbmNlIGxpbmVzXG4gICAgUGxvdC5ydWxlWShbMV0sIHtzdHJva2U6IFwiI2FhYVwiLCBzdHJva2VEYXNoYXJyYXk6IFwiNSw0XCJ9KSxcbiAgICBQbG90LnJ1bGVYKFtNYXRoLnNxcnQoMildLCB7c3Ryb2tlOiBcIiM1NTVcIiwgc3Ryb2tlRGFzaGFycmF5OiBcIjYsNFwiLCBzdHJva2VXaWR0aDogMS44fSksXG4gICAgUGxvdC5ydWxlWShbMF0sIHtzdHJva2U6IFwiI2VlZVwifSksXG4gICAgLy8gTXVsdGktY3VydmVzIChvcHRpb25hbClcbiAgICAuLi4oc2hvd19tdWx0aTZcbiAgICAgID8gemV0YTZfbGlzdC5tYXAoKHosIGkpID0+XG4gICAgICAgICAgUGxvdC5saW5lKGRhdGE2X211bHRpX1RGLmZpbHRlcihkID0+IGQuemV0YSA9PT0geiksIHtcbiAgICAgICAgICAgIHg6IFwiclwiLCB5OiBcInlcIiwgc3Ryb2tlOiBjb2xvcnM2X3pldGFbaV0sIHN0cm9rZVdpZHRoOiAxLjUsXG4gICAgICAgICAgICBzdHJva2VPcGFjaXR5OiB6ID09PSB6ZXRhNiA/IDEuMCA6IDAuNFxuICAgICAgICAgIH0pXG4gICAgICAgIClcbiAgICAgIDogW10pLFxuICAgIC8vIE1haW4gVEYgY3VydmVcbiAgICBQbG90LmxpbmUoc2hvd19tdWx0aTYgPyBkYXRhNl9tdWx0aV9URi5maWx0ZXIoZCA9PiBkLnpldGEgPT09IHpldGE2KSA6IGRhdGE2X1RGLCB7XG4gICAgICB4OiBcInJcIiwgeTogXCJ5XCIsIHN0cm9rZTogXCIjMWE0YTdhXCIsIHN0cm9rZVdpZHRoOiBzaG93X211bHRpNiA/IDMuMCA6IDIuOFxuICAgIH0pLFxuICAgIC8vIFJlbGF0aXZlIGRpc3BsYWNlbWVudCBVL1kgKG9wdGlvbmFsIG92ZXJsYXkpXG4gICAgLi4uKHNob3dfcmVsNiA/IFtcbiAgICAgIFBsb3QubGluZShzaG93X211bHRpNiA/IGRhdGE2X211bHRpX3JlbC5maWx0ZXIoZCA9PiBkLnpldGEgPT09IHpldGE2KSA6IGRhdGE2X3JlbCwge1xuICAgICAgICB4OiBcInJcIiwgeTogXCJ5XCIsIHN0cm9rZTogXCIjZTY3ZTIyXCIsIHN0cm9rZVdpZHRoOiAyLjIsIHN0cm9rZURhc2hhcnJheTogXCI3LDRcIlxuICAgICAgfSlcbiAgICBdIDogW10pLFxuICAgIC8vIE9wZXJhdGluZyBwb2ludCBkb3RzXG4gICAgUGxvdC5kb3QoW3tyOiByX29wNiwgeTogTWF0aC5taW4oVEZfb3A2LCA5LjkpfV0sIHt4OiBcInJcIiwgeTogXCJ5XCIsIGZpbGw6IFwiIzFhNGE3YVwiLCByOiA2fSksXG4gICAgLi4uKHNob3dfcmVsNiA/IFtQbG90LmRvdChbe3I6IHJfb3A2LCB5OiBNYXRoLm1pbihyZWxfb3A2LCA5LjkpfV0sIHt4OiBcInJcIiwgeTogXCJ5XCIsIGZpbGw6IFwiI2U2N2UyMlwiLCByOiA2fSldIDogW10pLFxuICAgIC8vIHNxcnQoMikgbGFiZWxcbiAgICBQbG90LnRleHQoW3tyOiBNYXRoLnNxcnQoMikrMC4wNSwgeTogOS4yfV0sIHt4OiBcInJcIiwgeTogXCJ5XCIsIHRleHQ6IGQgPT4gXCJyID0g4oiaMlwiLCBmb250U2l6ZTogMTEsIGZpbGw6IFwiIzU1NVwifSlcbiAgXSxcbiAgeDoge2xhYmVsOiBcIkZyZXF1ZW5jeSByYXRpbyAgciA9IM+JL8+J4oKZXCIsIGRvbWFpbjogWzAsIDMuNV0sIGdyaWQ6IHRydWV9LFxuICB5OiB7bGFiZWw6IFwiVHJhbnNtaXNzaWJpbGl0eVwiLCBkb21haW46IFswLCAxMF0sIGdyaWQ6IHRydWV9LFxuICB3aWR0aDogNzIwLCBoZWlnaHQ6IDMyMCxcbiAgc3R5bGU6IHtmb250U2l6ZTogXCIxM3B4XCJ9XG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC01IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoic2hvd19tdWx0aTYgPyBodG1sYFxuPGRpdiBzdHlsZT1cImRpc3BsYXk6ZmxleDtnYXA6MS4xcmVtO2ZsZXgtd3JhcDp3cmFwO2ZvbnQtc2l6ZTowLjgyZW07bWFyZ2luLXRvcDowLjNyZW1cIj5cbiAgJHt6ZXRhNl9saXN0Lm1hcCgoeixpKSA9PiBodG1sYDxzcGFuPjxzcGFuIHN0eWxlPVwiY29sb3I6JHtjb2xvcnM2X3pldGFbaV19O2ZvbnQtd2VpZ2h0OmJvbGRcIj7igJQ8L3NwYW4+IM62ID0gJHt6fTwvc3Bhbj5gKX1cbjwvZGl2PmAgOiBodG1sYGBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InNob3dfcmVsNiA/IGh0bWxgXG48ZGl2IHN0eWxlPVwiZm9udC1zaXplOjAuODVlbTtjb2xvcjojNjY2O21hcmdpbi10b3A6MC4zcmVtXCI+XG4gIDxzcGFuIHN0eWxlPVwiY29sb3I6IzFhNGE3YTtmb250LXdlaWdodDpib2xkXCI+4oCU4oCUPC9zcGFuPiZuYnNwOyBGb3JjZS9hYnNvbHV0ZSB0cmFuc21pc3NpYmlsaXR5IFRfRiA9IFgvWSAmZW1zcDtcbiAgPHNwYW4gc3R5bGU9XCJjb2xvcjojZTY3ZTIyXCI+4oCUIOKAlCDigJQ8L3NwYW4+Jm5ic3A7IFJlbGF0aXZlIGRpc3BsYWNlbWVudCBVL1lcbjwvZGl2PmAgOiBodG1sYGBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnemV0YTYnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnc2hvd19tdWx0aTYnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnc2hvd19yZWw2JykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3Jfb3A2JykifV19
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Fundamentals of Mechanical Vibrations — 1-DOF Systems</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
