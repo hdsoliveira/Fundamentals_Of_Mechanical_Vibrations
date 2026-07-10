@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Class 9 — Damped Tuned Vibration Absorber – Fundamentals of Mechanical Vibrations</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Fundamentals of Mechanical Vibrations</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class2.html"> 
+<span class="menu-text">Class 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class3.html"> 
+<span class="menu-text">Class 3</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class4.html"> 
+<span class="menu-text">Class 4</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class5.html"> 
+<span class="menu-text">Class 5</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class6.html"> 
+<span class="menu-text">Class 6</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class7.html"> 
+<span class="menu-text">Class 7</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./class8.html"> 
+<span class="menu-text">Class 8</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./class9.html" aria-current="page"> 
+<span class="menu-text">Class 9</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#from-the-undamped-absorber-to-the-damped-absorber" id="toc-from-the-undamped-absorber-to-the-damped-absorber" class="nav-link active" data-scroll-target="#from-the-undamped-absorber-to-the-damped-absorber">9.1 From the Undamped Absorber to the Damped Absorber</a></li>
+  <li><a href="#why-do-we-need-damping" id="toc-why-do-we-need-damping" class="nav-link" data-scroll-target="#why-do-we-need-damping">9.2 Why Do We Need Damping?</a></li>
+  <li><a href="#damped-tuned-vibration-absorber" id="toc-damped-tuned-vibration-absorber" class="nav-link" data-scroll-target="#damped-tuned-vibration-absorber">9.3 Damped Tuned Vibration Absorber</a></li>
+  <li><a href="#equations-of-motion" id="toc-equations-of-motion" class="nav-link" data-scroll-target="#equations-of-motion">9.4 Equations of Motion</a>
+  <ul class="collapse">
+  <li><a href="#mass-1" id="toc-mass-1" class="nav-link" data-scroll-target="#mass-1">Mass 1</a></li>
+  <li><a href="#mass-2" id="toc-mass-2" class="nav-link" data-scroll-target="#mass-2">Mass 2</a></li>
+  </ul></li>
+  <li><a href="#harmonic-response-with-damping" id="toc-harmonic-response-with-damping" class="nav-link" data-scroll-target="#harmonic-response-with-damping">9.5 Harmonic Response with Damping</a></li>
+  <li><a href="#frequency-domain-equations" id="toc-frequency-domain-equations" class="nav-link" data-scroll-target="#frequency-domain-equations">9.6 Frequency-Domain Equations</a></li>
+  <li><a href="#matrix-form" id="toc-matrix-form" class="nav-link" data-scroll-target="#matrix-form">9.7 Matrix Form</a></li>
+  <li><a href="#complex-stiffness-of-the-absorber" id="toc-complex-stiffness-of-the-absorber" class="nav-link" data-scroll-target="#complex-stiffness-of-the-absorber">9.8 Complex Stiffness of the Absorber</a></li>
+  <li><a href="#solving-for-the-primary-mass-response" id="toc-solving-for-the-primary-mass-response" class="nav-link" data-scroll-target="#solving-for-the-primary-mass-response">9.9 Solving for the Primary Mass Response</a></li>
+  <li><a href="#response-of-the-absorber-mass" id="toc-response-of-the-absorber-mass" class="nav-link" data-scroll-target="#response-of-the-absorber-mass">9.10 Response of the Absorber Mass</a></li>
+  <li><a href="#what-happens-to-the-antiresonance" id="toc-what-happens-to-the-antiresonance" class="nav-link" data-scroll-target="#what-happens-to-the-antiresonance">9.11 What Happens to the Antiresonance?</a></li>
+  <li><a href="#physical-interpretation" id="toc-physical-interpretation" class="nav-link" data-scroll-target="#physical-interpretation">9.12 Physical Interpretation</a>
+  <ul class="collapse">
+  <li><a href="#case-1-undamped-absorber" id="toc-case-1-undamped-absorber" class="nav-link" data-scroll-target="#case-1-undamped-absorber">Case 1: Undamped absorber</a></li>
+  <li><a href="#case-2-damped-absorber" id="toc-case-2-damped-absorber" class="nav-link" data-scroll-target="#case-2-damped-absorber">Case 2: Damped absorber</a></li>
+  </ul></li>
+  <li><a href="#normalized-parameters" id="toc-normalized-parameters" class="nav-link" data-scroll-target="#normalized-parameters">9.13 Normalized Parameters</a></li>
+  <li><a href="#interactive-damped-tuned-vibration-absorber" id="toc-interactive-damped-tuned-vibration-absorber" class="nav-link" data-scroll-target="#interactive-damped-tuned-vibration-absorber">🎛️ Interactive: Damped Tuned Vibration Absorber</a></li>
+  <li><a href="#key-messages" id="toc-key-messages" class="nav-link" data-scroll-target="#key-messages">9.14 Key Messages</a></li>
+  <li><a href="#what-comes-next" id="toc-what-comes-next" class="nav-link" data-scroll-target="#what-comes-next">9.15 What Comes Next</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Class 9 — Damped Tuned Vibration Absorber</h1>
+<p class="subtitle lead">Fundamentals of Mechanical Vibrations · Forced 2DOF Systems</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="from-the-undamped-absorber-to-the-damped-absorber" class="level2">
+<h2 class="anchored" data-anchor-id="from-the-undamped-absorber-to-the-damped-absorber">9.1 From the Undamped Absorber to the Damped Absorber</h2>
+<p>In the previous class, we studied the <strong>undamped tuned vibration absorber</strong>. The system had a primary mass <span class="math inline">\(m_1\)</span> connected to the ground by the stiffness <span class="math inline">\(k_1\)</span>, and an absorber mass <span class="math inline">\(m_2\)</span> connected to the primary mass by the stiffness <span class="math inline">\(k_2\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images_class_9/fig1_undamped_system.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figcaption>Undamped tuned vibration absorber: wall–<span class="math inline">\(k_1\)</span>–<span class="math inline">\(m_1\)</span>–<span class="math inline">\(k_2\)</span>–<span class="math inline">\(m_2\)</span> (from class notes)</figcaption>
+</figure>
+</div>
+<p>The purpose of the absorber was to reduce the vibration of the primary mass when a harmonic force acts on it:</p>
+<p><span class="math display">\[F(t)=F_0\sin(\omega t)\]</span></p>
+<p>For the undamped absorber, the equations of motion were:</p>
+<p><span class="math display">\[m_1\ddot{u}_1+k_1u_1+k_2(u_1-u_2)=F_0\sin(\omega t)\]</span></p>
+<p><span class="math display">\[m_2\ddot{u}_2+k_2(u_2-u_1)=0\]</span></p>
+<p>Assuming harmonic response, we obtained the frequency response of the primary mass:</p>
+<p><span class="math display">\[
+\frac{U_1}{F_0}
+=
+\frac{k_2-m_2\omega^2}
+{(k_1+k_2-m_1\omega^2)(k_2-m_2\omega^2)-k_2^2}\]</span></p>
+<p>The numerator becomes zero when</p>
+<p><span class="math display">\[k_2-m_2\omega^2=0\]</span></p>
+<p>therefore,</p>
+<p><span class="math display">\[\boxed{\omega=\sqrt{\frac{k_2}{m_2}}}\]</span></p>
+<p>At this frequency,</p>
+<p><span class="math display">\[\boxed{U_1=0}\]</span></p>
+<p>This is called <strong>antiresonance</strong>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Main idea from the previous class
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The absorber mass moves in such a way that the force transmitted by the absorber spring cancels the external force applied to the primary mass. The primary mass does not move, even though the force is applied directly to it.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="why-do-we-need-damping" class="level2">
+<h2 class="anchored" data-anchor-id="why-do-we-need-damping">9.2 Why Do We Need Damping?</h2>
+<p>The undamped absorber gives a very impressive result: it can make the primary mass stop moving at one frequency.</p>
+<p>However, this perfect cancellation occurs only when</p>
+<p><span class="math display">\[\omega=\omega_a\]</span></p>
+<p>where</p>
+<p><span class="math display">\[\omega_a=\sqrt{\frac{k_2}{m_2}}\]</span></p>
+<p>If the excitation frequency changes slightly, then</p>
+<p><span class="math display">\[\omega\neq\omega_a\]</span></p>
+<p>and the cancellation is no longer perfect.</p>
+<p>There is also another problem. When we attach the absorber, the system becomes a <strong>2DOF system</strong>. Therefore, instead of one natural frequency, the coupled system has two natural frequencies. These two natural frequencies create two resonance peaks around the tuned frequency.</p>
+<p>So the undamped absorber has the following behavior:</p>
+<p><span class="math display">\[\boxed{\text{Perfect cancellation at one frequency, but large amplitudes nearby.}}\]</span></p>
+<p>In real machines, motors, turbines, pumps, compressors and rotating systems do not always operate at one perfectly fixed frequency. The speed may change during start-up, shut-down, or during normal operation.</p>
+<p>Because of this, we add damping to the absorber.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Engineering trade-off
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Adding damping removes the perfect zero of the undamped absorber, but it reduces the dangerous resonance peaks. This makes the absorber more robust.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="damped-tuned-vibration-absorber" class="level2">
+<h2 class="anchored" data-anchor-id="damped-tuned-vibration-absorber">9.3 Damped Tuned Vibration Absorber</h2>
+<p>Now we add a damper between the primary mass and the absorber mass.</p>
+<p>The absorber is now composed of:</p>
+<p><span class="math display">\[m_2, \qquad k_2, \qquad c_2\]</span></p>
+<p>A simple schematic representation is:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images_class_9/fig2_damped_system.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Damped tuned vibration absorber: <span class="math inline">\(k_1\)</span>–<span class="math inline">\(m_1\)</span> connected to <span class="math inline">\(m_2\)</span> via spring <span class="math inline">\(k_2\)</span> and damper <span class="math inline">\(c_2\)</span> in parallel (from class notes)</figcaption>
+</figure>
+</div>
+<p>The damping force depends on the <strong>relative velocity</strong> between the two masses:</p>
+<p><span class="math display">\[\dot{u}_1-\dot{u}_2\]</span></p>
+<p>Therefore, the damping force is proportional to</p>
+<p><span class="math display">\[c_2(\dot{u}_1-\dot{u}_2)\]</span></p>
+<p>Notice that the damper is not attached to the ground. It acts only when there is relative motion between <span class="math inline">\(m_1\)</span> and <span class="math inline">\(m_2\)</span>.</p>
+<p>If</p>
+<p><span class="math display">\[\dot{u}_1=\dot{u}_2\]</span></p>
+<p>then</p>
+<p><span class="math display">\[c_2(\dot{u}_1-\dot{u}_2)=0\]</span></p>
+<p>and the damper produces no force.</p>
+<hr>
+</section>
+<section id="equations-of-motion" class="level2">
+<h2 class="anchored" data-anchor-id="equations-of-motion">9.4 Equations of Motion</h2>
+<p>We take positive displacement to the right.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images_class_9/fig3_fbd.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Free body diagrams of <span class="math inline">\(m_1\)</span> and <span class="math inline">\(m_2\)</span> showing spring and damper forces (from class notes)</figcaption>
+</figure>
+</div>
+<section id="mass-1" class="level3">
+<h3 class="anchored" data-anchor-id="mass-1">Mass 1</h3>
+<p>The forces acting on <span class="math inline">\(m_1\)</span> are:</p>
+<ul>
+<li>the restoring force from spring <span class="math inline">\(k_1\)</span>;</li>
+<li>the spring force from <span class="math inline">\(k_2\)</span>;</li>
+<li>the damping force from <span class="math inline">\(c_2\)</span>;</li>
+<li>the external harmonic force <span class="math inline">\(F_0\sin(\omega t)\)</span>.</li>
+</ul>
+<p>The equation is:</p>
+<p><span class="math display">\[
+m_1\ddot{u}_1
+=
+-k_1u_1-k_2(u_1-u_2)-c_2(\dot{u}_1-\dot{u}_2)+F_0\sin(\omega t)\]</span></p>
+<p>Rearranging:</p>
+<p><span class="math display">\[\boxed{m_1\ddot{u}_1+k_1u_1+k_2(u_1-u_2)+c_2(\dot{u}_1-\dot{u}_2)=F_0\sin(\omega t)}\]</span></p>
+</section>
+<section id="mass-2" class="level3">
+<h3 class="anchored" data-anchor-id="mass-2">Mass 2</h3>
+<p>The absorber mass <span class="math inline">\(m_2\)</span> is acted on only by the spring <span class="math inline">\(k_2\)</span> and the damper <span class="math inline">\(c_2\)</span>.</p>
+<p>The equation is:</p>
+<p><span class="math display">\[m_2\ddot{u}_2=-k_2(u_2-u_1)-c_2(\dot{u}_2-\dot{u}_1)\]</span></p>
+<p>Rearranging:</p>
+<p><span class="math display">\[\boxed{m_2\ddot{u}_2+k_2(u_2-u_1)+c_2(\dot{u}_2-\dot{u}_1)=0}\]</span></p>
+<p>Thus, the damped absorber equations are:</p>
+<p><span class="math display">\[m_1\ddot{u}_1+k_1u_1+k_2(u_1-u_2)+c_2(\dot{u}_1-\dot{u}_2)=F_0\sin(\omega t)\]</span></p>
+<p><span class="math display">\[m_2\ddot{u}_2+k_2(u_2-u_1)+c_2(\dot{u}_2-\dot{u}_1)=0\]</span></p>
+<hr>
+</section>
+</section>
+<section id="harmonic-response-with-damping" class="level2">
+<h2 class="anchored" data-anchor-id="harmonic-response-with-damping">9.5 Harmonic Response with Damping</h2>
+<p>When damping is present, the displacement is generally not in phase with the force. For this reason, it is convenient to use complex notation.</p>
+<p>We write the excitation force as:</p>
+<p><span class="math display">\[F(t)=\operatorname{Re}\left\{F_0e^{i\omega t}\right\}\]</span></p>
+<p>and assume the steady-state responses:</p>
+<p><span class="math display">\[u_1(t)=\operatorname{Re}\left\{U_1e^{i\omega t}\right\}\]</span></p>
+<p><span class="math display">\[u_2(t)=\operatorname{Re}\left\{U_2e^{i\omega t}\right\}\]</span></p>
+<p>Here, <span class="math inline">\(U_1\)</span> and <span class="math inline">\(U_2\)</span> are complex amplitudes. They contain both amplitude and phase information.</p>
+<p>For a harmonic term,</p>
+<p><span class="math display">\[u(t)=Ue^{i\omega t}\]</span></p>
+<p>we have:</p>
+<p><span class="math display">\[\dot{u}(t)=i\omega Ue^{i\omega t}\]</span></p>
+<p><span class="math display">\[\ddot{u}(t)=-\omega^2 Ue^{i\omega t}\]</span></p>
+<p>Therefore, in the frequency domain, we can use the substitutions:</p>
+<p><span class="math display">\[\boxed{u\rightarrow U}\]</span></p>
+<p><span class="math display">\[\boxed{\dot{u}\rightarrow i\omega U}\]</span></p>
+<p><span class="math display">\[\boxed{\ddot{u}\rightarrow -\omega^2 U}\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Why complex numbers?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The physical motion is still real. The complex notation is only a mathematical tool. At the end, the physical amplitude is obtained from the magnitude <span class="math inline">\(|U|\)</span>.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="frequency-domain-equations" class="level2">
+<h2 class="anchored" data-anchor-id="frequency-domain-equations">9.6 Frequency-Domain Equations</h2>
+<p>Start with the first equation:</p>
+<p><span class="math display">\[m_1\ddot{u}_1+k_1u_1+k_2(u_1-u_2)+c_2(\dot{u}_1-\dot{u}_2)=F_0\sin(\omega t)\]</span></p>
+<p>Using the substitutions,</p>
+<p><span class="math display">\[\ddot{u}_1\rightarrow -\omega^2U_1\]</span></p>
+<p><span class="math display">\[\dot{u}_1\rightarrow i\omega U_1, \qquad \dot{u}_2\rightarrow i\omega U_2\]</span></p>
+<p>we obtain:</p>
+<p><span class="math display">\[-m_1\omega^2U_1+k_1U_1+k_2(U_1-U_2)+i\omega c_2(U_1-U_2)=F_0\]</span></p>
+<p>Grouping the terms in <span class="math inline">\(U_1\)</span> and <span class="math inline">\(U_2\)</span>:</p>
+<p><span class="math display">\[\boxed{(k_1+k_2-m_1\omega^2+i\omega c_2)U_1-(k_2+i\omega c_2)U_2=F_0}\]</span></p>
+<p>Now use the second equation:</p>
+<p><span class="math display">\[m_2\ddot{u}_2+k_2(u_2-u_1)+c_2(\dot{u}_2-\dot{u}_1)=0\]</span></p>
+<p>In the frequency domain:</p>
+<p><span class="math display">\[-m_2\omega^2U_2+k_2(U_2-U_1)+i\omega c_2(U_2-U_1)=0\]</span></p>
+<p>Grouping the terms:</p>
+<p><span class="math display">\[\boxed{-(k_2+i\omega c_2)U_1+(k_2-m_2\omega^2+i\omega c_2)U_2=0}\]</span></p>
+<p>The two algebraic equations are coupled, exactly as in the undamped case. The difference is that now the coefficients are complex.</p>
+<hr>
+</section>
+<section id="matrix-form" class="level2">
+<h2 class="anchored" data-anchor-id="matrix-form">9.7 Matrix Form</h2>
+<p>The frequency-domain equations can be written in matrix form as:</p>
+<p><span class="math display">\[
+\boxed{
+\begin{bmatrix}
+k_1+k_2-m_1\omega^2+i\omega c_2 &amp; -(k_2+i\omega c_2)\\
+-(k_2+i\omega c_2) &amp; k_2-m_2\omega^2+i\omega c_2
+\end{bmatrix}
+\begin{bmatrix}
+U_1\\
+U_2
+\end{bmatrix}
+=
+\begin{bmatrix}
+F_0\\
+0
+\end{bmatrix}}
+\]</span></p>
+<p>This matrix is called the <strong>dynamic stiffness matrix</strong>.</p>
+<p>It plays the same role as <span class="math inline">\(\mathbf{K}-\omega^2\mathbf{M}\)</span> in the undamped free-vibration problem, but now it includes damping and external forcing.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Dynamic stiffness
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For forced harmonic vibration, the response is obtained from:</p>
+<p><span class="math display">\[\mathbf{Z}(\omega)\mathbf{U}=\mathbf{F}\]</span></p>
+<p>where <span class="math inline">\(\mathbf{Z}(\omega)\)</span> is the dynamic stiffness matrix. It depends on the excitation frequency <span class="math inline">\(\omega\)</span>.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="complex-stiffness-of-the-absorber" class="level2">
+<h2 class="anchored" data-anchor-id="complex-stiffness-of-the-absorber">9.8 Complex Stiffness of the Absorber</h2>
+<p>To simplify the notation, define the complex stiffness of the absorber:</p>
+<p><span class="math display">\[\boxed{Z_2=k_2+i\omega c_2}\]</span></p>
+<p>This term contains both the elastic and dissipative effects of the absorber:</p>
+<p><span class="math display">\[\text{spring contribution: } k_2\]</span></p>
+<p><span class="math display">\[\text{damper contribution: } i\omega c_2\]</span></p>
+<p>Using <span class="math inline">\(Z_2\)</span>, the system becomes:</p>
+<p><span class="math display">\[
+\boxed{
+\begin{bmatrix}
+k_1+Z_2-m_1\omega^2 &amp; -Z_2\\
+-Z_2 &amp; Z_2-m_2\omega^2
+\end{bmatrix}
+\begin{bmatrix}
+U_1\\
+U_2
+\end{bmatrix}
+=
+\begin{bmatrix}
+F_0\\
+0
+\end{bmatrix}}
+\]</span></p>
+<p>This notation makes the damped absorber look almost identical to the undamped absorber. The only difference is that the stiffness <span class="math inline">\(k_2\)</span> has been replaced by the complex stiffness <span class="math inline">\(Z_2\)</span>.</p>
+<hr>
+</section>
+<section id="solving-for-the-primary-mass-response" class="level2">
+<h2 class="anchored" data-anchor-id="solving-for-the-primary-mass-response">9.9 Solving for the Primary Mass Response</h2>
+<p>We want to obtain the frequency response of the primary mass:</p>
+<p><span class="math display">\[\frac{U_1}{F_0}\]</span></p>
+<p>From the second row of the matrix equation:</p>
+<p><span class="math display">\[-Z_2U_1+(Z_2-m_2\omega^2)U_2=0\]</span></p>
+<p>Move the first term to the right-hand side:</p>
+<p><span class="math display">\[(Z_2-m_2\omega^2)U_2=Z_2U_1\]</span></p>
+<p>Therefore:</p>
+<p><span class="math display">\[\boxed{U_2=\frac{Z_2}{Z_2-m_2\omega^2}U_1}\]</span></p>
+<p>Now substitute this relation into the first row:</p>
+<p><span class="math display">\[(k_1+Z_2-m_1\omega^2)U_1-Z_2U_2=F_0\]</span></p>
+<p>Substituting <span class="math inline">\(U_2\)</span>:</p>
+<p><span class="math display">\[
+(k_1+Z_2-m_1\omega^2)U_1
+-
+Z_2\left(\frac{Z_2}{Z_2-m_2\omega^2}U_1\right)
+=
+F_0\]</span></p>
+<p>Factor <span class="math inline">\(U_1\)</span>:</p>
+<p><span class="math display">\[\left[(k_1+Z_2-m_1\omega^2)-\frac{Z_2^2}{Z_2-m_2\omega^2}\right]U_1=F_0\]</span></p>
+<p>Put everything over the same denominator:</p>
+<p><span class="math display">\[\left[\frac{(k_1+Z_2-m_1\omega^2)(Z_2-m_2\omega^2)-Z_2^2}{Z_2-m_2\omega^2}\right]U_1=F_0\]</span></p>
+<p>Therefore:</p>
+<p><span class="math display">\[
+\boxed{
+\frac{U_1}{F_0}
+=
+\frac{Z_2-m_2\omega^2}
+{(k_1+Z_2-m_1\omega^2)(Z_2-m_2\omega^2)-Z_2^2}}
+\]</span></p>
+<p>Replacing <span class="math inline">\(Z_2=k_2+i\omega c_2\)</span>:</p>
+<p><span class="math display">\[
+\boxed{
+\frac{U_1}{F_0}
+=
+\frac{k_2-m_2\omega^2+i\omega c_2}
+{(k_1+k_2-m_1\omega^2+i\omega c_2)(k_2-m_2\omega^2+i\omega c_2)-(k_2+i\omega c_2)^2}}
+\]</span></p>
+<hr>
+</section>
+<section id="response-of-the-absorber-mass" class="level2">
+<h2 class="anchored" data-anchor-id="response-of-the-absorber-mass">9.10 Response of the Absorber Mass</h2>
+<p>The same derivation also gives the response of the absorber mass <span class="math inline">\(m_2\)</span>.</p>
+<p>We already found:</p>
+<p><span class="math display">\[U_2=\frac{Z_2}{Z_2-m_2\omega^2}U_1\]</span></p>
+<p>Using the expression for <span class="math inline">\(U_1/F_0\)</span>:</p>
+<p><span class="math display">\[
+\frac{U_1}{F_0}
+=
+\frac{Z_2-m_2\omega^2}
+{(k_1+Z_2-m_1\omega^2)(Z_2-m_2\omega^2)-Z_2^2}\]</span></p>
+<p>we obtain:</p>
+<p><span class="math display">\[
+\boxed{
+\frac{U_2}{F_0}
+=
+\frac{Z_2}
+{(k_1+Z_2-m_1\omega^2)(Z_2-m_2\omega^2)-Z_2^2}}
+\]</span></p>
+<p>So both responses have the same denominator:</p>
+<p><span class="math display">\[D(\omega)=(k_1+Z_2-m_1\omega^2)(Z_2-m_2\omega^2)-Z_2^2\]</span></p>
+<p>The primary mass response is:</p>
+<p><span class="math display">\[\frac{U_1}{F_0}=\frac{Z_2-m_2\omega^2}{D(\omega)}\]</span></p>
+<p>The absorber mass response is:</p>
+<p><span class="math display">\[\frac{U_2}{F_0}=\frac{Z_2}{D(\omega)}\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Same denominator, different numerators
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Both masses have resonance peaks at the same frequencies because both responses have the same denominator. However, the antiresonance appears in the primary mass response because its numerator can become small.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="what-happens-to-the-antiresonance" class="level2">
+<h2 class="anchored" data-anchor-id="what-happens-to-the-antiresonance">9.11 What Happens to the Antiresonance?</h2>
+<p>For the undamped absorber,</p>
+<p><span class="math display">\[c_2=0\]</span></p>
+<p>and the numerator of <span class="math inline">\(U_1/F_0\)</span> was:</p>
+<p><span class="math display">\[k_2-m_2\omega^2\]</span></p>
+<p>At</p>
+<p><span class="math display">\[\omega=\sqrt{\frac{k_2}{m_2}}\]</span></p>
+<p>this numerator became zero. Therefore,</p>
+<p><span class="math display">\[U_1=0\]</span></p>
+<p>This was the perfect antiresonance.</p>
+<p>With damping,</p>
+<p><span class="math display">\[c_2\neq 0\]</span></p>
+<p>and the numerator becomes complex:</p>
+<p><span class="math display">\[k_2-m_2\omega^2+i\omega c_2\]</span></p>
+<p>The magnitude of this numerator is:</p>
+<p><span class="math display">\[
+\left|k_2-m_2\omega^2+i\omega c_2\right|
+=
+\sqrt{(k_2-m_2\omega^2)^2+(\omega c_2)^2}\]</span></p>
+<p>This expression cannot become zero when <span class="math inline">\(c_2\neq 0\)</span>, because the term <span class="math inline">\((\omega c_2)^2\)</span> is positive.</p>
+<p>Therefore:</p>
+<p><span class="math display">\[\boxed{\text{With damping, the antiresonance is no longer a perfect zero.}}\]</span></p>
+<p>This may look like a disadvantage, but it is actually useful. Damping reduces the resonance peaks, making the system safer over a wider range of excitation frequencies.</p>
+<hr>
+</section>
+<section id="physical-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="physical-interpretation">9.12 Physical Interpretation</h2>
+<p>Let us compare the two cases.</p>
+<section id="case-1-undamped-absorber" class="level3">
+<h3 class="anchored" data-anchor-id="case-1-undamped-absorber">Case 1: Undamped absorber</h3>
+<p><span class="math display">\[c_2=0\]</span></p>
+<p>The primary mass has a perfect antiresonance:</p>
+<p><span class="math display">\[U_1=0\]</span></p>
+<p>at</p>
+<p><span class="math display">\[\omega=\sqrt{\frac{k_2}{m_2}}\]</span></p>
+<p>However, the resonance peaks around this frequency are very sharp.</p>
+</section>
+<section id="case-2-damped-absorber" class="level3">
+<h3 class="anchored" data-anchor-id="case-2-damped-absorber">Case 2: Damped absorber</h3>
+<p><span class="math display">\[c_2&gt;0\]</span></p>
+<p>The primary mass no longer reaches exactly zero amplitude. However, the resonance peaks become smaller.</p>
+<p>Therefore, we exchange perfect cancellation at one frequency for better vibration reduction over a frequency band.</p>
+<p><span class="math display">\[\boxed{\text{No damping: perfect cancellation, but sharp peaks.}}\]</span></p>
+<p><span class="math display">\[\boxed{\text{With damping: no perfect cancellation, but lower peaks.}}\]</span></p>
+<p>This is a common engineering compromise. We usually prefer a solution that is robust over a frequency range instead of a solution that is perfect only at one exact frequency.</p>
+<hr>
+</section>
+</section>
+<section id="normalized-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="normalized-parameters">9.13 Normalized Parameters</h2>
+<p>For design and plotting, it is useful to introduce normalized parameters.</p>
+<p>The natural frequency of the primary system is:</p>
+<p><span class="math display">\[\omega_1=\sqrt{\frac{k_1}{m_1}}\]</span></p>
+<p>The absorber natural frequency is:</p>
+<p><span class="math display">\[\omega_a=\sqrt{\frac{k_2}{m_2}}\]</span></p>
+<p>The frequency ratio is:</p>
+<p><span class="math display">\[r=\frac{\omega}{\omega_1}\]</span></p>
+<p>The mass ratio is:</p>
+<p><span class="math display">\[\mu=\frac{m_2}{m_1}\]</span></p>
+<p>The tuning ratio is:</p>
+<p><span class="math display">\[f=\frac{\omega_a}{\omega_1}\]</span></p>
+<p>The damping ratio of the absorber is:</p>
+<p><span class="math display">\[\zeta_2=\frac{c_2}{2m_2\omega_a}\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[\boxed{c_2=2\zeta_2m_2\omega_a}\]</span></p>
+<p>In the interactive plot below, we will use these normalized quantities to explore the effect of damping on the vibration amplitudes of both masses.</p>
+<hr>
+</section>
+<section id="interactive-damped-tuned-vibration-absorber" class="level2">
+<h2 class="anchored" data-anchor-id="interactive-damped-tuned-vibration-absorber">🎛️ Interactive: Damped Tuned Vibration Absorber</h2>
+<p>Use the sliders to change the absorber damping ratio <span class="math inline">\(\zeta_2\)</span>, the mass ratio <span class="math inline">\(\mu\)</span>, and the tuning ratio <span class="math inline">\(f=\omega_a/\omega_1\)</span>.</p>
+<p>The graph shows the normalized amplitudes:</p>
+<p><span class="math display">\[\frac{k_1|U_1|}{F_0} \qquad \text{and} \qquad \frac{k_1|U_2|}{F_0}\]</span></p>
+<p>in the same plot.</p>
+<div class="cell panel-input card bg-light p-2">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="559" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 558;"><span id="cb1-559"><a href="#cb1-559" aria-hidden="true" tabindex="-1"></a>viewof zeta2_9 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="fl">0.40</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.08</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.005</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Absorber damping ratio  ζ₂"</span>})</span>
+<span id="cb1-560"><a href="#cb1-560" aria-hidden="true" tabindex="-1"></a>viewof mu_9    <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.01</span><span class="op">,</span> <span class="fl">0.30</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">0.05</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Mass ratio  μ = m₂/m₁"</span>})</span>
+<span id="cb1-561"><a href="#cb1-561" aria-hidden="true" tabindex="-1"></a>viewof f_9     <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.60</span><span class="op">,</span> <span class="fl">1.40</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="fl">1.00</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span>  <span class="dt">label</span><span class="op">:</span> <span class="st">"Tuning ratio  f = ωₐ/ω₁"</span>})</span>
+<span id="cb1-562"><a href="#cb1-562" aria-hidden="true" tabindex="-1"></a>viewof ymax_9  <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">5</span><span class="op">,</span> <span class="dv">100</span>]<span class="op">,</span>    {<span class="dt">value</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span>   <span class="dt">step</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span>     <span class="dt">label</span><span class="op">:</span> <span class="st">"Vertical scale"</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="567" data-source-offset="-31"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 566;"><span id="cb2-567"><a href="#cb2-567" aria-hidden="true" tabindex="-1"></a>m1_9 <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb2-568"><a href="#cb2-568" aria-hidden="true" tabindex="-1"></a>k1_9 <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb2-569"><a href="#cb2-569" aria-hidden="true" tabindex="-1"></a>F0_9 <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb2-570"><a href="#cb2-570" aria-hidden="true" tabindex="-1"></a>omega1_9 <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(k1_9 <span class="op">/</span> m1_9)</span>
+<span id="cb2-571"><a href="#cb2-571" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-572"><a href="#cb2-572" aria-hidden="true" tabindex="-1"></a><span class="co">// Absorber parameters from sliders</span></span>
+<span id="cb2-573"><a href="#cb2-573" aria-hidden="true" tabindex="-1"></a>m2_9 <span class="op">=</span> mu_9 <span class="op">*</span> m1_9</span>
+<span id="cb2-574"><a href="#cb2-574" aria-hidden="true" tabindex="-1"></a>omegaa_9 <span class="op">=</span> f_9 <span class="op">*</span> omega1_9</span>
+<span id="cb2-575"><a href="#cb2-575" aria-hidden="true" tabindex="-1"></a>k2_9 <span class="op">=</span> m2_9 <span class="op">*</span> omegaa_9<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb2-576"><a href="#cb2-576" aria-hidden="true" tabindex="-1"></a>c2_9 <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> zeta2_9 <span class="op">*</span> m2_9 <span class="op">*</span> omegaa_9</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="579" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 578;"><span id="cb3-579"><a href="#cb3-579" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb3-580"><a href="#cb3-580" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;div style="display:flex;gap:1.4rem;flex-wrap:wrap;margin:0.4rem 0 0.8rem 0;font-size:0.93em;color:#333;background:#f8f9fa;padding:0.6rem 1.1rem;border-radius:6px"&gt;</span></span>
+<span id="cb3-581"><a href="#cb3-581" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span&gt;ω₁ = &lt;strong&gt;</span><span class="sc">${</span>omega1_9<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> rad/s&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb3-582"><a href="#cb3-582" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span&gt;ωₐ = &lt;strong&gt;</span><span class="sc">${</span>omegaa_9<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> rad/s&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb3-583"><a href="#cb3-583" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span&gt;m₂ = &lt;strong&gt;</span><span class="sc">${</span>m2_9<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> kg&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb3-584"><a href="#cb3-584" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span&gt;k₂ = &lt;strong&gt;</span><span class="sc">${</span>k2_9<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs"> N/m&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb3-585"><a href="#cb3-585" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;span&gt;c₂ = &lt;strong&gt;</span><span class="sc">${</span>c2_9<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">4</span>)<span class="sc">}</span><span class="vs"> N·s/m&lt;/strong&gt;&lt;/span&gt;</span></span>
+<span id="cb3-586"><a href="#cb3-586" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/div&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="590" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 589;"><span id="cb4-590"><a href="#cb4-590" aria-hidden="true" tabindex="-1"></a>responseData_9 <span class="op">=</span> {</span>
+<span id="cb4-591"><a href="#cb4-591" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> data <span class="op">=</span> []</span>
+<span id="cb4-592"><a href="#cb4-592" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> n <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb4-593"><a href="#cb4-593" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> rMin <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb4-594"><a href="#cb4-594" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> rMax <span class="op">=</span> <span class="fl">2.0</span></span>
+<span id="cb4-595"><a href="#cb4-595" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-596"><a href="#cb4-596" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;=</span> n<span class="op">;</span> j<span class="op">++</span>) {</span>
+<span id="cb4-597"><a href="#cb4-597" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> r <span class="op">=</span> rMin <span class="op">+</span> (rMax <span class="op">-</span> rMin) <span class="op">*</span> j <span class="op">/</span> n</span>
+<span id="cb4-598"><a href="#cb4-598" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> omega <span class="op">=</span> r <span class="op">*</span> omega1_9</span>
+<span id="cb4-599"><a href="#cb4-599" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-600"><a href="#cb4-600" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Complex absorber stiffness: Z2 = k2 + i omega c2</span></span>
+<span id="cb4-601"><a href="#cb4-601" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> Zr <span class="op">=</span> k2_9</span>
+<span id="cb4-602"><a href="#cb4-602" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> Zi <span class="op">=</span> omega <span class="op">*</span> c2_9</span>
+<span id="cb4-603"><a href="#cb4-603" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-604"><a href="#cb4-604" aria-hidden="true" tabindex="-1"></a>    <span class="co">// A = k1 + Z2 - m1 omega²</span></span>
+<span id="cb4-605"><a href="#cb4-605" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> Ar <span class="op">=</span> k1_9 <span class="op">+</span> Zr <span class="op">-</span> m1_9 <span class="op">*</span> omega<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb4-606"><a href="#cb4-606" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> Ai <span class="op">=</span> Zi</span>
+<span id="cb4-607"><a href="#cb4-607" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-608"><a href="#cb4-608" aria-hidden="true" tabindex="-1"></a>    <span class="co">// B = Z2 - m2 omega²</span></span>
+<span id="cb4-609"><a href="#cb4-609" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> Br <span class="op">=</span> Zr <span class="op">-</span> m2_9 <span class="op">*</span> omega<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb4-610"><a href="#cb4-610" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> Bi <span class="op">=</span> Zi</span>
+<span id="cb4-611"><a href="#cb4-611" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-612"><a href="#cb4-612" aria-hidden="true" tabindex="-1"></a>    <span class="co">// D = A*B - Z2²</span></span>
+<span id="cb4-613"><a href="#cb4-613" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> ABr <span class="op">=</span> Ar <span class="op">*</span> Br <span class="op">-</span> Ai <span class="op">*</span> Bi</span>
+<span id="cb4-614"><a href="#cb4-614" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> ABi <span class="op">=</span> Ar <span class="op">*</span> Bi <span class="op">+</span> Ai <span class="op">*</span> Br</span>
+<span id="cb4-615"><a href="#cb4-615" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-616"><a href="#cb4-616" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> Z2r <span class="op">=</span> Zr <span class="op">*</span> Zr <span class="op">-</span> Zi <span class="op">*</span> Zi</span>
+<span id="cb4-617"><a href="#cb4-617" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> Z2i <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> Zr <span class="op">*</span> Zi</span>
+<span id="cb4-618"><a href="#cb4-618" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-619"><a href="#cb4-619" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> Dr <span class="op">=</span> ABr <span class="op">-</span> Z2r</span>
+<span id="cb4-620"><a href="#cb4-620" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> Di <span class="op">=</span> ABi <span class="op">-</span> Z2i</span>
+<span id="cb4-621"><a href="#cb4-621" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-622"><a href="#cb4-622" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> Dabs <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(Dr<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> Di<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb4-623"><a href="#cb4-623" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-624"><a href="#cb4-624" aria-hidden="true" tabindex="-1"></a>    <span class="co">// |U1/F0| = |B|/|D|</span></span>
+<span id="cb4-625"><a href="#cb4-625" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> H1abs <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(Br<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> Bi<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> Dabs</span>
+<span id="cb4-626"><a href="#cb4-626" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-627"><a href="#cb4-627" aria-hidden="true" tabindex="-1"></a>    <span class="co">// |U2/F0| = |Z2|/|D|</span></span>
+<span id="cb4-628"><a href="#cb4-628" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> H2abs <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">sqrt</span>(Zr<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> Zi<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> Dabs</span>
+<span id="cb4-629"><a href="#cb4-629" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-630"><a href="#cb4-630" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Normalized amplitudes: k1 |U| / F0</span></span>
+<span id="cb4-631"><a href="#cb4-631" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> A1 <span class="op">=</span> k1_9 <span class="op">*</span> H1abs <span class="op">/</span> F0_9</span>
+<span id="cb4-632"><a href="#cb4-632" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> A2 <span class="op">=</span> k1_9 <span class="op">*</span> H2abs <span class="op">/</span> F0_9</span>
+<span id="cb4-633"><a href="#cb4-633" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-634"><a href="#cb4-634" aria-hidden="true" tabindex="-1"></a>    data<span class="op">.</span><span class="fu">push</span>({<span class="dt">r</span><span class="op">:</span> r<span class="op">,</span> <span class="dt">mass</span><span class="op">:</span> <span class="st">"Primary mass  m₁"</span><span class="op">,</span> <span class="dt">amplitude</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(A1<span class="op">,</span> ymax_9)})</span>
+<span id="cb4-635"><a href="#cb4-635" aria-hidden="true" tabindex="-1"></a>    data<span class="op">.</span><span class="fu">push</span>({<span class="dt">r</span><span class="op">:</span> r<span class="op">,</span> <span class="dt">mass</span><span class="op">:</span> <span class="st">"Absorber mass  m₂"</span><span class="op">,</span> <span class="dt">amplitude</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">min</span>(A2<span class="op">,</span> ymax_9)})</span>
+<span id="cb4-636"><a href="#cb4-636" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-637"><a href="#cb4-637" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-638"><a href="#cb4-638" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> data</span>
+<span id="cb4-639"><a href="#cb4-639" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold hidden">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="643" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 642;"><span id="cb5-643"><a href="#cb5-643" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb5-644"><a href="#cb5-644" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="vs">`Damped absorber response  —  ζ₂ = </span><span class="sc">${</span>zeta2_9<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="sc">}</span><span class="vs">,  μ = </span><span class="sc">${</span>mu_9<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">,  f = </span><span class="sc">${</span>f_9<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">2</span>)<span class="sc">}</span><span class="vs">`</span><span class="op">,</span></span>
+<span id="cb5-645"><a href="#cb5-645" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb5-646"><a href="#cb5-646" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#aaa"</span>})<span class="op">,</span></span>
+<span id="cb5-647"><a href="#cb5-647" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([f_9]<span class="op">,</span> {<span class="dt">stroke</span><span class="op">:</span> <span class="st">"#555"</span><span class="op">,</span> <span class="dt">strokeDasharray</span><span class="op">:</span> <span class="st">"5,5"</span>})<span class="op">,</span></span>
+<span id="cb5-648"><a href="#cb5-648" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">lineY</span>(responseData_9<span class="op">,</span> {</span>
+<span id="cb5-649"><a href="#cb5-649" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"r"</span><span class="op">,</span></span>
+<span id="cb5-650"><a href="#cb5-650" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y</span><span class="op">:</span> <span class="st">"amplitude"</span><span class="op">,</span></span>
+<span id="cb5-651"><a href="#cb5-651" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">"mass"</span><span class="op">,</span></span>
+<span id="cb5-652"><a href="#cb5-652" aria-hidden="true" tabindex="-1"></a>      <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">2.4</span></span>
+<span id="cb5-653"><a href="#cb5-653" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb5-654"><a href="#cb5-654" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb5-655"><a href="#cb5-655" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb5-656"><a href="#cb5-656" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Frequency ratio  r = ω/ω₁"</span><span class="op">,</span></span>
+<span id="cb5-657"><a href="#cb5-657" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="fl">0.2</span><span class="op">,</span> <span class="fl">2.0</span>]<span class="op">,</span></span>
+<span id="cb5-658"><a href="#cb5-658" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb5-659"><a href="#cb5-659" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb5-660"><a href="#cb5-660" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb5-661"><a href="#cb5-661" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Normalized amplitude  k₁|U|/F₀"</span><span class="op">,</span></span>
+<span id="cb5-662"><a href="#cb5-662" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> ymax_9]<span class="op">,</span></span>
+<span id="cb5-663"><a href="#cb5-663" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb5-664"><a href="#cb5-664" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb5-665"><a href="#cb5-665" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb5-666"><a href="#cb5-666" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb5-667"><a href="#cb5-667" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb5-668"><a href="#cb5-668" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">780</span><span class="op">,</span></span>
+<span id="cb5-669"><a href="#cb5-669" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">430</span><span class="op">,</span></span>
+<span id="cb5-670"><a href="#cb5-670" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> {</span>
+<span id="cb5-671"><a href="#cb5-671" aria-hidden="true" tabindex="-1"></a>    <span class="dt">fontSize</span><span class="op">:</span> <span class="st">"13px"</span></span>
+<span id="cb5-672"><a href="#cb5-672" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-673"><a href="#cb5-673" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Try this:</strong> Set <span class="math inline">\(\zeta_2=0\)</span>. The primary mass curve develops a very sharp antiresonance near the tuning frequency. Then increase <span class="math inline">\(\zeta_2\)</span>. The perfect zero disappears, but the resonance peaks become smaller. This is the central trade-off of the damped vibration absorber.</p>
+</blockquote>
+<hr>
+</section>
+<section id="key-messages" class="level2">
+<h2 class="anchored" data-anchor-id="key-messages">9.14 Key Messages</h2>
+<ol type="1">
+<li>The undamped absorber can cancel the motion of the primary mass at one specific frequency.</li>
+<li>This cancellation is called <strong>antiresonance</strong>.</li>
+<li>The damped absorber is modeled by adding a damper <span class="math inline">\(c_2\)</span> between <span class="math inline">\(m_1\)</span> and <span class="math inline">\(m_2\)</span>.</li>
+<li>The damping force depends on relative velocity: <span class="math inline">\(c_2(\dot{u}_1-\dot{u}_2)\)</span>.</li>
+<li>With complex harmonic response, damping appears as <span class="math inline">\(i\omega c_2\)</span>.</li>
+<li>The absorber can be represented by the complex stiffness <span class="math inline">\(Z_2=k_2+i\omega c_2\)</span>.</li>
+<li>The primary mass response is:</li>
+</ol>
+<p><span class="math display">\[
+\frac{U_1}{F_0}
+=
+\frac{Z_2-m_2\omega^2}
+{(k_1+Z_2-m_1\omega^2)(Z_2-m_2\omega^2)-Z_2^2}\]</span></p>
+<ol start="8" type="1">
+<li>The absorber mass response is:</li>
+</ol>
+<p><span class="math display">\[
+\frac{U_2}{F_0}
+=
+\frac{Z_2}
+{(k_1+Z_2-m_1\omega^2)(Z_2-m_2\omega^2)-Z_2^2}\]</span></p>
+<ol start="9" type="1">
+<li>Adding damping removes the perfect zero, but reduces the resonance peaks.</li>
+<li>The damped absorber is more robust when the excitation frequency varies.</li>
+</ol>
+<hr>
+</section>
+<section id="what-comes-next" class="level2">
+<h2 class="anchored" data-anchor-id="what-comes-next">9.15 What Comes Next</h2>
+<p>In this class, we derived the response of the damped tuned vibration absorber.</p>
+<p>The next step is the <strong>design problem</strong>:</p>
+<p><span class="math display">\[\text{How should we choose } m_2,\ k_2,\ \text{and } c_2?\]</span></p>
+<p>In the next class, we will study how the mass ratio, tuning ratio, and damping ratio affect absorber performance, and how to select them for engineering applications.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiB6ZXRhMl85ID0gSW5wdXRzLnJhbmdlKFswLCAwLjQwXSwge3ZhbHVlOiAwLjA4LCBzdGVwOiAwLjAwNSwgbGFiZWw6IFwiQWJzb3JiZXIgZGFtcGluZyByYXRpbyAgzrbigoJcIn0pXG52aWV3b2YgbXVfOSAgICA9IElucHV0cy5yYW5nZShbMC4wMSwgMC4zMF0sIHt2YWx1ZTogMC4wNSwgc3RlcDogMC4wMSwgIGxhYmVsOiBcIk1hc3MgcmF0aW8gIM68ID0gbeKCgi9t4oKBXCJ9KVxudmlld29mIGZfOSAgICAgPSBJbnB1dHMucmFuZ2UoWzAuNjAsIDEuNDBdLCB7dmFsdWU6IDEuMDAsIHN0ZXA6IDAuMDEsICBsYWJlbDogXCJUdW5pbmcgcmF0aW8gIGYgPSDPieKCkC/PieKCgVwifSlcbnZpZXdvZiB5bWF4XzkgID0gSW5wdXRzLnJhbmdlKFs1LCAxMDBdLCAgICB7dmFsdWU6IDQwLCAgIHN0ZXA6IDUsICAgICBsYWJlbDogXCJWZXJ0aWNhbCBzY2FsZVwifSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ii8vIE5vcm1hbGl6ZWQgcmVmZXJlbmNlIHN5c3RlbVxubTFfOSA9IDEuMFxuazFfOSA9IDEuMFxuRjBfOSA9IDEuMFxub21lZ2ExXzkgPSBNYXRoLnNxcnQoazFfOSAvIG0xXzkpXG5cbi8vIEFic29yYmVyIHBhcmFtZXRlcnMgZnJvbSBzbGlkZXJzXG5tMl85ID0gbXVfOSAqIG0xXzlcbm9tZWdhYV85ID0gZl85ICogb21lZ2ExXzlcbmsyXzkgPSBtMl85ICogb21lZ2FhXzkqKjJcbmMyXzkgPSAyICogemV0YTJfOSAqIG0yXzkgKiBvbWVnYWFfOVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0zIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiaHRtbGBcbjxkaXYgc3R5bGU9XCJkaXNwbGF5OmZsZXg7Z2FwOjEuNHJlbTtmbGV4LXdyYXA6d3JhcDttYXJnaW46MC40cmVtIDAgMC44cmVtIDA7Zm9udC1zaXplOjAuOTNlbTtjb2xvcjojMzMzO2JhY2tncm91bmQ6I2Y4ZjlmYTtwYWRkaW5nOjAuNnJlbSAxLjFyZW07Ym9yZGVyLXJhZGl1czo2cHhcIj5cbiAgPHNwYW4+z4nigoEgPSA8c3Ryb25nPiR7b21lZ2ExXzkudG9GaXhlZCgzKX0gcmFkL3M8L3N0cm9uZz48L3NwYW4+XG4gIDxzcGFuPs+J4oKQID0gPHN0cm9uZz4ke29tZWdhYV85LnRvRml4ZWQoMyl9IHJhZC9zPC9zdHJvbmc+PC9zcGFuPlxuICA8c3Bhbj5t4oKCID0gPHN0cm9uZz4ke20yXzkudG9GaXhlZCgzKX0ga2c8L3N0cm9uZz48L3NwYW4+XG4gIDxzcGFuPmvigoIgPSA8c3Ryb25nPiR7azJfOS50b0ZpeGVkKDMpfSBOL208L3N0cm9uZz48L3NwYW4+XG4gIDxzcGFuPmPigoIgPSA8c3Ryb25nPiR7YzJfOS50b0ZpeGVkKDQpfSBOwrdzL208L3N0cm9uZz48L3NwYW4+XG48L2Rpdj5gXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTQiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJyZXNwb25zZURhdGFfOSA9IHtcbiAgY29uc3QgZGF0YSA9IFtdXG4gIGNvbnN0IG4gPSAxMDAwXG4gIGNvbnN0IHJNaW4gPSAwLjJcbiAgY29uc3Qgck1heCA9IDIuMFxuXG4gIGZvciAobGV0IGogPSAwOyBqIDw9IG47IGorKykge1xuICAgIGNvbnN0IHIgPSByTWluICsgKHJNYXggLSByTWluKSAqIGogLyBuXG4gICAgY29uc3Qgb21lZ2EgPSByICogb21lZ2ExXzlcblxuICAgIC8vIENvbXBsZXggYWJzb3JiZXIgc3RpZmZuZXNzOiBaMiA9IGsyICsgaSBvbWVnYSBjMlxuICAgIGNvbnN0IFpyID0gazJfOVxuICAgIGNvbnN0IFppID0gb21lZ2EgKiBjMl85XG5cbiAgICAvLyBBID0gazEgKyBaMiAtIG0xIG9tZWdhwrJcbiAgICBjb25zdCBBciA9IGsxXzkgKyBaciAtIG0xXzkgKiBvbWVnYSoqMlxuICAgIGNvbnN0IEFpID0gWmlcblxuICAgIC8vIEIgPSBaMiAtIG0yIG9tZWdhwrJcbiAgICBjb25zdCBCciA9IFpyIC0gbTJfOSAqIG9tZWdhKioyXG4gICAgY29uc3QgQmkgPSBaaVxuXG4gICAgLy8gRCA9IEEqQiAtIFoywrJcbiAgICBjb25zdCBBQnIgPSBBciAqIEJyIC0gQWkgKiBCaVxuICAgIGNvbnN0IEFCaSA9IEFyICogQmkgKyBBaSAqIEJyXG5cbiAgICBjb25zdCBaMnIgPSBaciAqIFpyIC0gWmkgKiBaaVxuICAgIGNvbnN0IFoyaSA9IDIgKiBaciAqIFppXG5cbiAgICBjb25zdCBEciA9IEFCciAtIFoyclxuICAgIGNvbnN0IERpID0gQUJpIC0gWjJpXG5cbiAgICBjb25zdCBEYWJzID0gTWF0aC5zcXJ0KERyKioyICsgRGkqKjIpXG5cbiAgICAvLyB8VTEvRjB8ID0gfEJ8L3xEfFxuICAgIGNvbnN0IEgxYWJzID0gTWF0aC5zcXJ0KEJyKioyICsgQmkqKjIpIC8gRGFic1xuXG4gICAgLy8gfFUyL0YwfCA9IHxaMnwvfER8XG4gICAgY29uc3QgSDJhYnMgPSBNYXRoLnNxcnQoWnIqKjIgKyBaaSoqMikgLyBEYWJzXG5cbiAgICAvLyBOb3JtYWxpemVkIGFtcGxpdHVkZXM6IGsxIHxVfCAvIEYwXG4gICAgY29uc3QgQTEgPSBrMV85ICogSDFhYnMgLyBGMF85XG4gICAgY29uc3QgQTIgPSBrMV85ICogSDJhYnMgLyBGMF85XG5cbiAgICBkYXRhLnB1c2goe3I6IHIsIG1hc3M6IFwiUHJpbWFyeSBtYXNzICBt4oKBXCIsIGFtcGxpdHVkZTogTWF0aC5taW4oQTEsIHltYXhfOSl9KVxuICAgIGRhdGEucHVzaCh7cjogciwgbWFzczogXCJBYnNvcmJlciBtYXNzICBt4oKCXCIsIGFtcGxpdHVkZTogTWF0aC5taW4oQTIsIHltYXhfOSl9KVxuICB9XG5cbiAgcmV0dXJuIGRhdGFcbn1cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlBsb3QucGxvdCh7XG4gIHRpdGxlOiBgRGFtcGVkIGFic29yYmVyIHJlc3BvbnNlICDigJQgIM624oKCID0gJHt6ZXRhMl85LnRvRml4ZWQoMyl9LCAgzrwgPSAke211XzkudG9GaXhlZCgyKX0sICBmID0gJHtmXzkudG9GaXhlZCgyKX1gLFxuICBtYXJrczogW1xuICAgIFBsb3QucnVsZVkoWzBdLCB7c3Ryb2tlOiBcIiNhYWFcIn0pLFxuICAgIFBsb3QucnVsZVgoW2ZfOV0sIHtzdHJva2U6IFwiIzU1NVwiLCBzdHJva2VEYXNoYXJyYXk6IFwiNSw1XCJ9KSxcbiAgICBQbG90LmxpbmVZKHJlc3BvbnNlRGF0YV85LCB7XG4gICAgICB4OiBcInJcIixcbiAgICAgIHk6IFwiYW1wbGl0dWRlXCIsXG4gICAgICBzdHJva2U6IFwibWFzc1wiLFxuICAgICAgc3Ryb2tlV2lkdGg6IDIuNFxuICAgIH0pXG4gIF0sXG4gIHg6IHtcbiAgICBsYWJlbDogXCJGcmVxdWVuY3kgcmF0aW8gIHIgPSDPiS/PieKCgVwiLFxuICAgIGRvbWFpbjogWzAuMiwgMi4wXSxcbiAgICBncmlkOiB0cnVlXG4gIH0sXG4gIHk6IHtcbiAgICBsYWJlbDogXCJOb3JtYWxpemVkIGFtcGxpdHVkZSAga+KCgXxVfC9G4oKAXCIsXG4gICAgZG9tYWluOiBbMCwgeW1heF85XSxcbiAgICBncmlkOiB0cnVlXG4gIH0sXG4gIGNvbG9yOiB7XG4gICAgbGVnZW5kOiB0cnVlXG4gIH0sXG4gIHdpZHRoOiA3ODAsXG4gIGhlaWdodDogNDMwLFxuICBzdHlsZToge1xuICAgIGZvbnRTaXplOiBcIjEzcHhcIlxuICB9XG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCd6ZXRhMl85JykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ211XzknKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnZl85JykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3ltYXhfOScpIn1dfQ==
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/hdsoliveira\.github\.io\/Fundamentals_Of_Mechanical_Vibrations\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Fundamentals of Mechanical Vibrations — 1-DOF Systems</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
